@@ -97,6 +97,8 @@ var rpg = (function () {
     })(app || (app = {}));
     window['App'] = app;
 
+    // https://www.artstation.com/artwork/Z580PG
+    // https://www.artstation.com/artwork/GXnEN3
     var rpg;
     (function (rpg) {
         function init() {

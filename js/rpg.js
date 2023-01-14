@@ -1,4 +1,6 @@
 import app from "./app";
+// https://www.artstation.com/artwork/Z580PG
+// https://www.artstation.com/artwork/GXnEN3
 var rpg;
 (function (rpg) {
     function init() {
