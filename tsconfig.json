@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"sourceMap": false,
+		"module": "ES2022",
+		"target": "ES2022",
+		"esModuleInterop": true,
+		"jsx": "preserve",
+		"lib": [
+			"dom",
+			"es6"
+		],
+		"outDir": "js",
+		"allowSyntheticDefaultImports": true,
+		"moduleResolution": "node",
+		"strictNullChecks": true
+	},
+	"files": [
+		"src/rpg.d.ts"
+	],
+	"include": [
+		"./src"
+	],
+	"exclude": [
+		"node_modules"
+	]
+}
