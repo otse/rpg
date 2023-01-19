@@ -176,13 +176,26 @@ rpg-bars rpg-bar.health rpg-length {
 rpg-bars rpg-bar.health rpg-inner {
   color: #442626;
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #808080;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #525252;
+}
 rpg-action-bar {
-  bborder: 1px outset rgba(160, 160, 160, 0.5);
-  border-radius: 6px;
-  background: linear-gradient(180deg, rgba(55, 64, 72, 0.95) 0%, rgba(37, 44, 53, 0.95) 100%);
-  padding: 10px;
+  border: 2px solid rgba(17, 17, 17, 0.5);
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(48, 54, 58, 0.95) 0%, rgba(53, 61, 68, 0.95) 100%);
+  background: url(img/border2.png);
+  background-position: -2px 0px;
+  ppadding: 10px;
   margin: 10px;
-  height: 62px;
+  height: 70px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
@@ -198,7 +211,7 @@ rpg-action-bar rpg-slot {
   bborder: 2px outset rgba(255, 255, 255, 0.5);
   bborder: 2px solid rgba(9, 11, 11, 0.8);
   bborder-radius: 4px;
-  margin: 2px;
+  margin: 0px;
   display: flex;
   justify-content: center;
 }
@@ -208,8 +221,7 @@ rpg-action-bar rpg-slot rpg-inner {
   /* background: rgba(136, 141, 145, 0.9); */
   background: rgba(24, 28, 30, 0.7);
   /* background: linear-gradient(225deg, rgba(26, 29, 34, 0.95) 0%, rgba(16, 20, 22, 0.95) 100%); */
-  bborder: 1px outset #ffffff17;
-  bborder: 1px outset #0000003b;
+  bborder: 2px outset #23232347;
   bborder-radius: 3px;
   padding: 4px;
   box-sizing: border-box;
