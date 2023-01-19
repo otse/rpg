@@ -7,6 +7,8 @@ body {
 	background: url(https://cdnb.artstation.com/p/assets/images/images/025/914/673/4k/gaelle-seguillon-gaelle-seguillon-storm-peaks-2-6k.jpg?1587324674);
 	background-position: center;
 	background-size: cover;
+	-webkit-backdrop-filter: blur(2px);
+	backdrop-filter: blur(2px);
 	font-family: 'Raleway', sans-serif;
 	width: 100%;
 	height: 100%;
@@ -17,6 +19,9 @@ body {
 }
 
 rpg-main-area {
+	background: url(https://cdnb.artstation.com/p/assets/images/images/025/914/673/4k/gaelle-seguillon-gaelle-seguillon-storm-peaks-2-6k.jpg?1587324674);
+	background-position: center;
+	background-size: cover;
 	min-width: 300px;
 	min-height: 600px;
 	max-width: 500px;
@@ -25,8 +30,9 @@ rpg-main-area {
 	height: 100%;
 	font-family: 'EB Garamond', serif;
 	font-size: 18px;
-	border: 1px solid grey;
+	bborder: 1px solid grey;
 	border-radius: 6px;
+	margin: 0px;
 	box-sizing: border-box;
 	display: flex;
 	align-items: center;
@@ -83,7 +89,7 @@ rpg-button-stone {
 rpg-dialog {
 	width: 300px;
 	background: rgb(139 139 139 / 25%);
-	background: linear-gradient(180deg, rgb(125 125 125 / 25%) 0%, rgba(255, 249, 219, 0.15) 100%);
+	background: linear-gradient(180deg, rgb(105 105 105 / 95%) 0%, rgba(80, 78, 77, 0.95) 100%);
 	border: 1px outset rgb(160 160 160 / 50%);
 	border-radius: 6px;
 	box-shadow: 0 0 8px #3c3c3c;
@@ -92,15 +98,15 @@ rpg-dialog {
 
 	rpg-title {
 		ffont-size: 22px;
-		font-weight: bold;
-		color: #d7b372;
+		ffont-weight: bold;
+		ccolor: #d7b372;
 		padding: 0px;
 		display: flex;
 	}
 
 	rpg-text {
 		padding: 20px;
-		color: floralwhite;
+		color: #e6e6e6;
 		display: flex;
 		flex-direction: column;
 	}
@@ -129,13 +135,14 @@ rpg-dialog {
 }
 
 rpg-bars {
-	margin: 50px;
+	width: 100%;
+	margin: 0px;
 	display: flex;
 
 	rpg-bar {
 		position: relative;
-		width: 180px;
-		height: 20px;
+		width: 50%;
+		hheight: 20px;
 		border: 1px outset rgb(255 255 255 / 50%);
 		border-radius: 3px;
 		box-sizing: border-box;
@@ -185,12 +192,19 @@ rpg-bars {
 }
 
 rpg-action-bar {
-	bborder: 1px outset rgb(255 255 255 / 21%);
-	border-radius: 2px;
-	bbackground: linear-gradient(45deg, rgba(72, 72, 72, 0.25) 0%, rgba(207, 196, 141, 0.15) 100%);
-	padding: 0px;
-	margin: 50px;
+	bborder: 1px outset rgba(160, 160, 160, 0.5);
+	border-radius: 6px;
+    background: linear-gradient(180deg, rgb(55 64 72 / 95%) 0%, rgb(37 44 53 / 95%) 100%);
+	padding: 10px;
+	margin: 10px;
+	height: 62px;
+    overflow-y: scroll;
 	display: flex;
+	flex-direction: column;
+
+	rpg-row {
+		display: flex;
+	}
 
 	rpg-slot {
 		width: 60px;
@@ -198,8 +212,8 @@ rpg-action-bar {
 		box-sizing: border-box;
 		background: url(img/rocks.jpg);
 		/* border: 2px outset rgba(255, 255, 255, 0.5); */
-		border: 2px solid rgb(25 26 30 / 80%);
-		border-radius: 4px;
+		border: 2px solid rgb(9 11 11 / 80%);
+		bborder-radius: 4px;
 		margin: 1px;
 		display: flex;
 		justify-content: center;
@@ -208,10 +222,10 @@ rpg-action-bar {
 			width: 100%;
 			height: 100%;
 			/* background: rgba(136, 141, 145, 0.9); */
-			background: rgb(23 28 31 / 95%);
-			background: linear-gradient(225deg, rgb(32 36 41 / 95%) 0%, rgb(21 24 26 / 95%) 100%);
-			border: 1px outset #ffffff17;
-			border: 1px outset #0000003b;
+			background: rgb(22 26 27 / 95%);
+			background: linear-gradient(225deg, rgba(26, 29, 34, 0.95) 0%, rgba(16, 20, 22, 0.95) 100%);
+			bborder: 1px outset #ffffff17;
+			bborder: 1px outset #0000003b;
 			bborder-radius: 3px;
 			padding: 2px;
 			box-sizing: border-box;
@@ -219,8 +233,8 @@ rpg-action-bar {
 			justify-content: center;
 
 			img {
-				border: 1px outset #ffffff30;
-				border-radius: 3px;
+				border: 1px outset #ffffff3b;
+				border-radius: 4px;
 				box-sizing: border-box;
 				width: 100%;
 				height: 100%;
