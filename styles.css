@@ -92,8 +92,8 @@ rpg-dialog {
   background: rgba(139, 139, 139, 0.25);
   background: linear-gradient(180deg, rgba(105, 105, 105, 0.95) 0%, rgba(80, 78, 77, 0.95) 100%);
   border: 1px outset rgba(160, 160, 160, 0.5);
-  border-radius: 6px;
-  box-shadow: 0 0 8px #3c3c3c;
+  border-radius: 3px;
+  box-shadow: 0 0 8px #1f1f1f;
   display: flex;
   flex-direction: column;
 }
@@ -194,11 +194,11 @@ rpg-action-bar rpg-slot {
   width: 60px;
   height: 60px;
   box-sizing: border-box;
-  background: url(img/rocks.jpg);
-  /* border: 2px outset rgba(255, 255, 255, 0.5); */
-  border: 2px solid rgba(9, 11, 11, 0.8);
+  background: url(img/border.png);
+  bborder: 2px outset rgba(255, 255, 255, 0.5);
+  bborder: 2px solid rgba(9, 11, 11, 0.8);
   bborder-radius: 4px;
-  margin: 1px;
+  margin: 2px;
   display: flex;
   justify-content: center;
 }
@@ -206,18 +206,18 @@ rpg-action-bar rpg-slot rpg-inner {
   width: 100%;
   height: 100%;
   /* background: rgba(136, 141, 145, 0.9); */
-  background: rgba(22, 26, 27, 0.95);
-  background: linear-gradient(225deg, rgba(26, 29, 34, 0.95) 0%, rgba(16, 20, 22, 0.95) 100%);
+  background: rgba(24, 28, 30, 0.7);
+  /* background: linear-gradient(225deg, rgba(26, 29, 34, 0.95) 0%, rgba(16, 20, 22, 0.95) 100%); */
   bborder: 1px outset #ffffff17;
   bborder: 1px outset #0000003b;
   bborder-radius: 3px;
-  padding: 2px;
+  padding: 4px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
 }
 rpg-action-bar rpg-slot rpg-inner img {
-  border: 1px outset #ffffff3b;
+  bborder: 1px outset #ffffff3b;
   border-radius: 4px;
   box-sizing: border-box;
   width: 100%;
