@@ -31,31 +31,107 @@
 
 <body unselectable="on" class="unselectable">
 
-	<rpg-content>
-		<rpg-where-a-bouts>
+	<rpg-main-area>
+		<rpg-bars>
+			<rpg-bar class="health">
+				<rpg-length></rpg-length>
+				<rpg-inner>
+					hp
+				</rpg-inner>
+			</rpg-bar>
+			<rpg-bar class="mana">
+				<rpg-length></rpg-length>
+				<rpg-inner>
+					mana
+				</rpg-inner>
+			</rpg-bar>
+		</rpg-bars>
+
+		<rpg-menu>
+			
+		</rpg-menu>
+
+		<rpg-dialog>
 			<rpg-text>
-				You are near the monastery. Will you proceed or return?
+				<!--<rpg-title>
+					A simple choice
+				</rpg-title>-->
+				Traveling east-wards, you approach an old monastery.
 			</rpg-text>
 			<rpg-divider></rpg-divider>
-			<rpg-actions>
-				<rpg-action>
-					<rpg-x>
-					<rpg-x>
-						Enter Monastery
-					</rpg-x>
-					</rpg-x>
-				</rpg-action>
-				<rpg-action>
-					<rpg-x>
-					<rpg-x>
-						Back to Town
-					</rpg-x>
-					</rpg-x>
-				</rpg-action>
-			</rpg-actions>
-		</rpg-where-a-bouts>
-	</rpg-content>
+			<rpg-buttons-area>
+				<rpg-button-stone>
+					<rpg-outer>
+						<rpg-inner>
+							Enter
+						</rpg-inner>
+					</rpg-outer>
+				</rpg-button-stone>
+				or
+				<rpg-button-stone>
+					<rpg-outer>
+						<rpg-inner>
+							Back to Town
+						</rpg-inner>
+					</rpg-outer>
+				</rpg-button-stone>
+			</rpg-buttons-area>
+		</rpg-dialog>
 
+		<rpg-action-bar>
+			<rpg-row>
+				<rpg-slot>
+					<rpg-inner>
+					</rpg-inner>
+
+				</rpg-slot>
+				<rpg-slot>
+					<rpg-inner>
+					</rpg-inner>
+				</rpg-slot>
+				<rpg-slot>
+					<rpg-inner>
+						<img src="img/marton-attila-viking-sword-a-02.jpg">
+					</rpg-inner>
+				</rpg-slot>
+				<rpg-slot>
+					<rpg-inner>
+						<img src="img/lukasz-krol-final.jpg">
+					</rpg-inner>
+				</rpg-slot>
+				<rpg-slot>
+					<rpg-inner>
+						<img src="img/lukasz-krol-final.jpg">
+					</rpg-inner>
+				</rpg-slot>
+			</rpg-row>
+			<rpg-row>
+				<rpg-slot>
+					<rpg-inner>
+					</rpg-inner>
+
+				</rpg-slot>
+				<rpg-slot>
+					<rpg-inner>
+					</rpg-inner>
+				</rpg-slot>
+				<rpg-slot>
+					<rpg-inner>
+						<img src="img/marton-attila-viking-sword-a-02.jpg">
+					</rpg-inner>
+				</rpg-slot>
+				<rpg-slot>
+					<rpg-inner>
+						<img src="img/lukasz-krol-final.jpg">
+					</rpg-inner>
+				</rpg-slot>
+				<rpg-slot>
+					<rpg-inner>
+					</rpg-inner>
+				</rpg-slot>
+			</rpg-row>
+		</rpg-action-bar>
+	</rpg-main-area>
 </body>
 
 </html>

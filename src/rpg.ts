@@ -11,6 +11,8 @@ namespace rpg {
 	export function step() {
 		
 	}
+
+	
 }
 
 export default rpg;

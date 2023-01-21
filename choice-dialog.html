@@ -27,29 +27,77 @@
 <body unselectable="on" class="unselectable">
 
 	<rpg-main-area>
-		<rpg-bars>
-			<rpg-bar class="health">
-				<rpg-length></rpg-length>
-				<rpg-inner>
-					hp
-				</rpg-inner>
-			</rpg-bar>
-			<rpg-bar class="mana">
-				<rpg-length></rpg-length>
-				<rpg-inner>
-					mana
-				</rpg-inner>
-			</rpg-bar>
-		</rpg-bars>
+		<rpg-top-area>
+			<rpg-top-bar>
+				<rpg-top-bar-inner>
+					<rpg-choice>
+						<rpg-choice-inner>
+							Local
+						</rpg-choice-inner>
+					</rpg-choice>
+				</rpg-top-bar-inner>
+			</rpg-top-bar>
+			<rpg-selection>
+				Local
+			</rpg-selection>
+			<rpg-selection>
+				Map
+			</rpg-selection>
+			<rpg-selection>
+				Character
+			</rpg-selection>
+			<!--<rpg-bars>
+				<rpg-bar class="health">
+					<rpg-length></rpg-length>
+					<rpg-inner>
+						hp
+					</rpg-inner>
+				</rpg-bar>
+				<rpg-bar class="mana">
+					<rpg-length></rpg-length>
+					<rpg-inner>
+						mana
+					</rpg-inner>
+				</rpg-bar>
+			</rpg-bars>-->
+
+			<!--<rpg-tabs>
+				<rpg-tab class="active">
+					<rpg-outer>
+						<rpg-inner>
+							Local
+						</rpg-inner>
+					</rpg-outer>
+				</rpg-tab>
+				<rpg-tab>
+					<rpg-outer>
+						<rpg-inner>
+							World Map
+						</rpg-inner>
+					</rpg-outer>
+				</rpg-tab>
+				<rpg-tab>
+					<rpg-outer>
+						<rpg-inner>
+							Character
+						</rpg-inner>
+					</rpg-outer>
+
+				</rpg-tab>
+			</rpg-tabs>
+			<rpg-tab-content>
+
+			</rpg-tab-content>-->
+		</rpg-top-area>
 
 		<rpg-dialog>
+			<!--<rpg-title>
+				Message
+			</rpg-title>-->
 			<rpg-text>
-				<!--<rpg-title>
-					A simple choice
-				</rpg-title>-->
 				Traveling east-wards, you approach an old monastery.
 			</rpg-text>
-			<rpg-divider></rpg-divider>
+			<!-- <rpg-divider></rpg-divider> -->
 			<rpg-buttons-area>
 				<rpg-button-stone>
 					<rpg-outer>
@@ -68,6 +116,12 @@
 				</rpg-button-stone>
 			</rpg-buttons-area>
 		</rpg-dialog>
+
+		<rpg-world-map>
+			<rpg-inner>
+
+			</rpg-inner>
+		</rpg-world-map>
 
 		<rpg-action-bar>
 			<rpg-row>
