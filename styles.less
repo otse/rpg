@@ -55,9 +55,10 @@ rpg-top-bar {
 	box-sizing: border-box;
 	background: gray;
 	background: url(img/titlebar.png);
+	background: rgba(110, 110, 110, 0.8);
 	background-size: 100%;
-	background-position: 0px -7px;
-	border-bottom: 2px solid #00000029;
+	background-position: 0px -3px;
+	border-bottom: 3px solid #0000001f;
 	border-left: 0;
 	border-right: 0;
 	border-radius: 0px;
@@ -79,9 +80,10 @@ rpg-top-bar {
 
 		rpg-choice {
 			color: #d1d1d1;
-			/* border: 2px solid #a7a7a796; */
-			border-radius: 3px;
-			/* background: #a1a1a1; */
+			border: 1px solid #e2e2e296;
+			border-radius: 2px;
+			margin: 3px;
+			background: #a1a1a1b5;
 			/* background: url(img/rocks.jpg); */
 			display: flex;
 
@@ -197,16 +199,19 @@ rpg-tab-content {
 @faint-blue: rgb(124 128 131 / 90%);
 @faint-white: rgb(149 149 149 / 90%);
 
-rpg-button-stone {
+rpg-button-wood {
 	font-family: 'EB Garamond', serif;
 	font-size: 18px;
 	color: #e0e0e0;
 	color: #1b1b1b;
-	ttext-shadow: 0 0 3px #6c6a66;
+	color: #20150a;
+	text-shadow: 0 0 3px #6b6862;
 	background: url(img/rocks.jpg);
-	background-position: -4px -4px;
-	border: 4px outset rgb(255 255 255 / 50%);
-	border-radius: 4px;
+	background: url(img/titlebar.png);
+	background-size: 400%;
+	background-position: -4px -1px;
+	border: 2px outset rgb(199 199 199 / 30%);
+	border-radius: 0px;
 	box-shadow: 0 0 4px #333333;
 	mmargin: 0 10px;
 	cursor: pointer;
@@ -221,18 +226,18 @@ rpg-button-stone {
 		}
 	}
 
-	rpg-outer {
-		bborder: 2px outset rgb(180 180 180 / 50%);
+	rpg-button-wood-outer {
+		bborder: 2px outset rgba(180, 180, 180, 0.4);
 		border-radius: 2px;
-		background: @faint-blue;
+		background: rgb(96 96 96 / 50%);
 		display: flex;
 
-		rpg-inner {
+		rpg-button-wood-inner {
 			border: 1px outset #e4e4e48f;
 			border-radius: 4px;
-			background: linear-gradient(0deg, rgb(255 255 255 / 20%) 0%, rgba(127, 127, 127, 0.1) 50%, rgb(255 255 255 / 20%) 100%);
-			background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgb(201 201 201 / 30%) 100%);
-			padding: 0 5px;
+			bbackground: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0%, rgba(127, 127, 127, 0.1) 50%, rgba(255, 255, 255, 0.1) 100%);
+			/* background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(201, 201, 201, 0.25) 100%); */
+			padding: 0 10px;
 			white-space: nowrap;
 			display: flex;
 			justify-content: center;
@@ -244,15 +249,15 @@ rpg-dialog {
 	position: absolute;
 	top: 100px;
 	width: 300px;
-	background: rgb(110 110 110 / 80%);
-	background: linear-gradient(180deg, rgba(107, 112, 112, 0.95) 0%, rgb(82 88 86 / 95%) 100%);
+	background: rgb(103 103 103 / 80%);
+	bbackground: linear-gradient(180deg, rgba(107, 112, 112, 0.95) 0%, rgb(82 88 86 / 95%) 100%);
 	bbackground: url(img/dialog.png);
 	bbackground-position: 0px 78px;
 	background-size: 100%;
 	bborder: 1px outset rgb(160 160 160 / 50%);
 	color: #e6e6e6;
 	border-radius: 3px;
-	text-shadow: 0 0 3px #6c6a66;
+	ttext-shadow: 0 0 3px #6c6a66;
 	box-shadow: 0 0 8px #1f1f1f;
 	display: flex;
 	flex-direction: column;

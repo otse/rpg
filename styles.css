@@ -63,9 +63,10 @@ rpg-top-bar {
   box-sizing: border-box;
   background: gray;
   background: url(img/titlebar.png);
+  background: rgba(110, 110, 110, 0.8);
   background-size: 100%;
-  background-position: 0px -7px;
-  border-bottom: 2px solid #00000029;
+  background-position: 0px -3px;
+  border-bottom: 3px solid #0000001f;
   border-left: 0;
   border-right: 0;
   border-radius: 0px;
@@ -87,9 +88,10 @@ rpg-top-bar rpg-top-bar-inner {
 }
 rpg-top-bar rpg-top-bar-inner rpg-choice {
   color: #d1d1d1;
-  /* border: 2px solid #a7a7a796; */
-  border-radius: 3px;
-  /* background: #a1a1a1; */
+  border: 1px solid #e2e2e296;
+  border-radius: 2px;
+  margin: 3px;
+  background: #a1a1a1b5;
   /* background: url(img/rocks.jpg); */
   display: flex;
 }
@@ -181,40 +183,43 @@ rpg-tab-content {
   bbackground: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(201, 201, 201, 0.3) 100%);
   display: flex;
 }
-rpg-button-stone {
+rpg-button-wood {
   font-family: 'EB Garamond', serif;
   font-size: 18px;
   color: #e0e0e0;
   color: #1b1b1b;
-  ttext-shadow: 0 0 3px #6c6a66;
+  color: #20150a;
+  text-shadow: 0 0 3px #6b6862;
   background: url(img/rocks.jpg);
-  background-position: -4px -4px;
-  border: 4px outset rgba(255, 255, 255, 0.5);
-  border-radius: 4px;
+  background: url(img/titlebar.png);
+  background-size: 400%;
+  background-position: -4px -1px;
+  border: 2px outset rgba(199, 199, 199, 0.3);
+  border-radius: 0px;
   box-shadow: 0 0 4px #333333;
   mmargin: 0 10px;
   cursor: pointer;
   display: flex;
 }
-rpg-button-stone:hover {
+rpg-button-wood:hover {
   ccolor: #ad9f00;
   text-decoration: underline;
 }
-rpg-button-stone:hover rpg-x {
+rpg-button-wood:hover rpg-x {
   bbackground: rgba(68, 76, 81, 0.9);
 }
-rpg-button-stone rpg-outer {
-  bborder: 2px outset rgba(180, 180, 180, 0.5);
+rpg-button-wood rpg-button-wood-outer {
+  bborder: 2px outset rgba(180, 180, 180, 0.4);
   border-radius: 2px;
-  background: rgba(124, 128, 131, 0.9);
+  background: rgba(96, 96, 96, 0.5);
   display: flex;
 }
-rpg-button-stone rpg-outer rpg-inner {
+rpg-button-wood rpg-button-wood-outer rpg-button-wood-inner {
   border: 1px outset #e4e4e48f;
   border-radius: 4px;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.2) 0%, rgba(127, 127, 127, 0.1) 50%, rgba(255, 255, 255, 0.2) 100%);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(201, 201, 201, 0.3) 100%);
-  padding: 0 5px;
+  bbackground: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0%, rgba(127, 127, 127, 0.1) 50%, rgba(255, 255, 255, 0.1) 100%);
+  /* background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(201, 201, 201, 0.25) 100%); */
+  padding: 0 10px;
   white-space: nowrap;
   display: flex;
   justify-content: center;
@@ -223,15 +228,15 @@ rpg-dialog {
   position: absolute;
   top: 100px;
   width: 300px;
-  background: rgba(110, 110, 110, 0.8);
-  background: linear-gradient(180deg, rgba(107, 112, 112, 0.95) 0%, rgba(82, 88, 86, 0.95) 100%);
+  background: rgba(103, 103, 103, 0.8);
+  bbackground: linear-gradient(180deg, rgba(107, 112, 112, 0.95) 0%, rgba(82, 88, 86, 0.95) 100%);
   bbackground: url(img/dialog.png);
   bbackground-position: 0px 78px;
   background-size: 100%;
   bborder: 1px outset rgba(160, 160, 160, 0.5);
   color: #e6e6e6;
   border-radius: 3px;
-  text-shadow: 0 0 3px #6c6a66;
+  ttext-shadow: 0 0 3px #6c6a66;
   box-shadow: 0 0 8px #1f1f1f;
   display: flex;
   flex-direction: column;
