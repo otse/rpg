@@ -11,6 +11,8 @@
 
 	<link rel="stylesheet" type="text/css" href="styles.css">
 
+	<script type="text/javascript" src="bundle.js"></script>
+
 	<style>
 
 	</style>
@@ -19,136 +21,147 @@
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function (event) {
-			App.boot('ug');
+			App.boot('');
 		});
 	</script>
 </head>
 
 <body unselectable="on" class="unselectable">
 
-	<rpg-main-area>
-		<rpg-top-area>
-			<rpg-top-bar>
-				<rpg-top-bar-inner>
-					<rpg-choice>
-						<rpg-choice-inner>
-							Character
-						</rpg-choice-inner>
-					</rpg-choice>
-				</rpg-top-bar-inner>
-			</rpg-top-bar>
-			<rpg-selection>
+	<x-main-area>
+		<x-top-area>
+			<x-top-bar>
+				<x-top-bar-inner>
+					<x-view-dropdown-group>
+						<x-view-button>
+							<x-view-button-inner>
+								View
+							</x-view-button-inner>
+						</x-view-button>
+						<x-dropdown-offset>
+							<x-dropdown>
+								<x-dropdown-inner>
+									<x-dropdown-value>Character</x-dropdown-value>
+									<x-dropdown-value>World Map</x-dropdown-value>
+								</x-dropdown-inner>
+							</x-dropdown>
+						</x-dropdown-offset>
+					</x-view-dropdown-group>
+				</x-top-bar-inner>
+			</x-top-bar>
+
+			<x-selection>
 				Local
-			</rpg-selection>
-			<rpg-selection>
+			</x-selection>
+			<x-selection>
 				Map
-			</rpg-selection>
-			<rpg-selection>
+			</x-selection>
+			<x-selection>
 				Character
-			</rpg-selection>
-		</rpg-top-area>
+			</x-selection>
+		</x-top-area>
 
-		<rpg-dialog>
-			<!--<rpg-title>
+		<x-dialog>
+			<!--<x-title>
 				Message
-			</rpg-title>-->
-			<rpg-text>
+			</x-title>-->
+			<x-text>
 				Traveling east-wards, you approach an old monastery.
-			</rpg-text>
-			<!-- <rpg-divider></rpg-divider> -->
-			<rpg-buttons-area>
-				<rpg-button-wood>
-					<rpg-button-wood-outer>
-						<rpg-button-wood-inner>
+			</x-text>
+			<!-- <x-divider></x-divider> -->
+			<x-buttons-area>
+				<x-button-wood>
+					<x-button-wood-outer>
+						<x-button-wood-inner>
 							Enter
-						</rpg-button-wood-inner>
-					</rpg-button-wood-outer>
-				</rpg-button-wood>
+						</x-button-wood-inner>
+					</x-button-wood-outer>
+				</x-button-wood>
 				or
-				<rpg-button-wood>
-					<rpg-button-wood-outer>
-						<rpg-button-wood-inner>
+				<x-button-wood>
+					<x-button-wood-outer>
+						<x-button-wood-inner>
 							Back to Town
-						</rpg-button-wood-inner>
-					</rpg-button-wood-outer>
-				</rpg-button-wood>
-			</rpg-buttons-area>
-		</rpg-dialog>
+						</x-button-wood-inner>
+					</x-button-wood-outer>
+				</x-button-wood>
+			</x-buttons-area>
+		</x-dialog>
 
-		<rpg-window>
-			<rpg-title-bar>
-				<rpg-title-bar-inner>
-					<rpg-title>
+		<x-window>
+			<x-title-bar>
+				<x-title-bar-inner>
+					<x-title>
 						World Map
-					</rpg-title>
-					<rpg-close>
+					</x-title>
+					<x-close>
 						x
-					</rpg-close>
-				</rpg-title-bar-inner>
-			</rpg-title-bar>
-			<rpg-window-content>
-				<rpg-inner>
+					</x-close>
+				</x-title-bar-inner>
+			</x-title-bar>
+			<x-window-content>
+				<x-inner>
 					<x-world-map>
 
 					</x-world-map>
-				</rpg-inner>
-			</rpg-window-content>
-		</rpg-window>
+				</x-inner>
+			</x-window-content>
+		</x-window>
 
-		<rpg-action-bar>
-			<rpg-row>
-				<rpg-slot>
-					<rpg-inner>
-					</rpg-inner>
+		<x-action-bar>
+			<x-row>
+				<x-slot>
+					<x-inner>
+					</x-inner>
 
-				</rpg-slot>
-				<rpg-slot>
-					<rpg-inner>
-					</rpg-inner>
-				</rpg-slot>
-				<rpg-slot>
-					<rpg-inner>
+				</x-slot>
+				<x-slot>
+					<x-inner>
+					</x-inner>
+				</x-slot>
+				<x-slot>
+					<x-inner>
 						<img src="img/marton-attila-viking-sword-a-02.jpg">
-					</rpg-inner>
-				</rpg-slot>
-				<rpg-slot>
-					<rpg-inner>
+					</x-inner>
+				</x-slot>
+				<x-slot>
+					<x-inner>
 						<img src="img/lukasz-krol-final.jpg">
-					</rpg-inner>
-				</rpg-slot>
-				<rpg-slot>
-					<rpg-inner>
+					</x-inner>
+				</x-slot>
+				<x-slot>
+					<x-inner>
 						<img src="img/lukasz-krol-final.jpg">
-					</rpg-inner>
-				</rpg-slot>
-			</rpg-row>
-			<rpg-row>
-				<rpg-slot>
-					<rpg-inner>
-					</rpg-inner>
+					</x-inner>
+				</x-slot>
+			</x-row>
+			<x-row>
+				<x-slot>
+					<x-inner>
+					</x-inner>
 
-				</rpg-slot>
-				<rpg-slot>
-					<rpg-inner>
-					</rpg-inner>
-				</rpg-slot>
-				<rpg-slot>
-					<rpg-inner>
+				</x-slot>
+				<x-slot>
+					<x-inner>
+					</x-inner>
+				</x-slot>
+				<x-slot>
+					<x-inner>
 						<img src="img/marton-attila-viking-sword-a-02.jpg">
-					</rpg-inner>
-				</rpg-slot>
-				<rpg-slot>
-					<rpg-inner>
+					</x-inner>
+				</x-slot>
+				<x-slot>
+					<x-inner>
 						<img src="img/lukasz-krol-final.jpg">
-					</rpg-inner>
-				</rpg-slot>
-				<rpg-slot>
-					<rpg-inner>
-					</rpg-inner>
-				</rpg-slot>
-			</rpg-row>
-		</rpg-action-bar>
-	</rpg-main-area>
+					</x-inner>
+				</x-slot>
+				<x-slot>
+					<x-inner>
+					</x-inner>
+				</x-slot>
+			</x-row>
+		</x-action-bar>
+	</x-main-area>
 
 </body>
 

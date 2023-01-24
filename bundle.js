@@ -1,8 +1,38 @@
 var rpg = (function () {
     'use strict';
 
+    class view {
+        element;
+        dropdown;
+        constructor() {
+            this.element = document.querySelector('x-view-dropdown-group x-view-button');
+            this.dropdown = document.querySelector('x-view-dropdown-group x-dropdown');
+            this.dropdown.style.display = 'none';
+            this.element.onclick = () => {
+                console.log('popout');
+                this.dropdown.style.display = 'flex';
+            };
+        }
+    }
+
+    // https://www.artstation.com/artwork/Z580PG
+    // https://www.artstation.com/artwork/GXnEN3
+    var rpg;
+    (function (rpg) {
+        function init() {
+            console.log(' init ');
+            new view;
+        }
+        rpg.init = init;
+        function step() {
+        }
+        rpg.step = step;
+    })(rpg || (rpg = {}));
+    var rpg$1 = rpg;
+
     var app;
     (function (app) {
+        window['App'] = app;
         let KEY;
         (function (KEY) {
             KEY[KEY["OFF"] = 0] = "OFF";
@@ -95,21 +125,8 @@ var rpg = (function () {
         }
         app.sethtml = sethtml;
     })(app || (app = {}));
-    window['App'] = app;
+    var app$1 = app;
 
-    // https://www.artstation.com/artwork/Z580PG
-    // https://www.artstation.com/artwork/GXnEN3
-    var rpg;
-    (function (rpg) {
-        function init() {
-        }
-        rpg.init = init;
-        function step() {
-        }
-        rpg.step = step;
-    })(rpg || (rpg = {}));
-    var rpg$1 = rpg;
-
-    return rpg$1;
+    return app$1;
 
 })();

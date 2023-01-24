@@ -2,6 +2,7 @@ import rpg from "./rpg";
 import space from "./rpg";
 
 namespace app {
+	window['App'] = app;
 	export enum KEY {
 		OFF = 0,
 		PRESS,
@@ -86,7 +87,5 @@ namespace app {
 		element.innerHTML = html;
 	}
 }
-
-window['App'] = app;
 
 export default app;

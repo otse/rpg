@@ -28,7 +28,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-rpg-main-area {
+x-main-area {
   position: relative;
   background: url(https://cdnb.artstation.com/p/assets/images/images/025/914/673/4k/gaelle-seguillon-gaelle-seguillon-storm-peaks-2-6k.jpg?1587324674);
   background-position: center;
@@ -50,62 +50,99 @@ rpg-main-area {
   flex-direction: column;
   justify-content: space-between;
 }
-rpg-top-area {
+x-top-area {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-rpg-top-bar {
+x-top-bar {
   width: 100%;
   hheight: 40px;
   box-sizing: border-box;
   background: gray;
   background: url(img/titlebar.png);
-  background: rgba(110, 110, 110, 0.8);
-  background-size: 100%;
-  background-position: 0px -3px;
-  border-bottom: 3px solid #0000001f;
-  border-left: 0;
-  border-right: 0;
+  background: url(img/rocks.jpg);
+  bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/122313/WoodPlanksOld0308_1_download600.jpg);
+  /* background: rgba(110, 110, 110, 0.8); */
+  bbackground-size: 100%;
+  background-position: -1px -1px;
+  bborder-bottom: 2px solid #9e9e9e87;
   border-radius: 0px;
   display: flex;
 }
-rpg-top-bar rpg-top-bar-inner {
+x-top-bar x-top-bar-inner {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   bborder: 1px solid #686868;
   border-radius: 4px;
   bbox-shadow: inset 0 0 7px #00000070;
-  /* background: rgba(150, 150, 150, 0.85); */
-  /* background: linear-gradient(180deg, rgb(116 116 116 / 85%) 0%, rgba(150, 150, 150, 0.85) 100%); */
-  /* background: linear-gradient(0deg, rgba(100, 100, 100, 0.9) 0%, rgba(114, 114, 114, 0.9) 50%, rgba(100, 100, 100, 0.9) 100%); */
+  background: rgba(120, 120, 120, 0.75);
+  background: linear-gradient(180deg, rgba(183, 183, 183, 0.8) 0%, rgba(150, 150, 150, 0.8) 100%);
   padding: 0px;
   display: flex;
   justify-content: flex-end;
 }
-rpg-top-bar rpg-top-bar-inner rpg-choice {
-  color: #d1d1d1;
-  border: 1px solid #e2e2e296;
-  border-radius: 2px;
-  margin: 3px;
+x-top-bar x-top-bar-inner x-view-dropdown-group {
+  display: flex;
+  flex-direction: column;
+}
+x-top-bar x-top-bar-inner x-view-dropdown-group x-view-button {
+  color: #131313;
+  border: 1px solid #727272;
+  border-radius: 3px;
+  margin: 4px;
   background: #a1a1a1b5;
-  /* background: url(img/rocks.jpg); */
-  display: flex;
-}
-rpg-top-bar rpg-top-bar-inner rpg-choice rpg-choice-inner {
+  background: url(img/titlebar.png);
+  background: url(img/rocks.jpg);
+  box-shadow: inset 0 0 5px #ffffff;
   /* background: linear-gradient(180deg, rgba(167, 167, 167, 0.9) 0%, rgba(150, 150, 150, 0.9) 100%); */
-  padding: 0px 8px;
   display: flex;
 }
-rpg-bars {
+x-top-bar x-top-bar-inner x-view-dropdown-group x-view-button x-view-button-inner {
+  padding: 0px 10px;
+  background: rgba(166, 166, 166, 0.85);
+  display: flex;
+}
+x-top-bar x-top-bar-inner x-view-dropdown-group x-dropdown-offset {
+  display: flex;
+}
+x-top-bar x-top-bar-inner x-view-dropdown-group x-dropdown-offset x-dropdown {
+  z-index: 2;
+  position: absolute;
+  right: 0;
+  /* padding: 5px; */
+  background: rgba(120, 120, 120, 0.75);
+  background: url(img/rocks.jpg);
+  background-position: 0 0px;
+  background-size: 100%;
+  border: 2px outset #7070704f;
+  border: 2px outset #ffffff87;
+  display: none;
+  flex-direction: column;
+}
+x-top-bar x-top-bar-inner x-view-dropdown-group x-dropdown-offset x-dropdown x-dropdown-inner {
+  ppadding: 5px;
+  background: rgba(127, 127, 127, 0.6);
+  display: flex;
+  flex-direction: column;
+}
+x-top-bar x-top-bar-inner x-view-dropdown-group x-dropdown-offset x-dropdown x-dropdown-value {
+  color: #cecece;
+  /* text-decoration: underline; */
+  border-bottom: 1px solid #ffffff2e;
+  border-radius: 2px;
+  padding: 4px;
+  margin: 2px;
+}
+x-bars {
   width: 100%;
   margin: 0px;
   display: flex;
 }
-rpg-bars rpg-bar {
+x-bars x-bar {
   position: relative;
   width: 50%;
   hheight: 20px;
@@ -116,7 +153,7 @@ rpg-bars rpg-bar {
   display: flex;
   justify-content: center;
 }
-rpg-bars rpg-bar rpg-length {
+x-bars x-bar x-length {
   position: absolute;
   left: 0;
   border-right: 1px solid #626262;
@@ -126,34 +163,34 @@ rpg-bars rpg-bar rpg-length {
   height: 100%;
   display: flex;
 }
-rpg-bars rpg-bar rpg-inner {
+x-bars x-bar x-inner {
   position: relative;
 }
-rpg-bars rpg-bar.mana {
+x-bars x-bar.mana {
   background: #263b80;
 }
-rpg-bars rpg-bar.mana rpg-length {
+x-bars x-bar.mana x-length {
   background: #1e2c9b;
 }
-rpg-bars rpg-bar.mana rpg-inner {
+x-bars x-bar.mana x-inner {
   color: #011130;
 }
-rpg-bars rpg-bar.health {
+x-bars x-bar.health {
   background: #802626;
 }
-rpg-bars rpg-bar.health rpg-length {
+x-bars x-bar.health x-length {
   background: #9b1e1e;
 }
-rpg-bars rpg-bar.health rpg-inner {
+x-bars x-bar.health x-inner {
   color: #442626;
 }
-rpg-tabs {
+x-tabs {
   width: 100%;
   margin: 5px;
   display: flex;
   jjustify-content: center;
 }
-rpg-tabs rpg-tab {
+x-tabs x-tab {
   color: #232323;
   color: #ececec;
   background: url(img/rocks.jpg);
@@ -164,26 +201,26 @@ rpg-tabs rpg-tab {
   box-shadow: 0 0 4px #333333;
   display: flex;
 }
-rpg-tabs rpg-tab rpg-outer {
+x-tabs x-tab x-outer {
   background: rgba(145, 145, 145, 0.5);
   display: flex;
 }
-rpg-tabs rpg-tab rpg-outer rpg-inner {
+x-tabs x-tab x-outer x-inner {
   padding: 0 5px;
   bbackground: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(201, 201, 201, 0.3) 100%);
   display: flex;
 }
-rpg-tabs rpg-tab.active {
+x-tabs x-tab.active {
   bbackground: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(201, 201, 201, 0.3) 100%);
   bbackground: rgba(162, 175, 185, 0.9);
 }
-rpg-tab-content {
+x-tab-content {
   width: 100%;
   height: 100%;
   bbackground: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(201, 201, 201, 0.3) 100%);
   display: flex;
 }
-rpg-button-wood {
+x-button-wood {
   font-family: 'EB Garamond', serif;
   font-size: 18px;
   color: #e0e0e0;
@@ -192,7 +229,7 @@ rpg-button-wood {
   text-shadow: 0 0 3px #6b6862;
   background: url(img/rocks.jpg);
   background: url(img/button.png);
-  background-size: 400%;
+  bbackground-size: 400%;
   background-position: -4px -1px;
   border: 2px outset rgba(199, 199, 199, 0.3);
   border-radius: 0px;
@@ -200,31 +237,34 @@ rpg-button-wood {
   mmargin: 0 10px;
   cursor: pointer;
   display: flex;
+  flex-direction: column;
 }
-rpg-button-wood:hover {
+x-button-wood:hover {
   ccolor: #ad9f00;
   text-decoration: underline;
 }
-rpg-button-wood:hover rpg-x {
+x-button-wood:hover x-x {
   bbackground: rgba(68, 76, 81, 0.9);
 }
-rpg-button-wood rpg-button-wood-outer {
+x-button-wood x-button-wood-outer {
   bborder: 2px outset rgba(180, 180, 180, 0.4);
   border-radius: 2px;
   background: rgba(96, 96, 96, 0.5);
   display: flex;
+  flex-direction: column;
 }
-rpg-button-wood rpg-button-wood-outer rpg-button-wood-inner {
+x-button-wood x-button-wood-outer x-button-wood-inner {
   border: 1px outset #e4e4e48f;
   border-radius: 4px;
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0%, rgba(127, 127, 127, 0) 50%, rgba(255, 255, 255, 0.1) 100%);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(201, 201, 201, 0.25) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(201, 201, 201, 0.2) 100%);
   padding: 0 10px;
+  box-shadow: inset 0 0 5px #606060;
   white-space: nowrap;
   display: flex;
   justify-content: center;
 }
-rpg-dialog {
+x-dialog {
   position: absolute;
   top: 100px;
   width: 300px;
@@ -241,7 +281,7 @@ rpg-dialog {
   display: flex;
   flex-direction: column;
 }
-rpg-dialog rpg-title {
+x-dialog x-title {
   height: 24px;
   color: #b5aea3;
   padding: 0px 10px;
@@ -250,7 +290,7 @@ rpg-dialog rpg-title {
   display: flex;
   justify-content: center;
 }
-rpg-dialog rpg-text {
+x-dialog x-text {
   padding: 20px;
   ccolor: #e6e6e6;
   hheight: 50px;
@@ -258,12 +298,12 @@ rpg-dialog rpg-text {
   display: flex;
   flex-direction: column;
 }
-rpg-dialog rpg-divider {
+x-dialog x-divider {
   border-top: 1px solid #777777;
   border-bottom: 1px solid #3e3e3e;
   display: flex;
 }
-rpg-dialog rpg-arrow {
+x-dialog x-arrow {
   /* height: 100%; */
   /* border-right: 2px solid grey; */
   border-top: 40px solid transparent;
@@ -271,14 +311,14 @@ rpg-dialog rpg-arrow {
   border-left: 10px solid #656565;
   display: flex;
 }
-rpg-dialog rpg-buttons-area {
+x-dialog x-buttons-area {
   padding: 5px;
   ccolor: #e0e0e0;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-rpg-window {
+x-window {
   position: absolute;
   top: 300px;
   width: 300px;
@@ -290,25 +330,25 @@ rpg-window {
   display: flex;
   flex-direction: column;
 }
-rpg-window rpg-title-bar {
+x-window x-title-bar {
   color: #151515;
   color: #cdcdcd;
   background: rgba(72, 72, 72, 0.8);
   background: url(img/titlebar.png);
-  background: url(https://www.textures.com/system/gallery/photos/Rock/Smooth/14259/RockSmooth0043_download600.jpg);
+  background: url(img/rocks.jpg);
   background-position: 0 0px;
-  background-size: 100%;
+  bbackground-size: 100%;
   border: 1px outset #7070704f;
   border-radius: 3px 3px 0 0;
   display: flex;
 }
-rpg-window rpg-title-bar rpg-title-bar-inner {
+x-window x-title-bar x-title-bar-inner {
   width: 100%;
   border-radius: 3px;
   background: #292f377d;
   display: flex;
 }
-rpg-window rpg-title-bar rpg-title-bar-inner rpg-title {
+x-window x-title-bar x-title-bar-inner x-title {
   width: 100%;
   border: 2px outset #ffffff87;
   border-radius: 3px;
@@ -317,7 +357,7 @@ rpg-window rpg-title-bar rpg-title-bar-inner rpg-title {
   justify-content: center;
   align-items: center;
 }
-rpg-window rpg-title-bar rpg-title-bar-inner rpg-close {
+x-window x-title-bar x-title-bar-inner x-close {
   color: #5c0909;
   border: 1px outset #ffffff87;
   border-radius: 3px;
@@ -327,7 +367,7 @@ rpg-window rpg-title-bar rpg-title-bar-inner rpg-close {
   display: flex;
   aalign-items: center;
 }
-rpg-window rpg-window-content {
+x-window x-window-content {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -335,11 +375,11 @@ rpg-window rpg-window-content {
   border: 2px outset #818181c7;
   border: 2px solid #8b8b8bc7;
   border-radius: 2px;
-  background: url(https://www.textures.com/system/gallery/photos/Rock/Smooth/14259/RockSmooth0043_download600.jpg);
+  background: url(img/rocks.jpg);
   /* padding: 10px; */
   display: flex;
 }
-rpg-window rpg-window-content rpg-inner {
+x-window x-window-content x-inner {
   width: 100%;
   height: 100%;
   padding: 6px;
@@ -347,7 +387,7 @@ rpg-window rpg-window-content rpg-inner {
   background: linear-gradient(180deg, rgba(107, 112, 112, 0.95) 0%, rgba(80, 86, 84, 0.95) 100%);
   display: flex;
 }
-rpg-window rpg-window-content x-world-map {
+x-window x-window-content x-world-map {
   width: 100%;
   height: 100%;
   background: url(img/map.jpg);
@@ -366,7 +406,7 @@ rpg-window rpg-window-content x-world-map {
 ::-webkit-scrollbar-thumb {
   background: #525252;
 }
-rpg-action-bar {
+x-action-bar {
   border: 2px solid rgba(17, 17, 17, 0.5);
   border-radius: 3px;
   background: linear-gradient(180deg, rgba(48, 54, 58, 0.95) 0%, rgba(53, 61, 68, 0.95) 100%);
@@ -379,10 +419,10 @@ rpg-action-bar {
   display: flex;
   flex-direction: column;
 }
-rpg-action-bar rpg-row {
+x-action-bar x-row {
   display: flex;
 }
-rpg-action-bar rpg-slot {
+x-action-bar x-slot {
   width: 60px;
   height: 60px;
   box-sizing: border-box;
@@ -393,7 +433,7 @@ rpg-action-bar rpg-slot {
   display: flex;
   justify-content: center;
 }
-rpg-action-bar rpg-slot rpg-inner {
+x-action-bar x-slot x-inner {
   width: 100%;
   height: 100%;
   /* background: rgba(136, 141, 145, 0.9); */
@@ -406,7 +446,7 @@ rpg-action-bar rpg-slot rpg-inner {
   display: flex;
   justify-content: center;
 }
-rpg-action-bar rpg-slot rpg-inner img {
+x-action-bar x-slot x-inner img {
   bborder: 1px outset #ffffff24;
   border-radius: 2px;
   box-sizing: border-box;

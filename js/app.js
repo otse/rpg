@@ -1,6 +1,7 @@
 import rpg from "./rpg";
 var app;
 (function (app) {
+    window['App'] = app;
     let KEY;
     (function (KEY) {
         KEY[KEY["OFF"] = 0] = "OFF";
@@ -95,5 +96,4 @@ var app;
     }
     app.sethtml = sethtml;
 })(app || (app = {}));
-window['App'] = app;
 export default app;

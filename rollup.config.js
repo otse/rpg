@@ -1,7 +1,7 @@
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-	input: 'js/rpg.js',
+	input: 'js/app.js',
 	output: {
 		name: 'rpg',
 		file: 'bundle.js',
