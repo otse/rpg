@@ -212,6 +212,7 @@ var rpg = (function () {
         dragging = false;
         window;
         title_bar;
+        title_drag;
         onmousemove;
         onmouseup;
         constructor(options) {
@@ -238,6 +239,7 @@ var rpg = (function () {
 			</x-window-content>
 		`;
             this.title_bar = this.window.querySelector('x-title-bar');
+            this.title_drag = this.window.querySelector('x-title-bar x-title');
             this.onmouseup = (e) => {
                 this.dragging = false;
                 this.title_bar.classList.remove('dragging');
@@ -250,8 +252,17 @@ var rpg = (function () {
             };
             hooks.register('onmouseup', this.onmouseup);
             hooks.register('onmousemove', this.onmousemove);
-            this.title_bar.onmousedown = () => {
-                this.drag_start = pts.subtract(app$1.mouse(), this.pos);
+            this.title_drag.onmousedown = this.title_drag.ontouchstart = (e) => {
+                let pos = [0, 0];
+                if (e.clientX) {
+                    pos[0] = e.clientX;
+                    pos[1] = e.clientY;
+                }
+                else {
+                    pos[0] = e.pageX;
+                    pos[1] = e.pageY;
+                }
+                this.drag_start = pts.subtract(pos, this.pos);
                 this.title_bar.classList.add('dragging');
                 this.dragging = true;
             };
@@ -278,7 +289,7 @@ var rpg = (function () {
             if (!world_map.popup) {
                 world_map.popup = new popup({
                     class: 'a',
-                    title: 'boo'
+                    title: 'The World Map'
                 });
                 world_map.popup.attach();
             }
@@ -401,6 +412,7 @@ var rpg = (function () {
                 touchStart = [e.pageX, e.pageY];
                 pos[0] = e.pageX;
                 pos[1] = e.pageY;
+                hooks.call('onmousedown', false);
                 //if (app.mobile)
                 //	glob.win_propagate_events(e);
                 //buttons[2] = MOUSE.UP;
@@ -425,6 +437,7 @@ var rpg = (function () {
                 //message("ontouchend");
                 const touchEnd = [e.pageX, e.pageY];
                 buttons[0] = MOUSE.UP;
+                hooks.call('onmouseup', false);
                 //buttons[2] = MOUSE.UP;
                 if (pts.equals(touchEnd, touchStart) /*&& buttons[2] != MOUSE.STILL*/) ; /*
                 else if (!pts.equals(touchEnd, touchStart)) {

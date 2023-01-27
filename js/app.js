@@ -77,6 +77,7 @@ var app;
             touchStart = [e.pageX, e.pageY];
             pos[0] = e.pageX;
             pos[1] = e.pageY;
+            hooks.call('onmousedown', false);
             //if (app.mobile)
             //	glob.win_propagate_events(e);
             //buttons[2] = MOUSE.UP;
@@ -101,6 +102,7 @@ var app;
             //message("ontouchend");
             const touchEnd = [e.pageX, e.pageY];
             buttons[0] = MOUSE.UP;
+            hooks.call('onmouseup', false);
             //buttons[2] = MOUSE.UP;
             if (pts.equals(touchEnd, touchStart) /*&& buttons[2] != MOUSE.STILL*/) {
                 //buttons[2] = MOUSE.DOWN;

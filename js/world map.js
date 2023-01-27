@@ -5,7 +5,7 @@ class world_map {
         if (!world_map.popup) {
             world_map.popup = new popup({
                 class: 'a',
-                title: 'boo'
+                title: 'The World Map'
             });
             world_map.popup.attach();
         }

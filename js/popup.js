@@ -9,6 +9,7 @@ class popup {
     dragging = false;
     window;
     title_bar;
+    title_drag;
     onmousemove;
     onmouseup;
     constructor(options) {
@@ -35,6 +36,7 @@ class popup {
 			</x-window-content>
 		`;
         this.title_bar = this.window.querySelector('x-title-bar');
+        this.title_drag = this.window.querySelector('x-title-bar x-title');
         this.onmouseup = (e) => {
             this.dragging = false;
             this.title_bar.classList.remove('dragging');
@@ -47,8 +49,17 @@ class popup {
         };
         hooks.register('onmouseup', this.onmouseup);
         hooks.register('onmousemove', this.onmousemove);
-        this.title_bar.onmousedown = () => {
-            this.drag_start = pts.subtract(app.mouse(), this.pos);
+        this.title_drag.onmousedown = this.title_drag.ontouchstart = (e) => {
+            let pos = [0, 0];
+            if (e.clientX) {
+                pos[0] = e.clientX;
+                pos[1] = e.clientY;
+            }
+            else {
+                pos[0] = e.pageX;
+                pos[1] = e.pageY;
+            }
+            this.drag_start = pts.subtract(pos, this.pos);
             this.title_bar.classList.add('dragging');
             this.dragging = true;
         };
