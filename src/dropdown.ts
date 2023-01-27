@@ -10,6 +10,7 @@ class dropdown {
 	dropdown
 	inner
 	group
+	opened = false
 	constructor(public options: options) {
 		this.group = document.createElement('x-dropdown-group');
 		this.group.classList.add(options.class);
@@ -30,8 +31,11 @@ class dropdown {
 		this.dropdown = this.group.querySelector('x-dropdown');
 		this.inner = this.group.querySelector('x-dropdown-inner');
 		this.button.onclick = () => {
-			console.log('popout');
-			this.dropdown.style.display = 'flex';
+			this.opened = !this.opened;
+			if (this.opened)
+				this.dropdown.style.display = 'flex';
+			else
+				this.dropdown.style.display = 'none';
 		}
 		for (const tuple of options.options) {
 			const value = document.createElement('x-dropdown-value');

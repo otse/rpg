@@ -14,6 +14,8 @@
   src: url(https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaooCP.ttf) format('truetype');
 }
 body {
+  overscroll-behavior: contain;
+  touch-action: none;
   background: black;
   background: url(https://cdnb.artstation.com/p/assets/images/images/025/914/673/4k/gaelle-seguillon-gaelle-seguillon-storm-peaks-2-6k.jpg?1587324674);
   background-position: center;
@@ -354,6 +356,10 @@ x-window x-title-bar {
   border: 1px outset #7070704f;
   border-radius: 3px 3px 0 0;
   display: flex;
+}
+x-window x-title-bar.dragging {
+  background: url(img/titlebar.png);
+  text-decoration: underline;
 }
 x-window x-title-bar x-title-bar-inner {
   width: 100%;

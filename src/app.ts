@@ -1,3 +1,5 @@
+import hooks from "./hooks";
+import pts from "./pts";
 import rpg from "./rpg";
 import space from "./rpg";
 
@@ -22,6 +24,8 @@ namespace app {
 	var pos: vec2 = [0, 0];
 	export var delta;
 	export var wheel = 0;
+	export var mobile = false;
+
 	export function onkeys(event) {
 		if (!event.key)
 			return;
@@ -44,11 +48,81 @@ namespace app {
 	}
 	export async function boot(version: string) {
 		console.log('boot');
-		document.onkeydown = document.onkeyup = onkeys;
-		document.onmousemove = (e) => { pos[0] = e.clientX; pos[1] = e.clientY; };
-		document.onmousedown = (e) => { buttons[e.button] = 1; if (e.button == 1) return false };
-		document.onmouseup = (e) => { buttons[e.button] = MOUSE.UP; };
-		document.onwheel = (e) => { wheel = e.deltaY < 0 ? 1 : -1; };
+		mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+		function onmousemove(e) {
+			pos[0] = e.clientX;
+			pos[1] = e.clientY;
+			hooks.call('onmousemove', false);
+		}
+		function onmousedown(e) {
+			buttons[e.button] = 1;
+			if (e.button == 1)
+				return false;
+			hooks.call('onmousedown', false);
+		}
+		function onmouseup(e) {
+			buttons[e.button] = MOUSE.UP;
+			hooks.call('onmouseup', false);
+		}
+		function onwheel(e) {
+			wheel = e.deltaY < 0 ? 1 : -1;
+		}
+		let touchStart: vec2 = [0, 0];
+		function ontouchstart(e) {
+			//message("ontouchstart");
+			touchStart = [e.pageX, e.pageY];
+			pos[0] = e.pageX;
+			pos[1] = e.pageY;
+			//if (app.mobile)
+			//	glob.win_propagate_events(e);
+			//buttons[2] = MOUSE.UP;
+			//buttons[2] = MOUSE.DOWN; // rclick
+			//return false;
+		}
+		function ontouchmove(e) {
+			//message("ontouchmove");
+			pos[0] = e.pageX;
+			pos[1] = e.pageY;
+			//if (!buttons[0])
+			buttons[0] = KEY.PRESS;
+			//return false;
+			//console.log('touch move');
+			//if (app.mobile)
+			//	glob.win_propagate_events(e);
+			e.preventDefault();
+			hooks.call('onmousemove', false);
+			return false;
+		}
+		function ontouchend(e) {
+			//message("ontouchend");
+			const touchEnd: vec2 = [e.pageX, e.pageY];
+			buttons[0] = MOUSE.UP;
+			//buttons[2] = MOUSE.UP;
+
+			if (pts.equals(touchEnd, touchStart) /*&& buttons[2] != MOUSE.STILL*/) {
+				//buttons[2] = MOUSE.DOWN;
+			}/*
+			else if (!pts.equals(touchEnd, touchStart)) {
+				buttons[2] = MOUSE.UP;
+			}
+			//message("ontouchend");*/
+			//return false;
+		}
+
+		function onerror(message) { document.querySelectorAll('.stats')[0].innerHTML = message; }
+		if (mobile) {
+			document.ontouchstart = ontouchstart;
+			document.ontouchmove = ontouchmove;
+			document.ontouchend = ontouchend;
+		}
+		else {
+			document.onkeydown = document.onkeyup = onkeys;
+			document.onmousemove = onmousemove;
+			document.onmousedown = onmousedown;
+			document.onmouseup = onmouseup;
+			document.onwheel = onwheel;
+		}
 		await rpg.init();
 		loop(0);
 	}

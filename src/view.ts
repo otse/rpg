@@ -1,11 +1,19 @@
 import app from "./app";
 import dropdown from "./dropdown";
+import world_map from "./world map";
 
 class view {
 	dropdown
 	constructor() {
 		const handler = (tuple) => {
 			console.log(tuple);
+			switch(tuple[0]) {
+				case 0:
+					break;
+				case 1:
+					world_map.request_popup();
+					break;
+			}
 		};
 		this.dropdown = new dropdown({
 			class: 'view',

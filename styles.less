@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Raleway&display=swap');
 
 body {
+	touch-action: none;
 	background: black;
 	background: url(https://cdnb.artstation.com/p/assets/images/images/025/914/673/4k/gaelle-seguillon-gaelle-seguillon-storm-peaks-2-6k.jpg?1587324674);
 	background-position: center;
@@ -395,6 +396,11 @@ x-window {
 		border: 1px outset #7070704f;
 		border-radius: 3px 3px 0 0;
 		display: flex;
+
+		&.dragging {
+			background: url(img/titlebar.png);
+			text-decoration: underline;
+		}
 
 		x-title-bar-inner {
 			width: 100%;
