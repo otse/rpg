@@ -1,17 +1,67 @@
 var rpg = (function () {
     'use strict';
 
-    class view {
-        element;
+    class dropdown {
+        options;
+        button;
         dropdown;
-        constructor() {
-            this.element = document.querySelector('x-view-dropdown-group x-view-button');
-            this.dropdown = document.querySelector('x-view-dropdown-group x-dropdown');
-            this.dropdown.style.display = 'none';
-            this.element.onclick = () => {
+        inner;
+        group;
+        constructor(options) {
+            this.options = options;
+            this.group = document.createElement('x-dropdown-group');
+            this.group.classList.add(options.class);
+            this.group.innerHTML = `
+			<x-dropdown-button>
+				<x-dropdown-button-inner>
+					${options.button}
+				</x-dropdown-button-inner>
+			</x-dropdown-button>
+			<x-dropdown-offset>
+				<x-dropdown>
+					<x-dropdown-inner>
+					</x-dropdown-inner>
+				</x-dropdown>
+			</x-dropdown-offset>
+		`;
+            this.button = this.group.querySelector('x-dropdown-button');
+            this.dropdown = this.group.querySelector('x-dropdown');
+            this.inner = this.group.querySelector('x-dropdown-inner');
+            this.button.onclick = () => {
                 console.log('popout');
                 this.dropdown.style.display = 'flex';
             };
+            for (const tuple of options.options) {
+                const value = document.createElement('x-dropdown-value');
+                value.innerHTML = tuple[1];
+                value.onclick = () => {
+                    options.handler(tuple);
+                };
+                this.inner.append(value);
+            }
+        }
+        attach(element) {
+            element.append(this.group);
+        }
+    }
+
+    class view {
+        dropdown;
+        constructor() {
+            const handler = (tuple) => {
+                console.log(tuple);
+            };
+            this.dropdown = new dropdown({
+                class: 'view',
+                button: 'View',
+                options: [
+                    [0, 'Character'],
+                    [1, 'World Map']
+                ],
+                handler: handler
+            });
+            const destination = document.querySelector('x-top-bar-inner x-dropdown-destination');
+            this.dropdown.attach(destination);
         }
     }
 
