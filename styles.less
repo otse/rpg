@@ -396,6 +396,12 @@ x-window {
 		}
 	}
 
+	&.character {
+		x-window-content {
+			height: 100px;
+		}
+	}
+
 	&.world-map {
 		x-title-bar {
 			background: url(img/titlebar.png);
@@ -444,10 +450,12 @@ x-window {
 				width: 30px;
 				height: 30px;
 				box-sizing: border-box;
-				border: 2px outset #ffffff87;
-				border-radius: 4px;
+				border: 2px outset rgb(255 255 255 / 50%);
+				border-radius: 5px;
 				padding: 0 9px;
-				background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(255 255 255 / 20%) 100%);
+				background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(255 255 255 / 30%) 100%);
+				box-shadow: inset 0 0 5px #371a1a;
+				text-shadow: 0px 0px 4px black;
 				display: flex;
 				justify-content: center;
     			align-items: center;
@@ -455,7 +463,7 @@ x-window {
 
 			x-min {
 				.button-mixin();
-				border-width: 1px;
+				bborder-width: 1px;
 
 				&:hover {
 					font-weight: bold;
@@ -464,9 +472,7 @@ x-window {
 
 			x-close {
 				.button-mixin();
-				border-width: 2px;
-				color: #5c0909;
-				box-shadow: inset 0 0 5px #371a1a;
+				ccolor: #5c0909;
 
 				&:hover {
 					font-weight: bold;

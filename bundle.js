@@ -184,7 +184,7 @@ var rpg = (function () {
 						${options.title}
 					</x-title>
 					<x-min>
-						-
+						&#8964;
 					</x-min>
 					<x-close>
 						x

@@ -30,7 +30,7 @@ class popup {
 						${options.title}
 					</x-title>
 					<x-min>
-						-
+						&#8964;
 					</x-min>
 					<x-close>
 						x

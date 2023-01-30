@@ -354,6 +354,9 @@ x-window.persist {
 x-window.persist x-title-bar {
   background: url(img/titlebar.png);
 }
+x-window.character x-window-content {
+  height: 100px;
+}
 x-window.world-map x-title-bar {
   background: url(img/titlebar.png);
 }
@@ -397,10 +400,12 @@ x-window x-title-bar x-title-bar-inner .button-mixin {
   width: 30px;
   height: 30px;
   box-sizing: border-box;
-  border: 2px outset #ffffff87;
-  border-radius: 4px;
+  border: 2px outset rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
   padding: 0 9px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+  box-shadow: inset 0 0 5px #371a1a;
+  text-shadow: 0px 0px 4px black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -410,14 +415,16 @@ x-window x-title-bar x-title-bar-inner x-min {
   width: 30px;
   height: 30px;
   box-sizing: border-box;
-  border: 2px outset #ffffff87;
-  border-radius: 4px;
+  border: 2px outset rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
   padding: 0 9px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+  box-shadow: inset 0 0 5px #371a1a;
+  text-shadow: 0px 0px 4px black;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-width: 1px;
+  bborder-width: 1px;
 }
 x-window x-title-bar x-title-bar-inner x-min:hover {
   font-weight: bold;
@@ -427,16 +434,16 @@ x-window x-title-bar x-title-bar-inner x-close {
   width: 30px;
   height: 30px;
   box-sizing: border-box;
-  border: 2px outset #ffffff87;
-  border-radius: 4px;
+  border: 2px outset rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
   padding: 0 9px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+  box-shadow: inset 0 0 5px #371a1a;
+  text-shadow: 0px 0px 4px black;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-width: 2px;
-  color: #5c0909;
-  box-shadow: inset 0 0 5px #371a1a;
+  ccolor: #5c0909;
 }
 x-window x-title-bar x-title-bar-inner x-close:hover {
   font-weight: bold;
