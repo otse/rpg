@@ -33,18 +33,28 @@ class dropdown {
 		this.button.onclick = () => {
 			this.opened = !this.opened;
 			if (this.opened)
-				this.dropdown.style.display = 'flex';
+				this.open();
 			else
-				this.dropdown.style.display = 'none';
+				this.close();
 		}
 		for (const tuple of options.options) {
 			const value = document.createElement('x-dropdown-value');
 			value.innerHTML = tuple[1];
 			value.onclick = () => {
+				this.close();
 				options.handler(tuple);
 			}
 			this.inner.append(value);
 		}
+	}
+	open() {
+		this.opened = true;
+		this.dropdown.style.display = 'flex';
+	}
+	close() {
+		this.opened = false;
+		this.dropdown.style.display = 'none';
+
 	}
 	attach(element) {
 		element.append(this.group);

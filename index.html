@@ -38,15 +38,20 @@
 				</x-top-bar-inner>
 			</x-top-bar>
 
-			<x-selection>
-				Local
-			</x-selection>
-			<x-selection>
-				Map
-			</x-selection>
-			<x-selection>
-				Character
-			</x-selection>
+			<x-window class="persist">
+				<x-title-bar>
+					<x-title-bar-inner>
+						<x-title>
+							Main
+						</x-title>
+					</x-title-bar-inner>
+				</x-title-bar>
+				<x-window-content>
+					<x-inner>
+						A console / log of stuff that the player does?
+					</x-inner>
+				</x-window-content>
+			</x-window>
 		</x-top-area>
 
 		<x-dialog>
@@ -76,6 +81,7 @@
 			</x-buttons-area>
 		</x-dialog>
 
+		<!--
 		<x-window>
 			<x-title-bar>
 				<x-title-bar-inner>
@@ -95,6 +101,7 @@
 				</x-inner>
 			</x-window-content>
 		</x-window>
+		-->
 
 		<x-action-bar>
 			<x-row>

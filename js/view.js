@@ -1,3 +1,4 @@
+import character from "./character";
 import dropdown from "./dropdown";
 import world_map from "./world map";
 class view {
@@ -7,6 +8,7 @@ class view {
             console.log(tuple);
             switch (tuple[0]) {
                 case 0:
+                    character.request_popup();
                     break;
                 case 1:
                     world_map.request_popup();

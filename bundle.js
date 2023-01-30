@@ -156,6 +156,136 @@ var rpg = (function () {
         ;
     }
 
+    class popup {
+        options;
+        pos = [0, 0];
+        drag_start = [0, 0];
+        drag = [0, 0];
+        dragging = false;
+        minimized = false;
+        window;
+        title_bar;
+        content;
+        content_inner;
+        title_drag;
+        min;
+        close;
+        onmousemove;
+        onmouseup;
+        constructor(options) {
+            this.options = options;
+            this.window = document.createElement('x-window');
+            this.window.classList.add(options.class);
+            this.window.style.zIndex = options.zIndex;
+            this.window.innerHTML = `
+			<x-title-bar>
+				<x-title-bar-inner>
+					<x-title>
+						${options.title}
+					</x-title>
+					<x-min>
+						-
+					</x-min>
+					<x-close>
+						x
+					</x-close>
+				</x-title-bar-inner>
+			</x-title-bar>
+			<x-window-content>
+				<x-inner>
+					
+				</x-inner>
+			</x-window-content>
+		`;
+            this.title_bar = this.window.querySelector('x-title-bar');
+            this.content = this.window.querySelector('x-window-content');
+            this.content_inner = this.window.querySelector('x-window-content x-inner');
+            this.title_drag = this.window.querySelector('x-title-bar x-title');
+            this.onmouseup = (e) => {
+                this.dragging = false;
+                this.title_bar.classList.remove('dragging');
+            };
+            this.onmousemove = (e) => {
+                if (this.dragging) {
+                    this.pos = pts.subtract(app$1.mouse(), this.drag_start);
+                    this.reposition();
+                }
+            };
+            hooks.register('onmouseup', this.onmouseup);
+            hooks.register('onmousemove', this.onmousemove);
+            this.title_drag.onmousedown = this.title_drag.ontouchstart = (e) => {
+                let pos = app$1.mouse();
+                if (e.clientX) {
+                    pos[0] = e.clientX;
+                    pos[1] = e.clientY;
+                }
+                else {
+                    pos[0] = e.pageX;
+                    pos[1] = e.pageY;
+                }
+                this.drag_start = pts.subtract(pos, this.pos);
+                this.title_bar.classList.add('dragging');
+                this.dragging = true;
+                this.window.style.zIndex = 10;
+            };
+            this.close = this.window.querySelector('x-close');
+            this.close.onclick = () => {
+                this.destroy();
+            };
+            this.min = this.window.querySelector('x-min');
+            this.min.onclick = () => {
+                this.toggle_min();
+            };
+            this.reposition();
+        }
+        reposition() {
+            console.log('reposition popup');
+            this.window.style.top = this.pos[1];
+            this.window.style.left = this.pos[0];
+        }
+        attach() {
+            const destination = document.querySelector('x-main-area');
+            destination?.append(this.window);
+        }
+        destroy() {
+            hooks.unregister('onmousemove', this.onmousemove);
+            hooks.unregister('onmouseup', this.onmouseup);
+            this.window.remove();
+            this.options.onclose?.();
+        }
+        toggle_min() {
+            this.minimized = !this.minimized;
+            if (this.minimized) {
+                this.content.style.display = 'none';
+            }
+            else {
+                this.content.style.display = 'flex';
+            }
+        }
+    }
+
+    class character {
+        static popup;
+        static request_popup() {
+            if (!character.popup) {
+                character.popup = new popup({
+                    class: 'character',
+                    title: 'Character',
+                    zIndex: 2,
+                    onclose: () => { character.popup = undefined; }
+                });
+                character.popup.content_inner.innerHTML = `
+				Strength: 10
+			`;
+                character.popup.attach();
+            }
+            else {
+                character.popup.pos = [0, 0];
+                character.popup.reposition();
+            }
+        }
+    }
+
     class dropdown {
         options;
         button;
@@ -186,100 +316,30 @@ var rpg = (function () {
             this.button.onclick = () => {
                 this.opened = !this.opened;
                 if (this.opened)
-                    this.dropdown.style.display = 'flex';
+                    this.open();
                 else
-                    this.dropdown.style.display = 'none';
+                    this.close();
             };
             for (const tuple of options.options) {
                 const value = document.createElement('x-dropdown-value');
                 value.innerHTML = tuple[1];
                 value.onclick = () => {
+                    this.close();
                     options.handler(tuple);
                 };
                 this.inner.append(value);
             }
         }
+        open() {
+            this.opened = true;
+            this.dropdown.style.display = 'flex';
+        }
+        close() {
+            this.opened = false;
+            this.dropdown.style.display = 'none';
+        }
         attach(element) {
             element.append(this.group);
-        }
-    }
-
-    class popup {
-        options;
-        pos = [0, 0];
-        drag_start = [0, 0];
-        drag = [0, 0];
-        dragging = false;
-        window;
-        title_bar;
-        title_drag;
-        onmousemove;
-        onmouseup;
-        constructor(options) {
-            this.options = options;
-            this.window = document.createElement('x-window');
-            this.window.classList.add(options.class);
-            this.window.innerHTML = `
-			<x-title-bar>
-				<x-title-bar-inner>
-					<x-title>
-						${options.title}
-					</x-title>
-					<x-close>
-						x
-					</x-close>
-				</x-title-bar-inner>
-			</x-title-bar>
-			<x-window-content>
-				<x-inner>
-					<x-world-map>
-
-					</x-world-map>
-				</x-inner>
-			</x-window-content>
-		`;
-            this.title_bar = this.window.querySelector('x-title-bar');
-            this.title_drag = this.window.querySelector('x-title-bar x-title');
-            this.onmouseup = (e) => {
-                this.dragging = false;
-                this.title_bar.classList.remove('dragging');
-            };
-            this.onmousemove = (e) => {
-                if (this.dragging) {
-                    this.pos = pts.subtract(app$1.mouse(), this.drag_start);
-                    this.reposition();
-                }
-            };
-            hooks.register('onmouseup', this.onmouseup);
-            hooks.register('onmousemove', this.onmousemove);
-            this.title_drag.onmousedown = this.title_drag.ontouchstart = (e) => {
-                let pos = [0, 0];
-                if (e.clientX) {
-                    pos[0] = e.clientX;
-                    pos[1] = e.clientY;
-                }
-                else {
-                    pos[0] = e.pageX;
-                    pos[1] = e.pageY;
-                }
-                this.drag_start = pts.subtract(pos, this.pos);
-                this.title_bar.classList.add('dragging');
-                this.dragging = true;
-            };
-            this.reposition();
-        }
-        reposition() {
-            console.log('reposition popup');
-            this.window.style.top = this.pos[1];
-            this.window.style.left = this.pos[0];
-        }
-        attach() {
-            const destination = document.querySelector('x-main-area');
-            destination?.append(this.window);
-        }
-        destroy() {
-            hooks.unregister('onmousemove', this.onmousemove);
-            hooks.unregister('onmouseup', this.onmouseup);
         }
     }
 
@@ -288,10 +348,19 @@ var rpg = (function () {
         static request_popup() {
             if (!world_map.popup) {
                 world_map.popup = new popup({
-                    class: 'a',
-                    title: 'The World Map'
+                    class: 'world-map',
+                    title: 'World Map',
+                    zIndex: 2,
+                    onclose: () => { world_map.popup = undefined; }
                 });
+                world_map.popup.content_inner.innerHTML = `
+				<x-world-map></x-world-map>
+			`;
                 world_map.popup.attach();
+            }
+            else {
+                world_map.popup.pos = [0, 0];
+                world_map.popup.reposition();
             }
         }
     }
@@ -303,6 +372,7 @@ var rpg = (function () {
                 console.log(tuple);
                 switch (tuple[0]) {
                     case 0:
+                        character.request_popup();
                         break;
                     case 1:
                         world_map.request_popup();

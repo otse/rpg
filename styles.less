@@ -52,6 +52,7 @@ x-top-area {
 }
 
 x-top-bar {
+	z-index: 2;
 	width: 100%;
 	hheight: 40px;
 	box-sizing: border-box;
@@ -378,13 +379,28 @@ x-window {
 	position: absolute;
 	top: 300px;
 	width: 300px;
-	height: 300px;
 	box-sizing: border-box;
 	color: #e6e6e6;
 	border-radius: 3px;
 	box-shadow: 0 0 8px #1f1f1f;
 	display: flex;
 	flex-direction: column;
+
+	&.persist {
+		position: relative;
+		top: 0;
+		width: 100%;
+		height: 200px;
+		x-title-bar {
+			background: url(img/titlebar.png);
+		}
+	}
+
+	&.world-map {
+		x-title-bar {
+			background: url(img/titlebar.png);
+		}
+	}
 
 	x-title-bar {
 		color: #151515;
@@ -394,13 +410,16 @@ x-window {
 		background: url(img/rocks.jpg);
 		background-position: 0 0px;
 		bbackground-size: 100%;
-		border: 1px outset #7070704f;
+		border: 1px outset #ffffffa8;
 		border-radius: 3px 3px 0 0;
 		display: flex;
 
 		&.dragging {
+			x-title {
+				cursor: grabbing;
+				text-decoration: underline;
+			}
 			background: url(img/titlebar.png);
-			text-decoration: underline;
 		}
 
 		x-title-bar-inner {
@@ -410,6 +429,7 @@ x-window {
 			display: flex;
 
 			x-title {
+				cursor: grab;
 				width: 100%;
 				border: 2px outset #ffffff87;
 				border-radius: 3px;
@@ -419,15 +439,38 @@ x-window {
 				align-items: center;
 			}
 
-			x-close {
-				color: #5c0909;
-				border: 1px outset #ffffff87;
-				border-radius: 3px;
+			.button-mixin {
+				cursor: pointer;
+				width: 30px;
+				height: 30px;
+				box-sizing: border-box;
+				border: 2px outset #ffffff87;
+				border-radius: 4px;
 				padding: 0 9px;
-				background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(201, 201, 201, 0.25) 100%);
-				box-shadow: inset 0 0 5px #371a1a;
+				background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(255 255 255 / 20%) 100%);
 				display: flex;
-				aalign-items: center;
+				justify-content: center;
+    			align-items: center;
+			}
+
+			x-min {
+				.button-mixin();
+				border-width: 1px;
+
+				&:hover {
+					font-weight: bold;
+				}
+			}
+
+			x-close {
+				.button-mixin();
+				border-width: 2px;
+				color: #5c0909;
+				box-shadow: inset 0 0 5px #371a1a;
+
+				&:hover {
+					font-weight: bold;
+				}
 			}
 		}
 
@@ -436,6 +479,7 @@ x-window {
 	x-window-content {
 		width: 100%;
 		height: 100%;
+		height: 300px;
 		box-sizing: border-box;
 		border: 2px outset #a3a3a3c7;
 		border: 2px outset #818181c7;
