@@ -1,5 +1,6 @@
 import character from "./character";
 import dropdown from "./dropdown";
+import third from "./third";
 import world_map from "./world map";
 class view {
     dropdown;
@@ -13,6 +14,9 @@ class view {
                 case 1:
                     world_map.request_popup();
                     break;
+                case 2:
+                    third.request_popup();
+                    break;
             }
         };
         this.dropdown = new dropdown({
@@ -20,7 +24,8 @@ class view {
             button: 'View',
             options: [
                 [0, 'Character'],
-                [1, 'World Map']
+                [1, 'World Map'],
+                [2, 'Third']
             ],
             handler: handler
         });

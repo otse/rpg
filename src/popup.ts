@@ -14,6 +14,7 @@ interface options {
 var popups: popup[] = [];
 
 class popup {
+	static on_top?: popup
 	pos: vec2 = [0, 0]
 	drag_start: vec2 = [0, 0]
 	drag: vec2 = [0, 0]
@@ -26,9 +27,11 @@ class popup {
 	title_drag
 	min
 	close
+	index = 0
 	onmousemove
 	onmouseup
 	constructor(public options: options) {
+		popups.push(this);
 		this.window = document.createElement('x-window');
 		this.window.classList.add(options.class);
 		this.window.style.zIndex = options.zIndex;
@@ -38,13 +41,13 @@ class popup {
 					<x-title>
 						${options.title}
 					</x-title>
-					<x-button data-a="min">
+					<x-button data-a="min" title="minimize">
 						<x-button-inner>
 							-
 							<!-- &#8964; -->
 						</x-button-inner>
 					</x-button>
-					<x-button data-a="close">
+					<x-button data-a="close" title="close">
 						<x-button-inner>
 							x
 						</x-button-inner>
@@ -86,6 +89,7 @@ class popup {
 			this.drag_start = pts.subtract(pos, this.pos);
 			this.title_bar.classList.add('dragging');
 			this.dragging = true;
+			popup.handle_on_top(this);
 			this.window.style.zIndex = 10;
 		}
 		this.close = this.window.querySelector('x-button[data-a="close"]');
@@ -100,6 +104,30 @@ class popup {
 			}
 		this.reposition();
 	}
+	static handle_on_top(wnd: popup) {
+		const total = popups.length;
+		
+		const { on_top } = popup;
+		if (on_top) {
+			wnd.index = on_top.index + 1;
+			on_top.index = total;
+			on_top.reindex();
+		}
+		else
+		{
+			wnd.index = total + 1;
+			wnd.reindex();
+		}
+		popup.on_top = wnd;
+		popups.sort((a: popup, b: popup) => a.index < b.index ? -1 : 1);
+		for (let i = 0; i < popups.length; i++) {
+			popups[i].index = i;
+			popups[i].reindex();
+		}
+	}
+	reindex() {
+		this.window.style.zIndex = this.index;
+	}
 	reposition() {
 		console.log('reposition popup');
 		this.window.style.top = this.pos[1];
@@ -113,15 +141,18 @@ class popup {
 		hooks.unregister('onmousemove', this.onmousemove);
 		hooks.unregister('onmouseup', this.onmouseup);
 		this.window.remove();
+		popups.splice(popups.indexOf(this), 1);
 		this.options.onclose?.();
 	}
 	toggle_min() {
 		this.minimized = !this.minimized;
 		if (this.minimized) {
 			this.content.style.display = 'none';
+			//this.min.querySelector('x-button-inner').innerHTML = '+';
 		}
 		else {
 			this.content.style.display = 'flex';
+			//this.min.querySelector('x-button-inner').innerHTML = '-';
 		}
 	}
 }
