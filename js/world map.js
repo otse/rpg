@@ -1,23 +1,28 @@
 import popup from "./popup";
 class world_map {
-    static popup;
+    static instance;
+    popup;
+    dragging = false;
     static request_popup() {
-        if (!world_map.popup) {
-            world_map.popup = new popup({
-                class: 'world-map',
-                title: 'World Map',
-                zIndex: 2,
-                onclose: () => { world_map.popup = undefined; }
-            });
-            world_map.popup.content_inner.innerHTML = `
-				<x-world-map></x-world-map>
-			`;
-            world_map.popup.attach();
+        if (!world_map.instance) {
+            world_map.instance = new world_map;
         }
         else {
-            world_map.popup.pos = [0, 0];
-            world_map.popup.reposition();
+            world_map.instance.popup.pos = [0, 0];
+            world_map.instance.popup.reposition();
         }
+    }
+    constructor() {
+        this.popup = new popup({
+            class: 'world-map',
+            title: 'World Map',
+            zIndex: 2,
+            onclose: () => { world_map.instance = undefined; }
+        });
+        this.popup.content_inner.innerHTML = `
+			<x-world-map></x-world-map>
+		`;
+        this.popup.attach();
     }
 }
 export default world_map;

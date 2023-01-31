@@ -183,12 +183,17 @@ var rpg = (function () {
 					<x-title>
 						${options.title}
 					</x-title>
-					<x-min>
-						&#8964;
-					</x-min>
-					<x-close>
-						x
-					</x-close>
+					<x-button data-a="min">
+						<x-button-inner>
+							-
+							<!-- &#8964; -->
+						</x-button-inner>
+					</x-button>
+					<x-button data-a="close">
+						<x-button-inner>
+							x
+						</x-button-inner>
+					</x-button>
 				</x-title-bar-inner>
 			</x-title-bar>
 			<x-window-content>
@@ -228,14 +233,16 @@ var rpg = (function () {
                 this.dragging = true;
                 this.window.style.zIndex = 10;
             };
-            this.close = this.window.querySelector('x-close');
-            this.close.onclick = () => {
-                this.destroy();
-            };
-            this.min = this.window.querySelector('x-min');
-            this.min.onclick = () => {
-                this.toggle_min();
-            };
+            this.close = this.window.querySelector('x-button[data-a="close"]');
+            if (this.close)
+                this.close.onclick = () => {
+                    this.destroy();
+                };
+            this.min = this.window.querySelector('x-button[data-a="min"]');
+            if (this.min)
+                this.min.onclick = () => {
+                    this.toggle_min();
+                };
             this.reposition();
         }
         reposition() {
@@ -344,24 +351,29 @@ var rpg = (function () {
     }
 
     class world_map {
-        static popup;
+        static instance;
+        popup;
+        dragging = false;
         static request_popup() {
-            if (!world_map.popup) {
-                world_map.popup = new popup({
-                    class: 'world-map',
-                    title: 'World Map',
-                    zIndex: 2,
-                    onclose: () => { world_map.popup = undefined; }
-                });
-                world_map.popup.content_inner.innerHTML = `
-				<x-world-map></x-world-map>
-			`;
-                world_map.popup.attach();
+            if (!world_map.instance) {
+                world_map.instance = new world_map;
             }
             else {
-                world_map.popup.pos = [0, 0];
-                world_map.popup.reposition();
+                world_map.instance.popup.pos = [0, 0];
+                world_map.instance.popup.reposition();
             }
+        }
+        constructor() {
+            this.popup = new popup({
+                class: 'world-map',
+                title: 'World Map',
+                zIndex: 2,
+                onclose: () => { world_map.instance = undefined; }
+            });
+            this.popup.content_inner.innerHTML = `
+			<x-world-map></x-world-map>
+		`;
+            this.popup.attach();
         }
     }
 

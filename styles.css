@@ -368,7 +368,7 @@ x-window x-title-bar {
   background: url(img/rocks.jpg);
   background-position: 0 0px;
   bbackground-size: 100%;
-  border: 1px outset #ffffffa8;
+  border: 2px outset #ffffffa8;
   border-radius: 3px 3px 0 0;
   display: flex;
 }
@@ -383,6 +383,7 @@ x-window x-title-bar x-title-bar-inner {
   width: 100%;
   border-radius: 3px;
   background: #292f377d;
+  text-shadow: 0px 0px 8px black;
   display: flex;
 }
 x-window x-title-bar x-title-bar-inner x-title {
@@ -395,58 +396,35 @@ x-window x-title-bar x-title-bar-inner x-title {
   justify-content: center;
   align-items: center;
 }
-x-window x-title-bar x-title-bar-inner .button-mixin {
+x-window x-title-bar x-title-bar-inner x-button {
   cursor: pointer;
+  ffont-size: 20px;
+  ffont-weight: bold;
+  bbox-sizing: border-box;
+  border: 2px solid #675757;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(200, 200, 200, 0.4) 100%);
+  /* box-shadow: inset 0 0 10px #371a1ad9; */
+  display: flex;
+}
+x-window x-title-bar x-title-bar-inner x-button x-button-inner {
   width: 30px;
   height: 30px;
+  /* min-width: 30px; */
+  /* min-height: 30px; */
+  /* max-height: 30px; */
+  /* max-width: 30px; */
   box-sizing: border-box;
-  border: 2px outset rgba(255, 255, 255, 0.5);
+  border: 3px outset rgba(255, 255, 255, 0);
   border-radius: 5px;
-  padding: 0 9px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
-  box-shadow: inset 0 0 5px #371a1a;
-  text-shadow: 0px 0px 4px black;
+  box-shadow: inset 0 0 8px #2412127a;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-x-window x-title-bar x-title-bar-inner x-min {
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  box-sizing: border-box;
-  border: 2px outset rgba(255, 255, 255, 0.5);
-  border-radius: 5px;
-  padding: 0 9px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
-  box-shadow: inset 0 0 5px #371a1a;
-  text-shadow: 0px 0px 4px black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+x-window x-title-bar x-title-bar-inner x-button[data-a="min"] {
   bborder-width: 1px;
-}
-x-window x-title-bar x-title-bar-inner x-min:hover {
-  font-weight: bold;
-}
-x-window x-title-bar x-title-bar-inner x-close {
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  box-sizing: border-box;
-  border: 2px outset rgba(255, 255, 255, 0.5);
-  border-radius: 5px;
-  padding: 0 9px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
-  box-shadow: inset 0 0 5px #371a1a;
-  text-shadow: 0px 0px 4px black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  ccolor: #5c0909;
-}
-x-window x-title-bar x-title-bar-inner x-close:hover {
-  font-weight: bold;
+  margin-right: 1px;
 }
 x-window x-window-content {
   width: 100%;

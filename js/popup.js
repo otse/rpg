@@ -29,12 +29,17 @@ class popup {
 					<x-title>
 						${options.title}
 					</x-title>
-					<x-min>
-						&#8964;
-					</x-min>
-					<x-close>
-						x
-					</x-close>
+					<x-button data-a="min">
+						<x-button-inner>
+							-
+							<!-- &#8964; -->
+						</x-button-inner>
+					</x-button>
+					<x-button data-a="close">
+						<x-button-inner>
+							x
+						</x-button-inner>
+					</x-button>
 				</x-title-bar-inner>
 			</x-title-bar>
 			<x-window-content>
@@ -74,14 +79,16 @@ class popup {
             this.dragging = true;
             this.window.style.zIndex = 10;
         };
-        this.close = this.window.querySelector('x-close');
-        this.close.onclick = () => {
-            this.destroy();
-        };
-        this.min = this.window.querySelector('x-min');
-        this.min.onclick = () => {
-            this.toggle_min();
-        };
+        this.close = this.window.querySelector('x-button[data-a="close"]');
+        if (this.close)
+            this.close.onclick = () => {
+                this.destroy();
+            };
+        this.min = this.window.querySelector('x-button[data-a="min"]');
+        if (this.min)
+            this.min.onclick = () => {
+                this.toggle_min();
+            };
         this.reposition();
     }
     reposition() {
