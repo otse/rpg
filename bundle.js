@@ -61,13 +61,10 @@ var rpg = (function () {
         //static range(a: vec2, b: vec2): boolean {
         //	return true 
         //}
-        /*
-        static clamp(a: vec2, min: vec2, max: vec2): vec2 {
-            const clamp = (val, min, max) =>
-                val > max ? max : val < min ? min : val;
+        static clamp(a, min, max) {
+            const clamp = (val, min, max) => val > max ? max : val < min ? min : val;
             return [clamp(a[0], min[0], max[0]), clamp(a[1], min[1], max[1])];
         }
-        */
         static floor(a) {
             return [Math.floor(a[0]), Math.floor(a[1])];
         }
@@ -156,6 +153,50 @@ var rpg = (function () {
         ;
     }
 
+    var TEST;
+    (function (TEST) {
+        TEST[TEST["Outside"] = 0] = "Outside";
+        TEST[TEST["Inside"] = 1] = "Inside";
+        TEST[TEST["Overlap"] = 2] = "Overlap";
+    })(TEST || (TEST = {}));
+    class aabb2 {
+        static TEST = TEST;
+        min;
+        max;
+        static dupe(bb) {
+            return new aabb2(bb.min, bb.max);
+        }
+        constructor(a, b) {
+            this.min = this.max = [...a];
+            if (b) {
+                this.extend(b);
+            }
+        }
+        extend(v) {
+            this.min = pts.min(this.min, v);
+            this.max = pts.max(this.max, v);
+        }
+        diagonal() {
+            return pts.subtract(this.max, this.min);
+        }
+        center() {
+            return pts.add(this.min, pts.mult(this.diagonal(), 0.5));
+        }
+        translate(v) {
+            this.min = pts.add(this.min, v);
+            this.max = pts.add(this.max, v);
+        }
+        test(b) {
+            if (this.max[0] < b.min[0] || this.min[0] > b.max[0] ||
+                this.max[1] < b.min[1] || this.min[1] > b.max[1])
+                return 0;
+            if (this.min[0] <= b.min[0] && this.max[0] >= b.max[0] &&
+                this.min[1] <= b.min[1] && this.max[1] >= b.max[1])
+                return 1;
+            return 2;
+        }
+    }
+
     var popups = [];
     class popup {
         options;
@@ -217,6 +258,14 @@ var rpg = (function () {
             this.onmousemove = (e) => {
                 if (this.dragging) {
                     this.pos = pts.subtract(app$1.mouse(), this.drag_start);
+                    let us = new aabb2([0, 0], [this.title_bar.clientWidth, this.title_bar.clientHeight]);
+                    us.translate(this.pos);
+                    const destination = document.querySelector('x-main-area');
+                    let bound = new aabb2([0, 0], [destination.clientWidth, destination.clientHeight]);
+                    const test = bound.test(us);
+                    if (app$1.mobile && test == 0) {
+                        this.pos = [0, 0];
+                    }
                     this.reposition();
                 }
             };
@@ -246,12 +295,14 @@ var rpg = (function () {
             if (this.min)
                 this.min.onclick = () => {
                     this.toggle_min();
+                    popup.handle_on_top(this);
                 };
             this.content.onclick = () => {
                 popup.handle_on_top(this);
             };
             popup.handle_on_top(this);
             this.reposition();
+            this.reindex();
         }
         static handle_on_top(wnd) {
             const total = popups.length;
@@ -275,7 +326,7 @@ var rpg = (function () {
             this.window.style.zIndex = base_index + this.index;
         }
         reposition() {
-            console.log('reposition popup');
+            //console.log('reposition popup');
             this.window.style.top = this.pos[1];
             this.window.style.left = this.pos[0];
         }
@@ -408,6 +459,12 @@ var rpg = (function () {
         static instance;
         popup;
         dragging = false;
+        world_map;
+        pos = [0, 0];
+        drag_start = [0, 0];
+        drag = [0, 0];
+        onmouseup;
+        onmousemove;
         static request_popup() {
             if (!world_map.instance) {
                 world_map.instance = new world_map;
@@ -425,9 +482,53 @@ var rpg = (function () {
                 onclose: () => { world_map.instance = undefined; }
             });
             this.popup.content_inner.innerHTML = `
-			<x-world-map></x-world-map>
+			<x-world-map>
+				<x-world-map-inner>
+				</x-world-map-inner>
+			</x-world-map>
 		`;
+            this.world_map = this.popup.content_inner.querySelector('x-world-map');
+            /*this.world_map.ontouchmove = (e) => {
+                e.preventDefault();
+            }*/
+            if (!app$1.mobile) {
+                this.onmouseup = (e) => {
+                    this.dragging = false;
+                    this.world_map.classList.remove('dragging');
+                };
+                this.onmousemove = (e) => {
+                    if (this.dragging) {
+                        this.pos = pts.subtract(this.drag_start, app$1.mouse());
+                        this.reposition();
+                    }
+                };
+                this.world_map.onmousedown = this.world_map.ontouchstart = (e) => {
+                    let pos = app$1.mouse();
+                    if (e.clientX) {
+                        pos[0] = e.clientX;
+                        pos[1] = e.clientY;
+                    }
+                    else {
+                        pos[0] = e.pageX;
+                        pos[1] = e.pageY;
+                    }
+                    this.drag_start = pts.add(pos, this.pos);
+                    this.world_map.classList.add('dragging');
+                    this.dragging = true;
+                };
+                hooks.register('onmouseup', this.onmouseup);
+                hooks.register('onmousemove', this.onmousemove);
+            }
             this.popup.attach();
+        }
+        reposition() {
+            const el = this.world_map;
+            const maxWidth = Math.max(el.clientWidth, el.scrollWidth, el.offsetWidth) - el.clientWidth;
+            const maxHeight = Math.max(el.clientHeight, el.scrollHeight, el.offsetHeight) - el.clientWidth;
+            this.pos = pts.clamp(this.pos, [0, 0], [maxWidth, maxHeight]);
+            console.log('reposition world-map', this.pos);
+            this.world_map.scrollLeft = this.pos[0];
+            this.world_map.scrollTop = this.pos[1];
         }
     }
 
@@ -458,7 +559,7 @@ var rpg = (function () {
                 ],
                 handler: handler
             });
-            const destination = document.querySelector('x-top-bar-inner x-dropdown-destination');
+            const destination = document.querySelector('x-top-bar-inner x-view-destination');
             this.dropdown.attach(destination);
         }
     }

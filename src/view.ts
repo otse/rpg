@@ -31,7 +31,7 @@ class view {
 			],
 			handler: handler
 		});
-		const destination = document.querySelector('x-top-bar-inner x-dropdown-destination');
+		const destination = document.querySelector('x-top-bar-inner x-view-destination');
 		this.dropdown.attach(destination);
 	}
 }

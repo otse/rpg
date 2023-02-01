@@ -1,3 +1,4 @@
+import aabb2 from "./aabb2"
 import app from "./app"
 import hooks from "./hooks"
 import pts from "./pts"
@@ -71,6 +72,14 @@ class popup {
 		this.onmousemove = (e) => {
 			if (this.dragging) {
 				this.pos = pts.subtract(app.mouse(), this.drag_start);
+				let us = new aabb2([0, 0], [this.title_bar.clientWidth, this.title_bar.clientHeight]);
+				us.translate(this.pos);				
+				const destination = document.querySelector('x-main-area')!;
+				let bound = new aabb2([0, 0], [destination.clientWidth, destination.clientHeight]);
+				const test = bound.test(us);
+				if (app.mobile && test == 0) {
+					this.pos = [0, 0];
+				}
 				this.reposition();
 			}
 		}
@@ -100,12 +109,14 @@ class popup {
 		if (this.min)
 			this.min.onclick = () => {
 				this.toggle_min();
+				popup.handle_on_top(this);
 			}
 		this.content.onclick = () => {
 			popup.handle_on_top(this);
 		}
 		popup.handle_on_top(this);
 		this.reposition();
+		this.reindex();
 	}
 	static handle_on_top(wnd: popup) {
 		const total = popups.length;
@@ -114,8 +125,7 @@ class popup {
 			wnd.index = on_top.index + 2;
 			on_top.index = total;
 		}
-		else
-		{
+		else {
 			wnd.index = total + 1;
 		}
 		popup.on_top = wnd;
@@ -130,7 +140,7 @@ class popup {
 		this.window.style.zIndex = base_index + this.index;
 	}
 	reposition() {
-		console.log('reposition popup');
+		//console.log('reposition popup');
 		this.window.style.top = this.pos[1];
 		this.window.style.left = this.pos[0];
 	}

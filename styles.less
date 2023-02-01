@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Nanum+Myeongjo&family=Prata&display=swap');
 
 body {
+	overflow: hidden;
 	touch-action: none;
 	user-select: none;
 	background: black;
@@ -49,6 +50,10 @@ x-top-area {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+
+	x-windows {
+		position: relative;
+	}
 }
 
 x-top-bar {
@@ -80,7 +85,9 @@ x-top-bar {
 		display: flex;
 		justify-content: flex-end;
 
-		x-dropdown-destination {}
+		x-view-destination {
+			z-index: 100;
+		}
 	}
 }
 
@@ -89,6 +96,8 @@ x-dropdown-group {
 	flex-direction: column;
 
 	&.view {
+		pposition: relative;
+		zz-index: 100;
 		margin: 4px;
 
 		x-dropdown-button {
@@ -406,6 +415,10 @@ x-window {
 		x-title-bar {
 			background: url(img/titlebar.png);
 		}
+
+		x-window-content {
+			height: 300px;
+		}
 	}
 
 	x-title-bar {
@@ -482,7 +495,7 @@ x-window {
 	x-window-content {
 		width: 100%;
 		height: 100%;
-		height: 300px;
+		hheight: 300px;
 		box-sizing: border-box;
 		border: 2px outset #a3a3a3c7;
 		border: 2px outset #818181c7;
@@ -502,12 +515,25 @@ x-window {
 		}
 
 		x-world-map {
+			-webkit-user-drag: none;
+			cursor: grab;
+			border: 2px solid rgb(157 157 157 / 50%);
+			box-sizing: border-box;
 			width: 100%;
 			height: 100%;
-			background: url(img/map.jpg);
-			background-position: -100px 0px;
-			background-size: 200%;
-			display: flex;
+			overflow: scroll;
+
+			x-world-map-inner {
+				width: calc(2048px/3);
+				height: calc(1536px/3);
+				background: url(img/map.jpg);
+				background-size: 100%;
+				display: flex;
+			}
+
+			&.dragging {
+				cursor: grabbing;
+			}
 		}
 	}
 
@@ -515,6 +541,7 @@ x-window {
 
 ::-webkit-scrollbar {
 	width: 10px;
+	height: 10px;
 }
 
 /* Track */
@@ -525,6 +552,10 @@ x-window {
 /* Handle */
 ::-webkit-scrollbar-thumb {
 	background: #525252;
+}
+
+::-webkit-scrollbar-corner {
+	background: #808080;
 }
 
 x-action-bar {

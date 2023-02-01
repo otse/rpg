@@ -21,6 +21,7 @@
   src: url(https://fonts.gstatic.com/s/prata/v18/6xKhdSpbNNCT-vWI.ttf) format('truetype');
 }
 body {
+  overflow: hidden;
   touch-action: none;
   user-select: none;
   background: black;
@@ -66,6 +67,9 @@ x-top-area {
   flex-direction: column;
   align-items: flex-start;
 }
+x-top-area x-windows {
+  position: relative;
+}
 x-top-bar {
   z-index: 2;
   width: 100%;
@@ -95,11 +99,16 @@ x-top-bar x-top-bar-inner {
   display: flex;
   justify-content: flex-end;
 }
+x-top-bar x-top-bar-inner x-view-destination {
+  z-index: 100;
+}
 x-dropdown-group {
   display: flex;
   flex-direction: column;
 }
 x-dropdown-group.view {
+  pposition: relative;
+  zz-index: 100;
   margin: 4px;
 }
 x-dropdown-group.view x-dropdown-button {
@@ -366,6 +375,9 @@ x-window.character x-window-content {
 x-window.world-map x-title-bar {
   background: url(img/titlebar.png);
 }
+x-window.world-map x-window-content {
+  height: 300px;
+}
 x-window x-title-bar {
   color: #cdcdcd;
   font-size: 16px;
@@ -429,7 +441,7 @@ x-window x-title-bar x-title-bar-inner x-button[data-a="min"] {
 x-window x-window-content {
   width: 100%;
   height: 100%;
-  height: 300px;
+  hheight: 300px;
   box-sizing: border-box;
   border: 2px outset #a3a3a3c7;
   border: 2px outset #818181c7;
@@ -448,15 +460,27 @@ x-window x-window-content x-inner {
   display: flex;
 }
 x-window x-window-content x-world-map {
+  -webkit-user-drag: none;
+  cursor: grab;
+  border: 2px solid rgba(157, 157, 157, 0.5);
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
+  overflow: scroll;
+}
+x-window x-window-content x-world-map x-world-map-inner {
+  width: calc(2048px/3);
+  height: calc(1536px/3);
   background: url(img/map.jpg);
-  background-position: -100px 0px;
-  background-size: 200%;
+  background-size: 100%;
   display: flex;
+}
+x-window x-window-content x-world-map.dragging {
+  cursor: grabbing;
 }
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
@@ -465,6 +489,9 @@ x-window x-window-content x-world-map {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #525252;
+}
+::-webkit-scrollbar-corner {
+  background: #808080;
 }
 x-action-bar {
   border: 2px solid rgba(17, 17, 17, 0.5);

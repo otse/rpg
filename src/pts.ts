@@ -49,13 +49,13 @@ class pts {
 	//static range(a: vec2, b: vec2): boolean {
 	//	return true 
 	//}
-	/*
+	
 	static clamp(a: vec2, min: vec2, max: vec2): vec2 {
 		const clamp = (val, min, max) =>
 			val > max ? max : val < min ? min : val;
 		return [clamp(a[0], min[0], max[0]), clamp(a[1], min[1], max[1])];
 	}
-	*/
+	
 
 	static floor(a: vec2): vec2 {
 		return [Math.floor(a[0]), Math.floor(a[1])];
