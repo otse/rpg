@@ -90,7 +90,6 @@ class popup {
 			this.title_bar.classList.add('dragging');
 			this.dragging = true;
 			popup.handle_on_top(this);
-			this.window.style.zIndex = 10;
 		}
 		this.close = this.window.querySelector('x-button[data-a="close"]');
 		if (this.close)
@@ -102,21 +101,22 @@ class popup {
 			this.min.onclick = () => {
 				this.toggle_min();
 			}
+		this.content.onclick = () => {
+			popup.handle_on_top(this);
+		}
+		popup.handle_on_top(this);
 		this.reposition();
 	}
 	static handle_on_top(wnd: popup) {
 		const total = popups.length;
-		
 		const { on_top } = popup;
 		if (on_top) {
-			wnd.index = on_top.index + 1;
+			wnd.index = on_top.index + 2;
 			on_top.index = total;
-			on_top.reindex();
 		}
 		else
 		{
 			wnd.index = total + 1;
-			wnd.reindex();
 		}
 		popup.on_top = wnd;
 		popups.sort((a: popup, b: popup) => a.index < b.index ? -1 : 1);
@@ -126,7 +126,8 @@ class popup {
 		}
 	}
 	reindex() {
-		this.window.style.zIndex = this.index;
+		const base_index = 2;
+		this.window.style.zIndex = base_index + this.index;
 	}
 	reposition() {
 		console.log('reposition popup');
