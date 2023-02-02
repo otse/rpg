@@ -473,11 +473,11 @@ var rpg = (function () {
             //[[700, 346], [2048 - 500, 1536 - 600], 'Desert'],
             [[707, 346], [900, 434], 'Desert'],
             [[1071, 538], [1222, 609], 'Shire'],
-            [[1165, 616], [1253, 650], 'Forest'],
+            [[1165, 620], [1260, 660], 'Forest'],
         ]
     };
     const map_size = [2048, 1536];
-    const map_division = 3;
+    const map_division = 2;
     class world_map {
         static instance;
         popup;
