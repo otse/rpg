@@ -154,6 +154,7 @@ namespace app {
 		//	delta = 1 / 10;
 		last = current;
 		rpg.step();
+		hooks.call('animationFrame', false);
 		wheel = 0;
 		process_keys();
 		process_mouse_buttons();

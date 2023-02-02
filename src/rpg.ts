@@ -1,4 +1,5 @@
 import app from "./app";
+import popup from "./popup";
 import view from "./view";
 
 // https://www.artstation.com/artwork/Z580PG
@@ -8,6 +9,7 @@ namespace rpg {
 	export function init() {
 		console.log(' init ');
 		
+		popup.init();
 		app;
 		new view;
 

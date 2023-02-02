@@ -200,6 +200,17 @@ var rpg = (function () {
     var popups = [];
     class popup {
         options;
+        static init() {
+            /*
+            hooks.register('animationFrame', (x) => {
+                console.log('animation frame');
+                
+                for (const popup of popups)
+                    popup.reposition();
+                return false;
+            });
+            */
+        }
         static on_top;
         pos = [0, 0];
         drag_start = [0, 0];
@@ -242,14 +253,14 @@ var rpg = (function () {
 				</x-title-bar-inner>
 			</x-title-bar>
 			<x-window-content>
-				<x-inner>
+				<x-window-content-inner>
 					
-				</x-inner>
+				</x-window-content-inner>
 			</x-window-content>
 		`;
             this.title_bar = this.window.querySelector('x-title-bar');
             this.content = this.window.querySelector('x-window-content');
-            this.content_inner = this.window.querySelector('x-window-content x-inner');
+            this.content_inner = this.window.querySelector('x-window-content x-window-content-inner');
             this.title_drag = this.window.querySelector('x-title-bar x-title');
             this.onmouseup = (e) => {
                 this.dragging = false;
@@ -455,11 +466,25 @@ var rpg = (function () {
         }
     }
 
+    var green = {
+        name: 'map.jpg',
+        regions: [
+            //[[300, 300], [2048 - 500, 1536 - 600], 'Desert'],
+            //[[700, 346], [2048 - 500, 1536 - 600], 'Desert'],
+            [[707, 346], [900, 434], 'Desert'],
+            [[1071, 538], [1222, 609], 'Shire'],
+            [[1165, 616], [1253, 650], 'Forest'],
+        ]
+    };
+    const map_size = [2048, 1536];
+    const map_division = 3;
     class world_map {
         static instance;
         popup;
+        map = green;
         dragging = false;
         world_map;
+        world_map_inner;
         pos = [0, 0];
         drag_start = [0, 0];
         drag = [0, 0];
@@ -479,19 +504,30 @@ var rpg = (function () {
                 class: 'world-map',
                 title: 'World Map',
                 zIndex: 2,
-                onclose: () => { world_map.instance = undefined; }
+                onclose: () => { world_map.instance = undefined; this.destroy(); }
             });
             this.popup.content_inner.innerHTML = `
+			<x-text>
+				Here you can travel.
+			</x-text>
+			<x-horz></x-horz>
 			<x-world-map>
 				<x-world-map-inner>
 				</x-world-map-inner>
 			</x-world-map>
 		`;
             this.world_map = this.popup.content_inner.querySelector('x-world-map');
+            this.world_map_inner = this.popup.content_inner.querySelector('x-world-map-inner');
             /*this.world_map.ontouchmove = (e) => {
                 e.preventDefault();
             }*/
+            //width: calc(2048px/3);
+            //height: calc(1536px/3);
+            //
             if (!app$1.mobile) {
+                this.world_map.onscroll = (e) => {
+                    this.reposition();
+                };
                 this.onmouseup = (e) => {
                     this.dragging = false;
                     this.world_map.classList.remove('dragging');
@@ -519,16 +555,51 @@ var rpg = (function () {
                 hooks.register('onmouseup', this.onmouseup);
                 hooks.register('onmousemove', this.onmousemove);
             }
+            this.populate();
             this.popup.attach();
+        }
+        populate() {
+            for (let region of this.map.regions) {
+                const el = document.createElement('x-region');
+                let aabb = new aabb2(region[0], region[1]);
+                const diag = pts.divide(aabb.diagonal(), map_division);
+                const min = pts.divide(aabb.min, map_division);
+                el.style.width = `${diag[0]}px`;
+                el.style.height = `${diag[1]}px`;
+                el.style.top = `${min[1]}px`;
+                el.style.left = `${min[0]}px`;
+                const map_size_scaled = pts.divide(map_size, map_division);
+                //const div = pts.divide(map_size_scaled, diag[0], diag[1]);
+                //const bg = pts.mult(map_size_scaled, div[0], div[1]);
+                const bg = map_size_scaled;
+                // how many times can our region fit into map
+                console.log('div', bg);
+                el.style.backgroundSize = `${bg[0]}px ${bg[1]}px`;
+                el.style.backgroundPositionX = `-${min[0]}px`;
+                el.style.backgroundPositionY = `-${min[1]}px`;
+                el.onmouseover = () => {
+                    console.log('aabb', aabb);
+                    el.style.backgroundImage = `url(img/map_hover.jpg)`;
+                };
+                el.onmouseout = () => {
+                    el.style.backgroundImage = ``;
+                };
+                this.world_map.append(el);
+            }
         }
         reposition() {
             const el = this.world_map;
             const maxWidth = Math.max(el.clientWidth, el.scrollWidth, el.offsetWidth) - el.clientWidth;
-            const maxHeight = Math.max(el.clientHeight, el.scrollHeight, el.offsetHeight) - el.clientWidth;
+            const maxHeight = Math.max(el.clientHeight, el.scrollHeight, el.offsetHeight) - el.clientHeight;
             this.pos = pts.clamp(this.pos, [0, 0], [maxWidth, maxHeight]);
-            console.log('reposition world-map', this.pos);
+            //console.log('reposition world-map', this.pos);
             this.world_map.scrollLeft = this.pos[0];
             this.world_map.scrollTop = this.pos[1];
+        }
+        destroy() {
+            console.log('destroy the world map');
+            hooks.unregister('onmousemove', this.onmousemove);
+            hooks.unregister('onmouseup', this.onmouseup);
         }
     }
 
@@ -729,6 +800,7 @@ var rpg = (function () {
             //	delta = 1 / 10;
             last = current;
             rpg$1.step();
+            hooks.call('animationFrame', false);
             app.wheel = 0;
             process_keys();
             process_mouse_buttons();

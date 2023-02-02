@@ -5,6 +5,17 @@ import pts from "./pts";
 var popups = [];
 class popup {
     options;
+    static init() {
+        /*
+        hooks.register('animationFrame', (x) => {
+            console.log('animation frame');
+            
+            for (const popup of popups)
+                popup.reposition();
+            return false;
+        });
+        */
+    }
     static on_top;
     pos = [0, 0];
     drag_start = [0, 0];
@@ -47,14 +58,14 @@ class popup {
 				</x-title-bar-inner>
 			</x-title-bar>
 			<x-window-content>
-				<x-inner>
+				<x-window-content-inner>
 					
-				</x-inner>
+				</x-window-content-inner>
 			</x-window-content>
 		`;
         this.title_bar = this.window.querySelector('x-title-bar');
         this.content = this.window.querySelector('x-window-content');
-        this.content_inner = this.window.querySelector('x-window-content x-inner');
+        this.content_inner = this.window.querySelector('x-window-content x-window-content-inner');
         this.title_drag = this.window.querySelector('x-title-bar x-title');
         this.onmouseup = (e) => {
             this.dragging = false;

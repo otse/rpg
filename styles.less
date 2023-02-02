@@ -1,6 +1,6 @@
 /* lessc styles.less styles.css */
 
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Nanum+Myeongjo&family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Nanum+Myeongjo&family=Prata&family=Roboto+Slab&display=swap');
 
 body {
 	overflow: hidden;
@@ -12,7 +12,6 @@ body {
 	background-size: cover;
 	-webkit-backdrop-filter: blur(2px);
 	backdrop-filter: blur(2px);
-	font-family: 'Raleway', sans-serif;
 	width: 100%;
 	height: 100%;
 	margin: 0;
@@ -33,7 +32,8 @@ x-main-area {
 	width: 100%;
 	height: 100%;
 	font-family: 'EB Garamond', serif;
-	font-size: 18px;
+	font-family: 'Roboto Slab', serif;
+	font-size: 14px;
 	bborder: 1px solid grey;
 	border-radius: 6px;
 	margin: 0px;
@@ -276,7 +276,6 @@ x-tab-content {
 @faint-white: rgb(149 149 149 / 90%);
 
 x-button-wood {
-	ffont-size: 18px;
 	color: #e0e0e0;
 	color: #1b1b1b;
 	color: #20150a;
@@ -423,7 +422,6 @@ x-window {
 
 	x-title-bar {
 		color: #cdcdcd;
-		font-size: 16px;
 		background: rgb(124 124 124 / 80%);
 		border: 2px outset #ffffffa8;
 		border-radius: 3px 3px 0 0;
@@ -448,7 +446,7 @@ x-window {
 			x-title {
 				cursor: grab;
 				width: 100%;
-				border: 2px outset #ffffff87;
+				border: 2px outset rgb(255 255 255 / 50%);
 				border-radius: 3px;
 				box-shadow: inset 0 0 10px #000000a6;
 				display: flex;
@@ -465,7 +463,7 @@ x-window {
 				border: 1px solid #5c4e4e;
 				border-radius: 4px;
 				background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(150, 150, 150, 0.5) 100%);
-				bbox-shadow: 0 0 2px #333333;
+				box-shadow: inset 0 0 1px #371a1ad9;
 				/* box-shadow: inset 0 0 10px #371a1ad9; */
 				display: flex;
 
@@ -492,7 +490,24 @@ x-window {
 
 	}
 
+	x-horz {
+		margin: 4px;
+		box-sizing: border-box;
+		bborder-bottom: 1px solid #dbdbdb;
+		width: auto;
+		display: flex;
+	}
+
+	x-text {
+		bborder: 1px solid #dbdbdb;
+		border-radius: 3px;
+		text-decoration: underline;
+	}
+
 	x-window-content {
+		color: #dbdbdb;
+		color: #272727;
+		ttext-shadow: 0 0 2px #363636;
 		width: 100%;
 		height: 100%;
 		hheight: 300px;
@@ -505,22 +520,24 @@ x-window {
 		/* padding: 10px; */
 		display: flex;
 
-		x-inner {
+		x-window-content-inner {
 			width: 100%;
 			height: 100%;
 			padding: 6px;
 			box-sizing: border-box;
 			background: linear-gradient(180deg, rgba(107, 112, 112, 0.95) 0%, rgba(80, 86, 84, 0.95) 100%);
 			display: flex;
+			flex-direction: column;
 		}
 
 		x-world-map {
 			-webkit-user-drag: none;
 			cursor: grab;
-			border: 2px solid rgb(157 157 157 / 50%);
+			bborder: 2px solid rgb(157 157 157 / 50%);
 			box-sizing: border-box;
 			width: 100%;
 			height: 100%;
+			position: relative;
 			overflow: scroll;
 
 			x-world-map-inner {
@@ -531,8 +548,18 @@ x-window {
 				display: flex;
 			}
 
+			x-region {
+				cursor: pointer;
+				position: absolute;
+				display: flex;
+			}
+
 			&.dragging {
 				cursor: grabbing;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				background: #544a3a;
 			}
 		}
 	}

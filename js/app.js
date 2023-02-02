@@ -156,6 +156,7 @@ var app;
         //	delta = 1 / 10;
         last = current;
         rpg.step();
+        hooks.call('animationFrame', false);
         app.wheel = 0;
         process_keys();
         process_mouse_buttons();
