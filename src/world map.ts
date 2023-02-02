@@ -33,7 +33,7 @@ class world_map {
 	dragging = false
 	world_map
 	world_map_inner
-	pos: vec2 = [0, 0]
+	static pos: vec2 = [0, 0]
 	drag_start: vec2 = [0, 0]
 	drag: vec2 = [0, 0]
 	onmouseup
@@ -48,6 +48,8 @@ class world_map {
 		}
 	}
 	constructor() {
+		console.log(world_map.pos);
+		
 		this.popup = new popup({
 			class: 'world-map',
 			title: 'World Map',
@@ -82,7 +84,7 @@ class world_map {
 			}
 			this.onmousemove = (e) => {
 				if (this.dragging) {
-					this.pos = pts.subtract(this.drag_start, app.mouse());
+					world_map.pos = pts.subtract(this.drag_start, app.mouse());
 					this.reposition();
 				}
 			}
@@ -96,7 +98,7 @@ class world_map {
 					pos[0] = e.pageX;
 					pos[1] = e.pageY;
 				}
-				this.drag_start = pts.add(pos, this.pos);
+				this.drag_start = pts.add(pos, world_map.pos);
 				this.world_map.classList.add('dragging');
 				this.dragging = true;
 			}
@@ -105,6 +107,7 @@ class world_map {
 		}
 		this.populate();
 		this.popup.attach();
+		this.reposition();
 	}
 	populate() {
 		this.info = document.createElement('x-world-map-info');
@@ -116,15 +119,17 @@ class world_map {
 		}
 	}
 	reposition() {
+		
 		const el = this.world_map;
 		const maxWidth = Math.max(el.clientWidth, el.scrollWidth, el.offsetWidth) - el.clientWidth;
 		const maxHeight = Math.max(el.clientHeight, el.scrollHeight, el.offsetHeight) - el.clientHeight;
-
-		this.pos = pts.clamp(this.pos, [0, 0], [maxWidth, maxHeight]);
+		
+		world_map.pos = pts.clamp(world_map.pos, [0, 0], [maxWidth, maxHeight]);
+		console.log('clamp', world_map.pos);
 
 		//console.log('reposition world-map', this.pos);
-		this.world_map.scrollLeft = this.pos[0];
-		this.world_map.scrollTop = this.pos[1];
+		this.world_map.scrollLeft = world_map.pos[0];
+		this.world_map.scrollTop = world_map.pos[1];
 	}
 	destroy() {
 		console.log('destroy the world map');

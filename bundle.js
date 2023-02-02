@@ -486,7 +486,7 @@ var rpg = (function () {
         dragging = false;
         world_map;
         world_map_inner;
-        pos = [0, 0];
+        static pos = [0, 0];
         drag_start = [0, 0];
         drag = [0, 0];
         onmouseup;
@@ -501,6 +501,7 @@ var rpg = (function () {
             }
         }
         constructor() {
+            console.log(world_map.pos);
             this.popup = new popup({
                 class: 'world-map',
                 title: 'World Map',
@@ -535,7 +536,7 @@ var rpg = (function () {
                 };
                 this.onmousemove = (e) => {
                     if (this.dragging) {
-                        this.pos = pts.subtract(this.drag_start, app$1.mouse());
+                        world_map.pos = pts.subtract(this.drag_start, app$1.mouse());
                         this.reposition();
                     }
                 };
@@ -549,7 +550,7 @@ var rpg = (function () {
                         pos[0] = e.pageX;
                         pos[1] = e.pageY;
                     }
-                    this.drag_start = pts.add(pos, this.pos);
+                    this.drag_start = pts.add(pos, world_map.pos);
                     this.world_map.classList.add('dragging');
                     this.dragging = true;
                 };
@@ -558,6 +559,7 @@ var rpg = (function () {
             }
             this.populate();
             this.popup.attach();
+            this.reposition();
         }
         populate() {
             this.info = document.createElement('x-world-map-info');
@@ -571,10 +573,11 @@ var rpg = (function () {
             const el = this.world_map;
             const maxWidth = Math.max(el.clientWidth, el.scrollWidth, el.offsetWidth) - el.clientWidth;
             const maxHeight = Math.max(el.clientHeight, el.scrollHeight, el.offsetHeight) - el.clientHeight;
-            this.pos = pts.clamp(this.pos, [0, 0], [maxWidth, maxHeight]);
+            world_map.pos = pts.clamp(world_map.pos, [0, 0], [maxWidth, maxHeight]);
+            console.log('clamp', world_map.pos);
             //console.log('reposition world-map', this.pos);
-            this.world_map.scrollLeft = this.pos[0];
-            this.world_map.scrollTop = this.pos[1];
+            this.world_map.scrollLeft = world_map.pos[0];
+            this.world_map.scrollTop = world_map.pos[1];
         }
         destroy() {
             console.log('destroy the world map');
