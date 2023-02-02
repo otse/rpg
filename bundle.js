@@ -482,6 +482,7 @@ var rpg = (function () {
         static instance;
         popup;
         map = green;
+        info;
         dragging = false;
         world_map;
         world_map_inner;
@@ -508,7 +509,7 @@ var rpg = (function () {
             });
             this.popup.content_inner.innerHTML = `
 			<x-text>
-				Here you can travel.
+				Selected: None
 			</x-text>
 			<x-horz></x-horz>
 			<x-world-map>
@@ -559,32 +560,11 @@ var rpg = (function () {
             this.popup.attach();
         }
         populate() {
-            for (let region of this.map.regions) {
-                const el = document.createElement('x-region');
-                let aabb = new aabb2(region[0], region[1]);
-                const diag = pts.divide(aabb.diagonal(), map_division);
-                const min = pts.divide(aabb.min, map_division);
-                el.style.width = `${diag[0]}px`;
-                el.style.height = `${diag[1]}px`;
-                el.style.top = `${min[1]}px`;
-                el.style.left = `${min[0]}px`;
-                const map_size_scaled = pts.divide(map_size, map_division);
-                //const div = pts.divide(map_size_scaled, diag[0], diag[1]);
-                //const bg = pts.mult(map_size_scaled, div[0], div[1]);
-                const bg = map_size_scaled;
-                // how many times can our region fit into map
-                console.log('div', bg);
-                el.style.backgroundSize = `${bg[0]}px ${bg[1]}px`;
-                el.style.backgroundPositionX = `-${min[0]}px`;
-                el.style.backgroundPositionY = `-${min[1]}px`;
-                el.onmouseover = () => {
-                    console.log('aabb', aabb);
-                    el.style.backgroundImage = `url(img/map_hover.jpg)`;
-                };
-                el.onmouseout = () => {
-                    el.style.backgroundImage = ``;
-                };
-                this.world_map.append(el);
+            this.info = document.createElement('x-world-map-info');
+            const x_main_area = document.querySelector('x-main-area');
+            x_main_area.append(this.info);
+            for (const region of this.map.regions) {
+                new label(this, region);
             }
         }
         reposition() {
@@ -600,6 +580,40 @@ var rpg = (function () {
             console.log('destroy the world map');
             hooks.unregister('onmousemove', this.onmousemove);
             hooks.unregister('onmouseup', this.onmouseup);
+        }
+    }
+    class label {
+        friend;
+        tuple;
+        el;
+        constructor(friend, tuple) {
+            this.friend = friend;
+            this.tuple = tuple;
+            this.create();
+        }
+        create() {
+            this.el = document.createElement('x-region');
+            let aabb = new aabb2(this.tuple[0], this.tuple[1]);
+            const diag = pts.divide(aabb.diagonal(), map_division);
+            const min = pts.divide(aabb.min, map_division);
+            const map_size_scaled = pts.divide(map_size, map_division);
+            this.el.style.width = `${diag[0]}px`;
+            this.el.style.height = `${diag[1]}px`;
+            this.el.style.top = `${min[1]}px`;
+            this.el.style.left = `${min[0]}px`;
+            this.el.style.backgroundPositionX = `-${min[0]}px`;
+            this.el.style.backgroundPositionY = `-${min[1]}px`;
+            this.el.style.backgroundSize = `${map_size_scaled[0]}px ${map_size_scaled[1]}px`;
+            this.el.onmouseover = () => {
+                this.el.style.backgroundImage = `url(img/map_hover.jpg)`;
+            };
+            this.el.onmouseout = () => {
+                this.el.style.backgroundImage = ``;
+            };
+            this.attach();
+        }
+        attach() {
+            this.friend.world_map.append(this.el);
         }
     }
 

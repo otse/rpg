@@ -483,7 +483,7 @@ x-window x-window-content x-window-content-inner {
 x-window x-window-content x-world-map {
   -webkit-user-drag: none;
   cursor: grab;
-  bborder: 2px solid rgba(157, 157, 157, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.05);
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -506,22 +506,29 @@ x-window x-window-content x-world-map.dragging {
   cursor: grabbing;
 }
 x-window x-window-content x-world-map::-webkit-scrollbar-thumb {
-  background: #544a3a;
+  background: #8c8477;
+  border-radius: 3px;
+}
+x-world-map-info {
+  z-index: 100;
+  position: absolute;
+  display: flex;
 }
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #808080;
+  bbackground: #808080;
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #525252;
+  background: #8c8477;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-corner {
-  background: #808080;
+  bbackground: #808080;
 }
 x-action-bar {
   border: 2px solid rgba(17, 17, 17, 0.5);
