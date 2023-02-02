@@ -473,7 +473,8 @@ var rpg = (function () {
             //[[700, 346], [2048 - 500, 1536 - 600], 'Desert'],
             [[707, 346], [900, 434], 'Desert'],
             [[1071, 538], [1222, 609], 'Shire'],
-            [[1165, 620], [1260, 660], 'Forest'],
+            [[1257, 613], [1560, 646], 'Forest'],
+            [[809, 616], [1007, 663], 'Rocky Passage'],
         ]
     };
     const map_size = [2048, 1536];
@@ -481,6 +482,7 @@ var rpg = (function () {
     class world_map {
         static instance;
         popup;
+        selectedLabel;
         map = green;
         info;
         dragging = false;
@@ -489,6 +491,7 @@ var rpg = (function () {
         static pos = [0, 0];
         drag_start = [0, 0];
         drag = [0, 0];
+        x_text;
         onmouseup;
         onmousemove;
         static request_popup() {
@@ -518,6 +521,7 @@ var rpg = (function () {
 				</x-world-map-inner>
 			</x-world-map>
 		`;
+            this.x_text = this.popup.content_inner.querySelector('x-text');
             this.world_map = this.popup.content_inner.querySelector('x-world-map');
             this.world_map_inner = this.popup.content_inner.querySelector('x-world-map-inner');
             /*this.world_map.ontouchmove = (e) => {
@@ -607,16 +611,29 @@ var rpg = (function () {
             this.el.style.backgroundPositionX = `-${min[0]}px`;
             this.el.style.backgroundPositionY = `-${min[1]}px`;
             this.el.style.backgroundSize = `${map_size_scaled[0]}px ${map_size_scaled[1]}px`;
+            this.el.onclick = () => {
+                this.select();
+                this.friend.selectedLabel?.unselect();
+                this.friend.selectedLabel = this;
+                this.friend.x_text.innerHTML = `Selected: ${this.tuple[2]}`;
+            };
             this.el.onmouseover = () => {
-                this.el.style.backgroundImage = `url(img/map_hover.jpg)`;
+                this.select();
             };
             this.el.onmouseout = () => {
-                this.el.style.backgroundImage = ``;
+                if (this.friend.selectedLabel != this)
+                    this.unselect();
             };
             this.attach();
         }
         attach() {
             this.friend.world_map.append(this.el);
+        }
+        select() {
+            this.el.style.backgroundImage = `url(img/map_hover.jpg)`;
+        }
+        unselect() {
+            this.el.style.backgroundImage = ``;
         }
     }
 
