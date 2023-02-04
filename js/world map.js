@@ -8,10 +8,17 @@ var green = {
     regions: [
         //[[300, 300], [2048 - 500, 1536 - 600], 'Desert'],
         //[[700, 346], [2048 - 500, 1536 - 600], 'Desert'],
-        [[707, 346], [900, 434], 'Desert'],
-        [[1071, 538], [1222, 609], 'Shire'],
-        [[1257, 613], [1560, 646], 'Forest'],
-        [[809, 616], [1007, 663], 'Rocky Passage'],
+        [[1077, 545], [1219, 588], 'Shire'],
+        [[1260, 616], [1352, 642], 'Forest'],
+        [[1505, 612], [1591, 631], 'Outlands'],
+        [[603, 403], [905, 450], 'Dunes of Seif'],
+        [[853, 625], [949, 660], 'Rocky Passage'],
+        [[459, 706], [603, 728], 'Salt Plains'],
+        [[1118, 779], [1194, 856], 'Green Hike'],
+        [[1039, 1029], [1205, 1069], 'Alrond'],
+        [[1279, 879], [1415, 936], 'Temple of Time'],
+        [[801, 1068], [908, 1087], 'Footy Trail'],
+        [[465, 1044], [655, 1090], 'Bogged Gorge'],
     ]
 };
 const map_size = [2048, 1536];
@@ -136,8 +143,11 @@ class label {
         this.create();
     }
     create() {
+        const shrink_grow = 10;
         this.el = document.createElement('x-region');
         let aabb = new aabb2(this.tuple[0], this.tuple[1]);
+        aabb.min = pts.add(aabb.min, [-shrink_grow, -shrink_grow]);
+        aabb.max = pts.add(aabb.max, [shrink_grow, shrink_grow]);
         const diag = pts.divide(aabb.diagonal(), map_division);
         const min = pts.divide(aabb.min, map_division);
         const map_size_scaled = pts.divide(map_size, map_division);
@@ -149,8 +159,8 @@ class label {
         this.el.style.backgroundPositionY = `-${min[1]}px`;
         this.el.style.backgroundSize = `${map_size_scaled[0]}px ${map_size_scaled[1]}px`;
         this.el.onclick = () => {
-            this.select();
             this.friend.selectedLabel?.unselect();
+            this.select();
             this.friend.selectedLabel = this;
             this.friend.x_text.innerHTML = `Selected: ${this.tuple[2]}`;
         };

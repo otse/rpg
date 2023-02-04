@@ -8,6 +8,7 @@ body {
 	user-select: none;
 	background: black;
 	background: url(https://cdnb.artstation.com/p/assets/images/images/025/914/673/4k/gaelle-seguillon-gaelle-seguillon-storm-peaks-2-6k.jpg?1587324674);
+	background: url(https://cdnb.artstation.com/p/assets/images/images/007/301/801/4k/jeff-chen-69.jpg?1505173103);
 	background-position: center;
 	background-size: cover;
 	-webkit-backdrop-filter: blur(2px);
@@ -23,6 +24,8 @@ body {
 x-main-area {
 	position: relative;
 	background: url(https://cdnb.artstation.com/p/assets/images/images/025/914/673/4k/gaelle-seguillon-gaelle-seguillon-storm-peaks-2-6k.jpg?1587324674);
+	background: url(https://cdnb.artstation.com/p/assets/images/images/007/301/801/4k/jeff-chen-69.jpg?1505173103);
+	
 	background-position: center;
 	background-size: cover;
 	min-width: 300px;
@@ -397,6 +400,8 @@ x-window {
 		position: relative;
 		top: 0;
 		width: 100%;
+		width: calc(100% - 60px);
+		margin: 30px;
 		height: 200px;
 
 		x-title-bar {
@@ -414,10 +419,10 @@ x-window {
 		width: 350px;
 		
 		x-title-bar {
-			bbackground: url(img/titlebar.png);
-			bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/114867/WoodPlanksOld0024_5_download600.jpg);
-			bbackground-size: 100%;
-			background-position: 0 -2px;
+			background: url(img/bronze.png);
+			bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/122436/WoodPlanksOld0304_1_download600.jpg);
+			background-size: 100%;
+			bbackground-position: 0 -2px;
 		}
 		
 		x-window-content {
@@ -431,6 +436,7 @@ x-window {
 		background: rgb(124 124 124 / 80%);
 		border: 2px outset #ffffffa8;
 		border-radius: 3px 3px 0 0;
+		text-shadow: 0px 0px 10px black;
 		display: flex;
 
 		&.dragging {
@@ -445,8 +451,7 @@ x-window {
 		x-title-bar-inner {
 			width: 100%;
 			border-radius: 3px;
-			background: rgba(37, 50, 70, 0.6);
-			text-shadow: 0px 0px 8px black;
+			background: rgb(42 54 75 / 50%);
 			display: flex;
 
 			x-title {
@@ -454,7 +459,7 @@ x-window {
 				width: 100%;
 				border: 2px outset rgb(255 255 255 / 50%);
 				border-radius: 3px;
-				box-shadow: inset 0 0 8px #000000ba;
+				box-shadow: inset 0 0 6px #000000;
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -462,15 +467,16 @@ x-window {
 
 			x-button {
 				cursor: pointer;
-				ffont-weight: bold;
-				wwidth: 28px;
-				height: 28px;
+				font-weight: bold;
+				width: 18px;
+				height: 30px;
 				color: #322626;
 				border: 1px solid #5c4e4e;
 				border-radius: 4px;
-				background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(150, 150, 150, 0.5) 100%);
+				background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(150, 150, 150, 0.8) 100%);
 				box-shadow: inset 0 0 1px #371a1ad9;
-				/* box-shadow: inset 0 0 10px #371a1ad9; */
+				box-shadow: 0 0 3px #362a2a;
+				/* margin: 1px; */
 				display: flex;
 
 				x-button-inner {
@@ -542,7 +548,7 @@ x-window {
 			border: 2px solid rgb(255 255 255 / 5%);
 			box-sizing: border-box;
 			width: 100%;
-			height: 300px;
+			height: 400px;
 			position: relative;
 			overflow: scroll;
 
