@@ -153,6 +153,18 @@ var rpg = (function () {
         ;
     }
 
+    var main;
+    (function (main) {
+        function init() {
+            console.log(' init ');
+        }
+        main.init = init;
+        function step() {
+        }
+        main.step = step;
+    })(main || (main = {}));
+    var main$1 = main;
+
     var TEST;
     (function (TEST) {
         TEST[TEST["Outside"] = 0] = "Outside";
@@ -469,8 +481,7 @@ var rpg = (function () {
     var green = {
         name: 'map.jpg',
         regions: [
-            //[[300, 300], [2048 - 500, 1536 - 600], 'Desert'],
-            //[[700, 346], [2048 - 500, 1536 - 600], 'Desert'],
+            /*
             [[1077, 545], [1219, 588], 'Shire'],
             [[1260, 616], [1352, 642], 'Forest'],
             [[1505, 612], [1591, 631], 'Outlands'],
@@ -482,6 +493,19 @@ var rpg = (function () {
             [[1279, 879], [1415, 936], 'Temple of Time'],
             [[801, 1068], [908, 1087], 'Footy Trail'],
             [[465, 1044], [655, 1090], 'Bogged Gorge'],
+            */
+            [[1077, 545], [1219, 588], 'Nydal'],
+        ],
+        places: [
+            [false, [995, 326], 'New Clarks'],
+            [true, [947, 447], 'Brock'],
+            [false, [667, 570], 'Ludwig'],
+            [false, [658, 874], 'Callaway'],
+            [true, [916, 962], 'Dent'],
+            [false, [1142, 997], 'Mason'],
+            [false, [1134, 833], 'Branville'],
+            [false, [1027, 746], 'Nydal'],
+            [false, [982, 601], 'Everlyn'],
         ]
     };
     const map_size = [2048, 1536];
@@ -490,6 +514,7 @@ var rpg = (function () {
         static instance;
         popup;
         selectedLabel;
+        selectedPlace;
         map = green;
         info;
         dragging = false;
@@ -519,9 +544,11 @@ var rpg = (function () {
                 onclose: () => { world_map.instance = undefined; this.destroy(); }
             });
             this.popup.content_inner.innerHTML = `
-			<x-text>
-				Selected: None
-			</x-text>
+			<x-top>
+				<x-text>
+					Selected: None
+				</x-text>
+			</x-top>
 			<x-horz></x-horz>
 			<x-world-map>
 				<x-world-map-inner>
@@ -579,6 +606,9 @@ var rpg = (function () {
             for (const region of this.map.regions) {
                 new label(this, region);
             }
+            for (const place of this.map.places) {
+                new place_text(this, place);
+            }
         }
         reposition() {
             const el = this.world_map;
@@ -594,6 +624,45 @@ var rpg = (function () {
             console.log('destroy the world map');
             hooks.unregister('onmousemove', this.onmousemove);
             hooks.unregister('onmouseup', this.onmouseup);
+        }
+    }
+    class place_text {
+        friend;
+        tuple;
+        el;
+        constructor(friend, tuple) {
+            this.friend = friend;
+            this.tuple = tuple;
+            console.log('new text');
+            this.create();
+        }
+        create() {
+            this.el = document.createElement('x-place');
+            this.el.innerHTML = this.tuple[2];
+            let pos = pts.clone(this.tuple[1]);
+            pos = pts.divide(pos, map_division);
+            this.attach();
+            pos = pts.subtract(pos, [0, 0]);
+            const rect = this.el.getBoundingClientRect();
+            console.log('rect', rect);
+            console.log('width', rect.width);
+            this.el.style.top = `${pos[1]}px`;
+            this.el.style.left = `${pos[0]}px`;
+            this.el.onclick = () => {
+                this.friend.selectedPlace?.unselect();
+                this.select();
+                this.friend.selectedPlace = this;
+                this.friend.x_text.innerHTML = `Selected: ${this.tuple[2]}`;
+            };
+        }
+        attach() {
+            this.friend.world_map.append(this.el);
+        }
+        select() {
+            this.el.classList.add('selected');
+        }
+        unselect() {
+            this.el.classList.remove('selected');
         }
     }
     class label {
@@ -679,12 +748,19 @@ var rpg = (function () {
         }
     }
 
+    // fantasy:
     // https://www.artstation.com/artwork/Z580PG
     // https://www.artstation.com/artwork/GXnEN3
+    // post apo:
+    // https://www.artstation.com/artwork/68ax80
+    // https://www.artstation.com/artwork/q2doy
+    // https://www.artstation.com/artwork/1xQkG
+    // https://www.artstation.com/artwork/5B6KxW
     var rpg;
     (function (rpg) {
         function init() {
             console.log(' init ');
+            main$1.init();
             new view;
         }
         rpg.init = init;
