@@ -23,6 +23,8 @@ export var places: place[] = [
 	[[1134, 833], 'Branville', false],
 	[[1063, 744], 'Nydal', true],
 	[[982, 601], 'Everlyn', false],
+	[[723, 290], 'Nook', false],
+	[[1117, 192], 'Bell', false],
 ];
 
 const map_size: vec2 = [2048, 1536];
@@ -176,7 +178,7 @@ class world_map {
 	plySeg = 0
 	timer = 0
 	step() {
-		let path = pathfinder.search('Nydal', 'Brock');
+		let path = pathfinder.search('Nydal', 'Bell');
 		if (!path.length)
 			return;
 		const ply = this.ply;
