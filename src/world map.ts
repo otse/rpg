@@ -178,18 +178,20 @@ class world_map {
 	plySeg = 0
 	timer = 0
 	step() {
-		let path = pathfinder.search('Nydal', 'Bell');
+		let path = pathfinder.search(travel.from, travel.to);
 		if (!path.length)
 			return;
 		const ply = this.ply;
-		if (ply && path) {
+		if (ply && path.length > 1) {
 			this.timer += app.delta;
 			if (this.timer >= 1) {
+				console.log(path);
 				console.log('step');
 				this.timer = 0;
-				if (this.plySeg < path.length - 1)
-					this.plySeg++;
-				const { data } = path[this.plySeg];
+				const node = path[1];
+				const { id, data } = node;
+				travel.from = id as string;
+				console.log('travel', travel);
 				ply.pos = [data.x, data.y];
 				ply.update();
 			}
@@ -217,6 +219,10 @@ class flag {
 	attach() {
 		this.friend.world_map.append(this.el);
 	}
+}
+const travel = {
+	from: 'Nydal',
+	to: 'Brock'
 }
 class label {
 	el
@@ -247,6 +253,7 @@ class label {
 		this.el.onclick = () => {
 			this.friend.selectedPlace?.unselect();
 			this.select();
+			travel.to = this.tuple[1];
 			this.friend.selectedPlace = this;
 			this.friend.x_text.innerHTML = `Selected: ${this.tuple[1]}`;
 		}

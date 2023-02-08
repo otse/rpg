@@ -538,18 +538,20 @@ var rpg = (function (createGraph, ngraphPath) {
         plySeg = 0;
         timer = 0;
         step() {
-            let path = pathfinder$1.search('Nydal', 'Bell');
+            let path = pathfinder$1.search(travel.from, travel.to);
             if (!path.length)
                 return;
             const ply = this.ply;
-            if (ply && path) {
+            if (ply && path.length > 1) {
                 this.timer += app$1.delta;
                 if (this.timer >= 1) {
+                    console.log(path);
                     console.log('step');
                     this.timer = 0;
-                    if (this.plySeg < path.length - 1)
-                        this.plySeg++;
-                    const { data } = path[this.plySeg];
+                    const node = path[1];
+                    const { id, data } = node;
+                    travel.from = id;
+                    console.log('travel', travel);
                     ply.pos = [data.x, data.y];
                     ply.update();
                 }
@@ -577,6 +579,10 @@ var rpg = (function (createGraph, ngraphPath) {
             this.friend.world_map.append(this.el);
         }
     }
+    const travel = {
+        from: 'Nydal',
+        to: 'Brock'
+    };
     class label {
         friend;
         tuple;
@@ -604,6 +610,7 @@ var rpg = (function (createGraph, ngraphPath) {
             this.el.onclick = () => {
                 this.friend.selectedPlace?.unselect();
                 this.select();
+                travel.to = this.tuple[1];
                 this.friend.selectedPlace = this;
                 this.friend.x_text.innerHTML = `Selected: ${this.tuple[1]}`;
             };
@@ -642,13 +649,18 @@ var rpg = (function (createGraph, ngraphPath) {
             graph.addNode('Road 3', { x: 1034, y: 675 });
             graph.addNode('Road 4', { x: 1024, y: 641 });
             graph.addNode('Road 5', { x: 1020, y: 603 });
+            graph.addNode('Three-way junction 1.1', { x: 1020, y: 595 });
+            graph.addNode('Road 5.1', { x: 1001, y: 599 });
             graph.addNode('Road 6', { x: 1014, y: 563 });
             graph.addNode('Road 7', { x: 996, y: 530 });
             graph.addNode('Three-way junction 2', { x: 988, y: 488 });
             graph.addLink('Three-way junction 1', 'Road 3');
             graph.addLink('Road 3', 'Road 4');
             graph.addLink('Road 4', 'Road 5');
-            graph.addLink('Road 5', 'Road 6');
+            graph.addLink('Road 5', 'Three-way junction 1.1');
+            graph.addLink('Three-way junction 1.1', 'Road 5.1');
+            graph.addLink('Road 5.1', 'Everlyn');
+            graph.addLink('Three-way junction 1.1', 'Road 6');
             graph.addLink('Road 6', 'Road 7');
             graph.addLink('Road 7', 'Three-way junction 2');
             graph.addNode('Three-way junction 3', { x: 964, y: 494 });
