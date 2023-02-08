@@ -46,7 +46,6 @@ body {
   touch-action: none;
   user-select: none;
   background: black;
-  background: url(https://cdnb.artstation.com/p/assets/images/images/025/914/673/4k/gaelle-seguillon-gaelle-seguillon-storm-peaks-2-6k.jpg?1587324674);
   background: url(https://cdna.artstation.com/p/assets/images/images/000/877/722/4k/david-edwards-ruincityscape-001-4k.jpg?1435116670);
   background-position: center;
   background-size: cover;
@@ -61,7 +60,6 @@ body {
 }
 x-main-area {
   position: relative;
-  background: url(https://cdnb.artstation.com/p/assets/images/images/025/914/673/4k/gaelle-seguillon-gaelle-seguillon-storm-peaks-2-6k.jpg?1587324674);
   background: url(https://cdna.artstation.com/p/assets/images/images/000/877/722/4k/david-edwards-ruincityscape-001-4k.jpg?1435116670);
   background-position: center;
   background-size: cover;
@@ -517,8 +515,8 @@ x-window x-window-content x-world-map {
   overflow: scroll;
 }
 x-window x-window-content x-world-map x-world-map-inner {
-  width: calc(2048px/2);
-  height: calc(1536px/2);
+  width: 2048px;
+  height: 1536px;
   background: url(img/WestPit.jpg);
   background-size: 100%;
   display: flex;
@@ -538,7 +536,21 @@ x-window x-window-content x-world-map x-place {
   justify-content: center;
 }
 x-window x-window-content x-world-map x-place.selected {
-  color: black;
+  ccolor: black;
+  text-decoration: underline;
+}
+x-window x-window-content x-world-map x-place.large {
+  font-size: 20px;
+}
+x-window x-window-content x-world-map x-flag {
+  z-index: 1;
+  position: absolute;
+  background: url(img/flag.png);
+  background-size: 100%;
+  width: 20px;
+  height: 20px;
+  margin: -20px 0px;
+  display: flex;
 }
 x-window x-window-content x-world-map.dragging {
   cursor: grabbing;

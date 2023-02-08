@@ -2,6 +2,7 @@ import app from "./app";
 import main from "./main";
 import popup from "./popup";
 import view from "./view";
+import world_map from "./world map";
 
 // fantasy:
 // https://www.artstation.com/artwork/Z580PG
@@ -16,6 +17,7 @@ namespace rpg {
 	export function init() {
 		console.log(' init ');
 		
+		world_map.init();
 		popup.init();
 		main.init();
 		app;

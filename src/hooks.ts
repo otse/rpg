@@ -3,6 +3,7 @@
 
 // it is useful to e.g. prevent circular dependencies
 // and to prevent import hell
+// also called eventing library, and event emitter
 
 type func = (any) => boolean
 
