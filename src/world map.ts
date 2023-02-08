@@ -186,7 +186,6 @@ class world_map {
 			this.timer += app.delta;
 			if (this.timer >= 1) {
 				console.log('step');
-				
 				this.timer = 0;
 				if (this.plySeg < path.length - 1)
 					this.plySeg++;
