@@ -514,7 +514,10 @@ x-window x-window-content x-world-map {
   position: relative;
   overflow: scroll;
 }
-x-window x-window-content x-world-map x-world-map-inner {
+x-window x-window-content x-world-map x-world-map-scaler {
+  display: flex;
+}
+x-window x-window-content x-world-map x-world-map-graphic {
   width: 2048px;
   height: 1536px;
   background: url(img/WestPit.jpg);

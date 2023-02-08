@@ -215,11 +215,9 @@ namespace pathfinder {
 		graph.addLink('Road 69', 'Road 70');
 		graph.addLink('Road 70', 'Road 71');
 		graph.addLink('Road 71', 'Three-way junction 10');
-
-
+		
 		// Now plot a road to Brock
 		// road 2 links to Nydal
-
 
 		/*graph.addNode('NYC', { x: 0, y: 0 });
 		graph.addNode('Boston', { x: 1, y: 1 });
