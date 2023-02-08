@@ -1,5 +1,7 @@
 import aabb2 from "./aabb2";
 
+// this is a not-in-place utility for working on simple points
+
 export interface Pt { x: number; y: number };
 
 class pts {

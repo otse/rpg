@@ -1,4 +1,5 @@
 import app from "./app";
+import hooks from "./hooks";
 import main from "./main";
 import popup from "./popup";
 import view from "./view";
@@ -21,12 +22,13 @@ namespace rpg {
 		popup.init();
 		main.init();
 		app;
+
 		new view;
 
 	}
 
-	export function step() {
-		
+	export function step() {		
+		hooks.call('rpgStep', 0);
 	}
 
 	

@@ -513,6 +513,7 @@ var rpg = (function (createGraph, ngraphPath) {
         selectedPlace;
         map = green;
         graph = createGraph();
+        path;
         info;
         dragging = false;
         world_map;
@@ -525,6 +526,7 @@ var rpg = (function (createGraph, ngraphPath) {
         onmouseup;
         onmousemove;
         static init() {
+            world_map.register();
             if (!app$1.mobile) {
                 // pixel perfection on mobile results in very tiny image
                 const dpi = window.devicePixelRatio;
@@ -532,6 +534,10 @@ var rpg = (function (createGraph, ngraphPath) {
                 console.log('map division', map_division);
             }
             window['world_map'] = world_map;
+        }
+        static step() {
+            world_map.instance?.step();
+            return false;
         }
         static request_popup() {
             if (!world_map.instance) {
@@ -541,6 +547,10 @@ var rpg = (function (createGraph, ngraphPath) {
                 world_map.instance.popup.pos = [0, 0];
                 world_map.instance.popup.reposition();
             }
+        }
+        static register() {
+            console.log('register rpgStep');
+            hooks.register('rpgStep', world_map.step);
         }
         constructor() {
             this.setup_graph();
@@ -692,8 +702,30 @@ var rpg = (function (createGraph, ngraphPath) {
                     return Math.sqrt(dx * dx + dy * dy);
                 }
             });
-            let path = pathFinder.find('Nydal', 'Brock');
-            console.log(`path`, path);
+            this.path = pathFinder.find('Nydal', 'Brock');
+            this.path = this.path.reverse();
+            this.plySeg = 0;
+            console.log(`path`, this.path);
+        }
+        plySeg = 0;
+        timer = 0;
+        step() {
+            const ply = this.ply;
+            //console.log('ply', ply);
+            if (ply && this.path) {
+                this.timer += app$1.delta;
+                if (this.timer >= 1) {
+                    console.log('step');
+                    this.timer = 0;
+                    if (this.plySeg < this.path.length - 1)
+                        this.plySeg++;
+                    const { data } = this.path[this.plySeg];
+                    ply.pos = [data.x, data.y];
+                    ply.update();
+                }
+            }
+            ply?.update();
+            return false;
         }
     }
     class flag {
@@ -807,6 +839,7 @@ var rpg = (function (createGraph, ngraphPath) {
         }
         rpg.init = init;
         function step() {
+            hooks.call('rpgStep', 0);
         }
         rpg.step = step;
     })(rpg || (rpg = {}));

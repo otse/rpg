@@ -31,6 +31,7 @@ class world_map {
     selectedPlace;
     map = green;
     graph = createGraph();
+    path;
     info;
     dragging = false;
     world_map;
@@ -43,6 +44,7 @@ class world_map {
     onmouseup;
     onmousemove;
     static init() {
+        world_map.register();
         if (!app.mobile) {
             // pixel perfection on mobile results in very tiny image
             const dpi = window.devicePixelRatio;
@@ -50,6 +52,10 @@ class world_map {
             console.log('map division', map_division);
         }
         window['world_map'] = world_map;
+    }
+    static step() {
+        world_map.instance?.step();
+        return false;
     }
     static request_popup() {
         if (!world_map.instance) {
@@ -59,6 +65,10 @@ class world_map {
             world_map.instance.popup.pos = [0, 0];
             world_map.instance.popup.reposition();
         }
+    }
+    static register() {
+        console.log('register rpgStep');
+        hooks.register('rpgStep', world_map.step);
     }
     constructor() {
         this.setup_graph();
@@ -210,8 +220,30 @@ class world_map {
                 return Math.sqrt(dx * dx + dy * dy);
             }
         });
-        let path = pathFinder.find('Nydal', 'Brock');
-        console.log(`path`, path);
+        this.path = pathFinder.find('Nydal', 'Brock');
+        this.path = this.path.reverse();
+        this.plySeg = 0;
+        console.log(`path`, this.path);
+    }
+    plySeg = 0;
+    timer = 0;
+    step() {
+        const ply = this.ply;
+        //console.log('ply', ply);
+        if (ply && this.path) {
+            this.timer += app.delta;
+            if (this.timer >= 1) {
+                console.log('step');
+                this.timer = 0;
+                if (this.plySeg < this.path.length - 1)
+                    this.plySeg++;
+                const { data } = this.path[this.plySeg];
+                ply.pos = [data.x, data.y];
+                ply.update();
+            }
+        }
+        ply?.update();
+        return false;
     }
 }
 class flag {
