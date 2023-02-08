@@ -3,35 +3,24 @@ import pts from "./pts";
 import app from "./app";
 import popup from "./popup";
 import aabb2 from "./aabb2";
-import createGraph from 'ngraph.graph';
-import ngraphPath from 'ngraph.path';
-var green = {
-    name: 'map.jpg',
-    regions: [
-        [[1077, 545], [1219, 588], 'Nydal'],
-    ],
-    places: [
-        [false, [995, 326], 'New Clarks'],
-        [true, [947, 447], 'Brock'],
-        [false, [667, 570], 'Ludwig'],
-        [false, [658, 874], 'Callaway'],
-        [true, [916, 957], 'Dent'],
-        [false, [1142, 997], 'Mason'],
-        [false, [1134, 833], 'Branville'],
-        [true, [1063, 744], 'Nydal'],
-        [false, [982, 601], 'Everlyn'],
-    ]
-};
+import pathfinder from "./pathfinder";
+export var places = [
+    [[995, 326], 'New Clarks', false],
+    [[947, 447], 'Brock', true],
+    [[667, 570], 'Ludwig', false],
+    [[658, 874], 'Callaway', false],
+    [[916, 957], 'Dent', true],
+    [[1142, 997], 'Mason', false],
+    [[1134, 833], 'Branville', false],
+    [[1063, 744], 'Nydal', true],
+    [[982, 601], 'Everlyn', false],
+];
 const map_size = [2048, 1536];
 let map_division = 0.5;
 class world_map {
     static instance;
     popup;
-    selectedLabel;
     selectedPlace;
-    map = green;
-    graph = createGraph();
-    path;
     info;
     dragging = false;
     world_map;
@@ -71,8 +60,6 @@ class world_map {
         hooks.register('rpgStep', world_map.step);
     }
     constructor() {
-        this.setup_graph();
-        this.search();
         console.log(world_map.pos);
         this.popup = new popup({
             class: 'world-map',
@@ -145,7 +132,7 @@ class world_map {
         //for (const region of this.map.regions) {
         //	let labe = new label_image(this, region);
         //}
-        for (const place of this.map.places) {
+        for (const place of places) {
             let text = new label(this, place);
         }
     }
@@ -164,80 +151,21 @@ class world_map {
         hooks.unregister('onmousemove', this.onmousemove);
         hooks.unregister('onmouseup', this.onmouseup);
     }
-    setup_graph() {
-        this.graph = createGraph();
-        // Our graph has cities:
-        for (const place of this.map.places) {
-            this.graph.addNode(place[2], { x: place[1][0], y: place[1][1] });
-        }
-        // road between nydal and everlyn
-        this.graph.addNode('Three-way junction 0', { x: 1028, y: 746 });
-        this.graph.addNode('Node 2', { x: 1034, y: 761 });
-        this.graph.addNode('Node 3', { x: 1023, y: 637 });
-        this.graph.addNode('Node 4', { x: 1016, y: 571 });
-        this.graph.addNode('Node 5', { x: 995, y: 521 });
-        this.graph.addLink('Nydal', 'Three-way junction 0');
-        this.graph.addLink('Three-way junction 0', 'Node 2');
-        this.graph.addLink('Node 2', 'Node 3');
-        this.graph.addLink('Node 3', 'Node 4');
-        this.graph.addLink('Node 4', 'Node 5');
-        // junctions at brock
-        this.graph.addNode('Three-way junction 1', { x: 989, y: 489 });
-        this.graph.addNode('Three-way junction 2', { x: 964, y: 494 });
-        this.graph.addLink('Node 5', 'Three-way junction 1');
-        this.graph.addLink('Three-way junction 1', 'Three-way junction 2');
-        this.graph.addNode('Node 6', { x: 961, y: 482 });
-        this.graph.addNode('Node 7', { x: 962, y: 471 });
-        this.graph.addNode('Node 8', { x: 952, y: 460 });
-        this.graph.addLink('Three-way junction 2', 'Node 6');
-        this.graph.addLink('Node 6', 'Node 7');
-        this.graph.addLink('Node 7', 'Node 8');
-        this.graph.addLink('Node 8', 'Brock');
-        /*this.graph.addNode('NYC', { x: 0, y: 0 });
-        this.graph.addNode('Boston', { x: 1, y: 1 });
-        this.graph.addNode('Philadelphia', { x: -1, y: -1 });
-        this.graph.addNode('Washington', { x: -2, y: -2 });*/
-        // and railroads:
-        /*this.graph.addLink('NYC', 'Boston');
-        this.graph.addLink('NYC', 'Philadelphia');
-        this.graph.addLink('Philadelphia', 'Washington');*/
-    }
-    search() {
-        let pathFinder = ngraphPath.aStar(this.graph, {
-            distance(fromNode, toNode) {
-                // In this case we have coordinates. Lets use them as
-                // distance between two nodes:
-                let dx = fromNode.data.x - toNode.data.x;
-                let dy = fromNode.data.y - toNode.data.y;
-                return Math.sqrt(dx * dx + dy * dy);
-            },
-            heuristic(fromNode, toNode) {
-                // this is where we "guess" distance between two nodes.
-                // In this particular case our guess is the same as our distance
-                // function:
-                let dx = fromNode.data.x - toNode.data.x;
-                let dy = fromNode.data.y - toNode.data.y;
-                return Math.sqrt(dx * dx + dy * dy);
-            }
-        });
-        this.path = pathFinder.find('Nydal', 'Brock');
-        this.path = this.path.reverse();
-        this.plySeg = 0;
-        console.log(`path`, this.path);
-    }
     plySeg = 0;
     timer = 0;
     step() {
+        let path = pathfinder.search('Nydal', 'Brock');
+        if (!path.length)
+            return;
         const ply = this.ply;
-        //console.log('ply', ply);
-        if (ply && this.path) {
+        if (ply && path) {
             this.timer += app.delta;
             if (this.timer >= 1) {
                 console.log('step');
                 this.timer = 0;
-                if (this.plySeg < this.path.length - 1)
+                if (this.plySeg < path.length - 1)
                     this.plySeg++;
-                const { data } = this.path[this.plySeg];
+                const { data } = path[this.plySeg];
                 ply.pos = [data.x, data.y];
                 ply.update();
             }
@@ -279,8 +207,8 @@ class label {
         this.el = document.createElement('x-place');
         if (this.tuple[0])
             this.el.classList.add('large');
-        this.el.innerHTML = this.tuple[2];
-        let pos = pts.clone(this.tuple[1]);
+        this.el.innerHTML = this.tuple[1];
+        let pos = pts.clone(this.tuple[0]);
         pos = pts.mult(pos, map_division);
         this.attach();
         pos = pts.subtract(pos, [0, 0]);
@@ -293,7 +221,7 @@ class label {
             this.friend.selectedPlace?.unselect();
             this.select();
             this.friend.selectedPlace = this;
-            this.friend.x_text.innerHTML = `Selected: ${this.tuple[2]}`;
+            this.friend.x_text.innerHTML = `Selected: ${this.tuple[1]}`;
         };
     }
     attach() {
@@ -306,6 +234,7 @@ class label {
         this.el.classList.remove('selected');
     }
 }
+// old code for fantasy labels
 class label_image {
     friend;
     tuple;
@@ -332,17 +261,17 @@ class label_image {
         this.el.style.backgroundPositionY = `-${min[1]}px`;
         this.el.style.backgroundSize = `${map_size_scaled[0]}px ${map_size_scaled[1]}px`;
         this.el.onclick = () => {
-            this.friend.selectedLabel?.unselect();
+            //this.friend.selectedLabel?.unselect();
             this.select();
-            this.friend.selectedLabel = this;
+            //this.friend.selectedLabel = this;
             this.friend.x_text.innerHTML = `Selected: ${this.tuple[2]}`;
         };
         this.el.onmouseover = () => {
             this.select();
         };
         this.el.onmouseout = () => {
-            if (this.friend.selectedLabel != this)
-                this.unselect();
+            //if (this.friend.selectedLabel != this)
+            this.unselect();
         };
         this.attach();
     }

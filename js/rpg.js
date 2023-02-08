@@ -1,6 +1,7 @@
 import app from "./app";
 import hooks from "./hooks";
 import main from "./main";
+import pathfinder from "./pathfinder";
 import popup from "./popup";
 import view from "./view";
 import world_map from "./world map";
@@ -17,6 +18,7 @@ var rpg;
     function init() {
         console.log(' init ');
         world_map.init();
+        pathfinder.init();
         popup.init();
         main.init();
         app;
