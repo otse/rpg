@@ -20,7 +20,7 @@ export var places = [
 ];
 const map_size = [2048, 1536];
 let map_division = 0.5;
-let map_zoom = 1;
+let mapZoom = 1;
 class world_map {
     static instance;
     popup;
@@ -31,7 +31,7 @@ class world_map {
     world_map_scaler;
     world_map_graphic;
     ply;
-    static scalar = 0;
+    static addedZoom = 0;
     static pos = [542, 306];
     drag_start = [0, 0];
     drag = [0, 0];
@@ -132,18 +132,10 @@ class world_map {
                 e.preventDefault();
                 e.stopPropagation();
                 if (delta == 1) {
-                    const zoom = 0.25;
-                    world_map.scalar += zoom;
-                    world_map.scalar = rpg.clamp(world_map.scalar, 0, 3);
-                    this.rezoom();
-                    world_map.pos = pts.mult(world_map.pos, 1 + zoom);
-                    this.reposition();
+                    this.zoom(0.25);
                 }
                 if (delta == -1) {
-                    world_map.scalar -= 0.25;
-                    world_map.scalar = rpg.clamp(world_map.scalar, 0, 3);
-                    this.rezoom();
-                    this.reposition();
+                    this.zoom(-0.25);
                 }
                 return false;
             };
@@ -160,6 +152,39 @@ class world_map {
         this.rezoom();
         this.reposition();
     }
+    zoom(zoom = 0.25) {
+        const prevZoom = mapZoom;
+        world_map.addedZoom += zoom;
+        world_map.addedZoom = rpg.clamp(world_map.addedZoom, 0, 3);
+        this.rezoom();
+        const original_map_size = [2048, 1536];
+        const prev_map_size = pts.mult(original_map_size, prevZoom);
+        const new_map_size = pts.mult(original_map_size, mapZoom);
+        const grow_size = pts.subtract(new_map_size, prev_map_size);
+        const viewport = [324, 390];
+        const scroll = pts.divide(pts.add(world_map.pos, pts.divide(viewport, 2)), prev_map_size[0], prev_map_size[1]);
+        console.log('scroll', scroll);
+        let half = pts.mult(grow_size, scroll[0], scroll[1]);
+        if (!pts.together(grow_size))
+            return;
+        let where = pts.subtract(new_map_size, world_map.pos);
+        world_map.pos = pts.add(world_map.pos, half);
+        this.reposition();
+    }
+    rezoom() {
+        mapZoom = map_division + world_map.addedZoom;
+        this.world_map_graphic.style.zoom = `${mapZoom}`;
+        //this.world_map_graphic.style.transform = `scale(${mapZoom})`;
+        //this.world_map_graphic.style['transform-origin'] = `${world_map.pos[0]}px ${world_map.pos[1]}px`;
+        this.x_overlay.innerHTML = `
+			Base zoom: ${map_division.toFixed(2)}<br />
+			Zoom: ${mapZoom.toFixed(2)}<br />
+			Scalar: ${world_map.addedZoom}
+		`;
+        const el = this.world_map;
+        this.maxWidth = Math.max(el.clientWidth, el.scrollWidth, el.offsetWidth) - el.clientWidth;
+        this.maxHeight = Math.max(el.clientHeight, el.scrollHeight, el.offsetHeight) - el.clientHeight;
+    }
     add_zoom_controls() {
         this.x_controls.innerHTML = `
 			<x-button data-a="plus">+</x-button>
@@ -169,25 +194,16 @@ class world_map {
         const minus = this.x_controls.querySelector('x-button[data-a="minus"]');
         plus.onclick = () => {
             const zoom = 0.25;
-            world_map.scalar += zoom;
+            world_map.addedZoom += zoom;
             this.rezoom();
             world_map.pos = pts.mult(world_map.pos, 1 + zoom);
             this.reposition();
         };
         minus.onclick = () => {
-            world_map.scalar -= 0.25;
+            world_map.addedZoom -= 0.25;
             this.rezoom();
             this.reposition();
         };
-    }
-    rezoom() {
-        map_zoom = map_division + world_map.scalar;
-        this.world_map_graphic.style.zoom = `${map_zoom}`;
-        this.x_overlay.innerHTML = `
-			Base zoom: ${map_division.toFixed(2)}<br />
-			Zoom: ${map_zoom.toFixed(2)}<br />
-			Scalar: ${world_map.scalar}
-		`;
     }
     add_svg() {
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -209,11 +225,13 @@ class world_map {
             let text = new label(this, place);
         }
     }
+    maxWidth;
+    maxHeight;
     reposition() {
         const el = this.world_map;
-        const maxWidth = Math.max(el.clientWidth, el.scrollWidth, el.offsetWidth) - el.clientWidth;
-        const maxHeight = Math.max(el.clientHeight, el.scrollHeight, el.offsetHeight) - el.clientHeight;
-        world_map.pos = pts.clamp(world_map.pos, [0, 0], [maxWidth, maxHeight]);
+        this.maxWidth = Math.max(el.clientWidth, el.scrollWidth, el.offsetWidth) - el.clientWidth;
+        this.maxHeight = Math.max(el.clientHeight, el.scrollHeight, el.offsetHeight) - el.clientHeight;
+        world_map.pos = pts.clamp(world_map.pos, [0, 0], [this.maxWidth, this.maxHeight]);
         this.world_map.scrollLeft = world_map.pos[0];
         this.world_map.scrollTop = world_map.pos[1];
     }
@@ -239,7 +257,7 @@ class world_map {
                 const node = path[1];
                 const { id, data } = node;
                 travel.from = id;
-                console.log('travel', travel);
+                //console.log('travel', travel);
                 ply.pos = [data.x, data.y];
                 ply.step();
             }
@@ -256,7 +274,7 @@ class pin {
         pins.push(this);
     }
     step() {
-        let pos = pts.mult(this.pos, map_zoom);
+        let pos = pts.mult(this.pos, mapZoom);
         this.element.style.top = `${pos[1]}px`;
         this.element.style.left = `${pos[0]}px`;
     }
