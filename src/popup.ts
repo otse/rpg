@@ -96,7 +96,7 @@ class popup {
 		}
 		hooks.register('onmouseup', this.onmouseup);
 		hooks.register('onmousemove', this.onmousemove);
-		this.title_drag.onmousedown = this.title_drag.ontouchstart = (e) => {
+		this.title_bar.onmousedown = this.title_bar.ontouchstart = (e) => {
 			let pos: vec2 = app.mouse();
 			if (e.clientX) {
 				pos[0] = e.clientX;

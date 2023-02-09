@@ -15,6 +15,14 @@ import world_map from "./world map";
 // https://www.artstation.com/artwork/5B6KxW
 var rpg;
 (function (rpg) {
+    function sample(a) {
+        return a[Math.floor(Math.random() * a.length)];
+    }
+    rpg.sample = sample;
+    function clamp(val, min, max) {
+        return val > max ? max : val < min ? min : val;
+    }
+    rpg.clamp = clamp;
     function init() {
         console.log(' init ');
         world_map.init();

@@ -16,6 +16,15 @@ import world_map from "./world map";
 // https://www.artstation.com/artwork/5B6KxW
 
 namespace rpg {
+	
+	export function sample(a) {
+		return a[Math.floor(Math.random() * a.length)];
+	}
+
+	export function clamp(val, min, max) {
+		return val > max ? max : val < min ? min : val;
+	}
+
 	export function init() {
 		console.log(' init ');
 		
