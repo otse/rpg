@@ -56,11 +56,17 @@ class pts {
     static mult(a, n, m) {
         return [a[0] * n, a[1] * (m || n)];
     }
+    static multv(a, b) {
+        return [a[0] * b[0], a[1] * b[1]];
+    }
     static mults(a, b) {
         return [a[0] * b[0], a[1] * b[1]];
     }
     static divide(a, n, m) {
         return [a[0] / n, a[1] / (m || n)];
+    }
+    static dividev(a, b) {
+        return [a[0] / b[0], a[1] / b[1]];
     }
     static divides(a, b) {
         return [a[0] / b[0], a[1] / b[1]];

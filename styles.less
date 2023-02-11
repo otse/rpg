@@ -1,6 +1,6 @@
 /* lessc styles.less styles.css */
 
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Itim&family=Nanum+Myeongjo&family=Playfair+Display&family=Prata&family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Share+Tech+Mono&family=Space+Mono&display=swap');
 
 body {
 	overflow: hidden;
@@ -389,7 +389,7 @@ x-window {
 	box-sizing: border-box;
 	color: #e6e6e6;
 	border-radius: 3px;
-	box-shadow: 0 0 8px #1f1f1f;
+	box-shadow: 0 0 4px #1f1f1f;
 	display: flex;
 	flex-direction: column;
 
@@ -411,12 +411,30 @@ x-window {
 			height: 100px;
 		}
 	}
+	&.terminal {
+		width: 325px;
+
+		x-title-bar {
+			background: url(img/metal2.png);
+			background-position: -5px -5px;
+			background-size: 100%;
+		}
+
+		x-window-content {
+			bborder: 0;
+		}
+
+		x-window-content-inner {
+			ppadding: 0;
+		}
+	}
 
 	&.world-map {
 		width: 350px;
 
 		x-title-bar {
 			background: url(img/metal.png);
+			background: url(img/bronze.png);
 			bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/122436/WoodPlanksOld0304_1_download600.jpg);
 			background-size: 100%;
 			bbackground-position: 0 -2px;
@@ -429,8 +447,9 @@ x-window {
 	}
 
 	x-title-bar {
-		color: #cdcdcd;
+		color: #c1c1c1;
 		background: rgb(124 124 124 / 80%);
+		/* background: url(img/metal2.png); */
 		border: 2px outset #ffffffa8;
 		border-radius: 3px 3px 0 0;
 		text-shadow: 0px 0px 10px black;
@@ -464,16 +483,16 @@ x-window {
 
 			x-button {
 				cursor: pointer;
-				/* font-weight: bold; */
-				wwidth: 18px;
+				font-weight: bold;
+				width: 14px;
 				hheight: 30px;
 				color: #322626;
-				border: 1px solid #5c4e4e;
+				border: 1px solid #727272;
 				border-radius: 3px;
 				background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(150, 150, 150, 0.8) 100%);
 				box-shadow: inset 0 0 1px #371a1ad9;
 				box-shadow: 0 0 2px #362a2a;
-				margin: 0 2px;
+				margin: 0 1px;
 				display: flex;
 
 				x-button-inner {
@@ -482,7 +501,7 @@ x-window {
 					box-sizing: border-box;
 					border: 4px outset rgba(255, 255, 255, 0);
 					border-radius: 5px;
-					box-shadow: inset 0 0 8px #2300006b;
+					box-shadow: inset 0 0 4px #0000006b;
 					/* box-shadow: inset 0 0 8px rgb(0 0 0 / 35%); */
 					display: flex;
 					justify-content: center;
@@ -549,6 +568,7 @@ x-window {
 		}
 
 		x-overlay {
+			display: none;
 			z-index: 1;
 			position: absolute;
 			top: 0;
@@ -637,6 +657,34 @@ x-window {
 				border-radius: 3px;
 			}
 		}
+	}
+}
+
+x-terminal {
+    /* width: 100%; */
+    height: 200px;
+    background: #2e2f33;
+    background: radial-gradient(#272a2e, #1c1e21);
+    color: #5d9964;
+    /* padding: 10px; */
+    /* padding: 0; */
+    box-sizing: border-box;
+    border: 5px inset rgba(155, 155, 155, 0.5);
+    border-radius: 0px;
+    /* box-shadow: inset 0 0 20px #5e7269b5; */
+    /* transform: perspective(300px) scale(1) rotateX(2deg); */
+    display: flex;
+
+	x-terminal-inner {
+		width: 100%;
+		height: 100%;
+		padding: 20px;
+		box-sizing: border-box;
+		display: flex;
+		background-image: linear-gradient(0deg, #22000000 50%, rgba(17, 153, 0, 0.19) 100%);
+		background-size: 2px 2px;
+		font-family: 'Share Tech Mono', monospace;
+		font-size: 14px;
 	}
 }
 

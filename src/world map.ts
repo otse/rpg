@@ -28,6 +28,17 @@ export var places: place[] = [
 	[[1117, 192], 'Bell', false],
 ];
 
+function getOffset(el) {
+	var _x = 0;
+	var _y = 0;
+	while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+		_x += el.offsetLeft;// - el.scrollLeft;
+		_y += el.offsetTop;// - el.scrollTop;
+		el = el.offsetParent;
+	}
+	return [_x, _y] as vec2;
+}
+
 const map_size: vec2 = [2048, 1536];
 
 let map_division = 0.5;
@@ -135,13 +146,19 @@ class world_map {
 					this.reposition();
 				}
 			}
+			this.world_map.onmousemove = (e) => {
+				//console.log('wm offset', offset);
+
+				//const dif = pts.subtract(offset, [e.clientX, e.clientY]);
+				//console.log('dif', dif);
+			}
 			this.world_map.onmousedown = (e) => {
 				let pos = app.mouse();
 				this.drag_start = pts.add(pos, world_map.pos);
 				this.world_map.classList.add('dragging');
 				this.dragging = true;
 			}
-			
+
 			const MouseWheelHandler = (e) => {
 				var e = window.event || e; // old IE support
 				var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
@@ -168,25 +185,40 @@ class world_map {
 		this.rezoom();
 		this.reposition();
 	}
-	zoom(zoom = 0.25) {
+	zoom(increment = 0.25) {
 		const prevZoom = mapZoom;
-		world_map.addedZoom += zoom;
+		world_map.addedZoom += increment;
 		world_map.addedZoom = rpg.clamp(world_map.addedZoom, 0, 3);
 		this.rezoom();
-		const original_map_size: vec2 = [2048, 1536];
-		const prev_map_size = pts.mult(original_map_size, prevZoom);
-		const new_map_size = pts.mult(original_map_size, mapZoom);
-		const grow_size = pts.subtract(new_map_size, prev_map_size);
-		const viewport: vec2 = [324, 390];
-		
-		const scroll = pts.divide(pts.add(world_map.pos, pts.divide(viewport, 2)), prev_map_size[0], prev_map_size[1]);
-		console.log('scroll', scroll);
-		
-		let half = pts.mult(grow_size, scroll[0], scroll[1]);
+		const map_size: vec2 = [2048, 1536];
+		const old_map_size = pts.mult(map_size, prevZoom);
+		const new_map_size = pts.mult(map_size, mapZoom);
+		const grow_size = pts.subtract(new_map_size, old_map_size);
+		const viewport: vec2 = [334, 400];
+		const ratio = pts.dividev(pts.add(world_map.pos, pts.divide(viewport, 2)), old_map_size);
+		console.log('scroll', ratio);
+
+		let center: vec2 = getOffset(this.world_map);
+		center = pts.subtract(app.mouse(), center);
+		center = pts.subtract(center, pts.divide(viewport, 2));
+		const zoom = 1;
+		center = pts.mult(center, ratio[0], ratio[1]);
+		//center = pts.mult(center, mapZoom / 3);
+		//console.log('m ofst', center);
+
 		if (!pts.together(grow_size))
 			return;
-		let where = pts.subtract(new_map_size, world_map.pos);
+		//const offset = pts.mult(app.mouse(), );
+		//const zoom = 
+		let half = pts.multv(grow_size, ratio);
+
+		//center = pts.mult(center, scroll[0], scroll[1]);
 		
+		//if (increment > 0)
+		//	half = pts.add(half, center);
+		//if (zoom < 0)
+		//	half = pts.subtract(half, center);
+
 		world_map.pos = pts.add(world_map.pos, half);
 		this.reposition();
 	}
@@ -200,9 +232,6 @@ class world_map {
 			Zoom: ${mapZoom.toFixed(2)}<br />
 			Scalar: ${world_map.addedZoom}
 		`;
-		const el = this.world_map;
-		this.maxWidth = Math.max(el.clientWidth, el.scrollWidth, el.offsetWidth) - el.clientWidth;
-		this.maxHeight = Math.max(el.clientHeight, el.scrollHeight, el.offsetHeight) - el.clientHeight;
 	}
 	add_zoom_controls() {
 		this.x_controls.innerHTML = `
@@ -212,16 +241,10 @@ class world_map {
 		const plus = this.x_controls.querySelector('x-button[data-a="plus"]');
 		const minus = this.x_controls.querySelector('x-button[data-a="minus"]');
 		plus.onclick = () => {
-			const zoom = 0.25;
-			world_map.addedZoom += zoom;
-			this.rezoom();
-			world_map.pos = pts.mult(world_map.pos, 1 + zoom);
-			this.reposition();
+			this.zoom(0.25);
 		};
 		minus.onclick = () => {
-			world_map.addedZoom -= 0.25;
-			this.rezoom();
-			this.reposition();
+			this.zoom(-0.25);
 		};
 	}
 	add_svg() {
@@ -245,14 +268,12 @@ class world_map {
 			let text = new label(this, place);
 		}
 	}
-	maxWidth
-	maxHeight
 	reposition() {
 		const el = this.world_map;
-		this.maxWidth = Math.max(el.clientWidth, el.scrollWidth, el.offsetWidth) - el.clientWidth;
-		this.maxHeight = Math.max(el.clientHeight, el.scrollHeight, el.offsetHeight) - el.clientHeight;
+		const maxWidth = Math.max(el.clientWidth, el.scrollWidth, el.offsetWidth) - el.clientWidth;
+		const maxHeight = Math.max(el.clientHeight, el.scrollHeight, el.offsetHeight) - el.clientHeight;
 
-		world_map.pos = pts.clamp(world_map.pos, [0, 0], [this.maxWidth, this.maxHeight]);
+		world_map.pos = pts.clamp(world_map.pos, [0, 0], [maxWidth, maxHeight]);
 
 		this.world_map.scrollLeft = world_map.pos[0];
 		this.world_map.scrollTop = world_map.pos[1];

@@ -1,6 +1,6 @@
 import character from "./character";
 import dropdown from "./dropdown";
-import third from "./third";
+import third from "./terminal";
 import world_map from "./world map";
 class view {
     dropdown;
@@ -25,7 +25,7 @@ class view {
             options: [
                 [0, 'Character'],
                 [1, 'World Map'],
-                [2, 'Third']
+                [2, 'Terminal']
             ],
             handler: handler
         });

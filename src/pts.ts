@@ -79,12 +79,20 @@ class pts {
 		return [a[0] * n, a[1] * (m || n)];
 	}
 
+	static multv(a: vec2, b: vec2): vec2 {
+		return [a[0] * b[0], a[1] * b[1]];
+	}
+
 	static mults(a: vec2, b: vec2): vec2 {
 		return [a[0] * b[0], a[1] * b[1]];
 	}
 
 	static divide(a: vec2, n: number, m?: number): vec2 {
 		return [a[0] / n, a[1] / (m || n)];
+	}
+
+	static dividev(a: vec2, b: vec2): vec2 {
+		return [a[0] / b[0], a[1] / b[1]];
 	}
 
 	static divides(a: vec2, b: vec2): vec2 {

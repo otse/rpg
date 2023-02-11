@@ -1,5 +1,7 @@
 // inspired by gmod lua !
 export class hooks {
+    //static readonly table: { [name: string]: func[] } = {}
+    //list: func[] = []
     static register(name, f) {
         if (!hooks[name])
             hooks[name] = [];
