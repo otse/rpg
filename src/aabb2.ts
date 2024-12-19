@@ -1,4 +1,4 @@
-import pts from "./pts";
+import pts from "./pts.js";
 
 enum TEST {
     Outside,

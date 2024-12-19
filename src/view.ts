@@ -1,8 +1,8 @@
-import app from "./app";
-import character from "./character";
-import dropdown from "./dropdown";
-import third from "./terminal";
-import world_map from "./world map";
+import app from "./app.js";
+import character from "./character.js";
+import dropdown from "./dropdown.js";
+import third from "./terminal.js";
+import world_map from "./world map.js";
 
 class view {
 	dropdown

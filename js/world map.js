@@ -1,10 +1,9 @@
-import hooks from "./hooks";
-import pts from "./pts";
-import app from "./app";
-import popup from "./popup";
-import aabb2 from "./aabb2";
-import pathfinder from "./pathfinder";
-import rpg from "./rpg";
+import hooks from "./hooks.js";
+import pts from "./pts.js";
+import app from "./app.js";
+import popup from "./popup.js";
+import aabb2 from "./aabb2.js";
+import rpg from "./rpg.js";
 export var places = [
     [[995, 326], 'New Clarks', false],
     [[947, 447], 'Brock', true],
@@ -261,8 +260,10 @@ class world_map {
     timer = 0;
     step() {
         this.rezoom();
-        for (const pin of pins)
+        for (const pin of pins) {
             pin.step();
+        }
+        /*
         let path = pathfinder.search(travel.from, travel.to);
         if (!path.length)
             return;
@@ -273,14 +274,14 @@ class world_map {
                 this.timer = 0;
                 const node = path[1];
                 const { id, data } = node;
-                travel.from = id;
+                travel.from = id as string;
                 //console.log('travel', travel);
                 ply.pos = [data.x, data.y];
                 ply.step();
             }
         }
         ply?.step();
-        return false;
+        return false;*/
     }
 }
 var pins = [];

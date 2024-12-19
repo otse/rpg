@@ -1,10 +1,10 @@
-import hooks from "./hooks";
-import pts from "./pts";
-import app from "./app";
-import popup from "./popup";
-import aabb2 from "./aabb2";
-import pathfinder from "./pathfinder";
-import rpg from "./rpg";
+import hooks from "./hooks.js";
+import pts from "./pts.js";
+import app from "./app.js";
+import popup from "./popup.js";
+import aabb2 from "./aabb2.js";
+import pathfinder from "./pathfinder.js";
+import rpg from "./rpg.js";
 
 /*
 useful node based path finder with city examples
@@ -213,7 +213,7 @@ class world_map {
 		let half = pts.multv(grow_size, ratio);
 
 		//center = pts.mult(center, scroll[0], scroll[1]);
-		
+
 		//if (increment > 0)
 		//	half = pts.add(half, center);
 		//if (zoom < 0)
@@ -289,8 +289,10 @@ class world_map {
 	timer = 0
 	step() {
 		this.rezoom();
-		for (const pin of pins)
+		for (const pin of pins) {
 			pin.step();
+		}
+		/*
 		let path = pathfinder.search(travel.from, travel.to);
 		if (!path.length)
 			return;
@@ -308,7 +310,7 @@ class world_map {
 			}
 		}
 		ply?.step();
-		return false;
+		return false;*/
 	}
 }
 var pins: pin[] = []

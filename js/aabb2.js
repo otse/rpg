@@ -1,4 +1,4 @@
-import pts from "./pts";
+import pts from "./pts.js";
 var TEST;
 (function (TEST) {
     TEST[TEST["Outside"] = 0] = "Outside";

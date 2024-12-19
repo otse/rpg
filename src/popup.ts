@@ -1,7 +1,7 @@
-import aabb2 from "./aabb2"
-import app from "./app"
-import hooks from "./hooks"
-import pts from "./pts"
+import aabb2 from "./aabb2.js"
+import app from "./app.js"
+import hooks from "./hooks.js"
+import pts from "./pts.js"
 
 interface options {
 	class: string

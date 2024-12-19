@@ -21,9 +21,14 @@
 
 	<title>rpg</title>
 
+	<script type="module">
+		import { default as app } from "./js/app.js";
+		window.app = app;
+	</script>
+
 	<script>
 		document.addEventListener('DOMContentLoaded', function (event) {
-			App.boot('');
+			app.boot('');
 		});
 	</script>
 </head>

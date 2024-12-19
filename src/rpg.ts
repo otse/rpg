@@ -1,10 +1,10 @@
-import app from "./app";
-import hooks from "./hooks";
-import main from "./main";
-import pathfinder from "./pathfinder";
-import popup from "./popup";
-import view from "./view";
-import world_map from "./world map";
+import app from "./app.js";
+import hooks from "./hooks.js";
+import main from "./main.js";
+import pathfinder from "./pathfinder.js";
+import popup from "./popup.js";
+import view from "./view.js";
+import world_map from "./world map.js";
 
 // fantasy:
 // https://www.artstation.com/artwork/Z580PG

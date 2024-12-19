@@ -1,6 +1,6 @@
-import app from "./app";
-import popup from "./popup";
-import view from "./view";
+import app from "./app.js";
+import popup from "./popup.js";
+import view from "./view.js";
 
 namespace main {
 	let content_inner

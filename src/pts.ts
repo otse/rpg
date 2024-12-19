@@ -1,4 +1,4 @@
-import aabb2 from "./aabb2";
+import aabb2 from "./aabb2.js";
 
 // this is a not-in-place utility for working on simple points
 

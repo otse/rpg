@@ -1,6 +1,6 @@
-import hooks from "./hooks";
-import pts from "./pts";
-import rpg from "./rpg";
+import hooks from "./hooks.js";
+import pts from "./pts.js";
+import rpg from "./rpg.js";
 var app;
 (function (app) {
     window['App'] = app;

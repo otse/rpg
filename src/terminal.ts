@@ -1,5 +1,5 @@
-import app from "./app";
-import popup from "./popup";
+import app from "./app.js";
+import popup from "./popup.js";
 
 class third {
 	static popup?: popup;

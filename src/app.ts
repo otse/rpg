@@ -1,7 +1,7 @@
-import hooks from "./hooks";
-import pts from "./pts";
-import rpg from "./rpg";
-import space from "./rpg";
+import hooks from "./hooks.js";
+import pts from "./pts.js";
+import rpg from "./rpg.js";
+import space from "./rpg.js";
 
 namespace app {
 	window['App'] = app;
