@@ -61,7 +61,7 @@ class popup {
 					</x-button>
 					<x-button data-a="close" title="close">
 						<x-button-inner>
-							x
+							c
 						</x-button-inner>
 					</x-button>
 				</x-title-bar-inner>

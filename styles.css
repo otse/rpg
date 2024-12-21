@@ -4,7 +4,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/itim/v10/0nknC9ziJOYewAQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/itim/v14/0nknC9ziJOYewAQ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Share Tech Mono';
@@ -18,7 +18,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRUEY.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/spacemono/v14/i7dPIFZifjKcF5UAWdDRUEY.ttf) format('truetype');
 }
 body {
   overflow: hidden;
@@ -377,9 +377,9 @@ x-window.terminal {
   width: 325px;
 }
 x-window.terminal x-title-bar {
-  background: url(img/metal2.png);
-  background-position: -5px -5px;
-  background-size: 100%;
+  bbackground: url(img/metal2.png);
+  bbackground-position: -5px -5px;
+  bbackground-size: 100%;
 }
 x-window.terminal x-window-content {
   bborder: 0;
@@ -391,11 +391,9 @@ x-window.world-map {
   width: 350px;
 }
 x-window.world-map x-title-bar {
-  background: url(img/metal.png);
-  background: url(img/bronze.png);
-  bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/122436/WoodPlanksOld0304_1_download600.jpg);
-  background-size: 100%;
-  bbackground-position: 0 -2px;
+  bbackground: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
+  bbackground-size: 100%;
+  bbackground-position: 0 71px;
 }
 x-window.world-map x-window-content {
   hheight: 300px;
@@ -404,10 +402,12 @@ x-window.world-map x-window-content {
 x-window x-title-bar {
   color: #c1c1c1;
   background: rgba(124, 124, 124, 0.8);
-  /* background: url(img/metal2.png); */
-  border: 2px outset #ffffffa8;
+  background: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
+  background-attachment: local;
+  /* background-size: 100% 200%; */
+  background-position: 0 -66px;
+  border: 3px outset #ffffffa8;
   border-radius: 3px 3px 0 0;
-  text-shadow: 0px 0px 10px black;
   display: flex;
 }
 x-window x-title-bar.dragging {
@@ -420,15 +420,17 @@ x-window x-title-bar.dragging x-title {
 x-window x-title-bar x-title-bar-inner {
   width: 100%;
   border-radius: 3px;
-  background: rgba(42, 54, 75, 0.5);
+  background: rgba(123, 123, 123, 0.5);
   display: flex;
 }
 x-window x-title-bar x-title-bar-inner x-title {
   cursor: grab;
-  width: 100%;
-  border: 2px outset rgba(255, 255, 255, 0.5);
+  wwidth: 100%;
+  padding: 0 30px;
+  border: 4px outset rgba(255, 255, 255, 0.5);
   border-radius: 3px;
   box-shadow: inset 0 0 5px rgba(8, 22, 35, 0.5);
+  text-shadow: 0px 0px 10px black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -436,15 +438,16 @@ x-window x-title-bar x-title-bar-inner x-title {
 x-window x-title-bar x-title-bar-inner x-button {
   cursor: pointer;
   font-weight: bold;
-  width: 14px;
+  /* very shadowy on mobile */
+  wwidth: 27px;
   hheight: 30px;
-  color: #322626;
-  border: 1px solid #727272;
+  color: #554f47;
+  bborder: 1px solid #727272;
   border-radius: 3px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(150, 150, 150, 0.8) 100%);
   box-shadow: inset 0 0 1px #371a1ad9;
-  box-shadow: 0 0 2px #362a2a;
-  margin: 0 1px;
+  bbox-shadow: 0 0 3px #3f494f;
+  margin: 1px 0px;
   display: flex;
 }
 x-window x-title-bar x-title-bar-inner x-button x-button-inner {
@@ -460,7 +463,7 @@ x-window x-title-bar x-title-bar-inner x-button x-button-inner {
   align-items: center;
 }
 x-window x-title-bar x-title-bar-inner x-button[data-a="min"] {
-  margin-right: 1px;
+  mmargin-right: 1px;
 }
 x-window x-horz {
   margin: 4px;

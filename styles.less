@@ -415,9 +415,9 @@ x-window {
 		width: 325px;
 
 		x-title-bar {
-			background: url(img/metal2.png);
-			background-position: -5px -5px;
-			background-size: 100%;
+			bbackground: url(img/metal2.png);
+			bbackground-position: -5px -5px;
+			bbackground-size: 100%;
 		}
 
 		x-window-content {
@@ -433,11 +433,9 @@ x-window {
 		width: 350px;
 
 		x-title-bar {
-			background: url(img/metal.png);
-			background: url(img/bronze.png);
-			bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/122436/WoodPlanksOld0304_1_download600.jpg);
-			background-size: 100%;
-			bbackground-position: 0 -2px;
+			bbackground: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
+			bbackground-size: 100%;
+			bbackground-position: 0 71px;
 		}
 
 		x-window-content {
@@ -449,10 +447,12 @@ x-window {
 	x-title-bar {
 		color: #c1c1c1;
 		background: rgb(124 124 124 / 80%);
-		/* background: url(img/metal2.png); */
-		border: 2px outset #ffffffa8;
+		background: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
+		background-attachment: local;
+		/* background-size: 100% 200%; */
+		background-position: 0 -66px;
+		border: 3px outset #ffffffa8;
 		border-radius: 3px 3px 0 0;
-		text-shadow: 0px 0px 10px black;
 		display: flex;
 
 		&.dragging {
@@ -467,15 +467,17 @@ x-window {
 		x-title-bar-inner {
 			width: 100%;
 			border-radius: 3px;
-			background: rgb(42 54 75 / 50%);
+			background: rgb(123 123 123 / 50%);
 			display: flex;
 
 			x-title {
 				cursor: grab;
-				width: 100%;
-				border: 2px outset rgb(255 255 255 / 50%);
+				wwidth: 100%;
+				padding: 0 30px;
+				border: 4px outset rgba(255, 255, 255, 0.5);
 				border-radius: 3px;
 				box-shadow: inset 0 0 5px rgb(8 22 35 / 50%);
+				text-shadow: 0px 0px 10px black;
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -483,16 +485,16 @@ x-window {
 
 			x-button {
 				cursor: pointer;
-				font-weight: bold;
-				width: 14px;
+				font-weight: bold; /* very shadowy on mobile */
+				wwidth: 27px;
 				hheight: 30px;
-				color: #322626;
-				border: 1px solid #727272;
+				color: #554f47;
+				bborder: 1px solid #727272;
 				border-radius: 3px;
 				background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(150, 150, 150, 0.8) 100%);
 				box-shadow: inset 0 0 1px #371a1ad9;
-				box-shadow: 0 0 2px #362a2a;
-				margin: 0 1px;
+				bbox-shadow: 0 0 3px #3f494f;
+				margin: 1px 0px;
 				display: flex;
 
 				x-button-inner {
@@ -510,7 +512,7 @@ x-window {
 			}
 
 			x-button[data-a="min"] {
-				margin-right: 1px;
+				mmargin-right: 1px;
 			}
 
 			x-button[data-a="close"] {}
