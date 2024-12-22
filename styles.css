@@ -403,10 +403,11 @@ x-window x-title-bar {
   background: rgba(124, 124, 124, 0.8);
   background: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
   bbackground-attachment: fixed;
-  background-size: 400px;
-  background-position: 0px -1348px;
-  border: 3px outset #ffffff;
-  border-radius: 3px 3px 0 0;
+  background-size: 300px;
+  background-position: 0px 69px;
+  border: 2px outset #f7f7f7;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
   display: flex;
 }
 x-window x-title-bar.dragging {
@@ -423,10 +424,11 @@ x-window x-title-bar x-title-bar-inner {
   display: flex;
 }
 x-window x-title-bar x-title-bar-inner x-title {
+  text-transform: lowercase;
   cursor: grab;
   width: 100%;
-  color: #d7d7d7;
-  text-shadow: 2px 2px 0px #000b4380;
+  color: #202c41;
+  text-shadow: 0px 0px 4px #757575;
   padding: 0 30px;
   border: 4px outset rgba(255, 255, 255, 0.5);
   border-radius: 3px;
@@ -439,9 +441,9 @@ x-window x-title-bar x-title-bar-inner x-button {
   cursor: pointer;
   wwidth: 27px;
   color: #2d2b61;
-  ffont-weight: bold;
-  ttext-decoration: underline;
-  border: 1px outset #cecece;
+  font-weight: bold;
+  text-decoration: underline;
+  border: 1px outset #ededed;
   border-radius: 5px;
   bbackground: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
   background-attachment: local;
@@ -455,8 +457,8 @@ x-window x-title-bar x-title-bar-inner x-button x-button-one {
   height: inherit;
   border-radius: inherit;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(126, 126, 126, 0.5) 100%);
-  box-shadow: inset 0 0 1px #000e51;
-  bbackdrop-filter: blur(1px);
+  /* box-shadow: inset 0 0 4px #535353; */
+  /* backdrop-filter: blur(1px); */
   display: flex;
 }
 x-window x-title-bar x-title-bar-inner x-button x-button-one x-button-inner {
@@ -466,14 +468,14 @@ x-window x-title-bar x-title-bar-inner x-button x-button-one x-button-inner {
   border: 4px outset rgba(255, 255, 255, 0.6);
   text-shadow: 0px 0px 2px #75313178;
   border-radius: inherit;
-  padding: 0 2px;
+  padding: 0 6px;
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 x-window x-title-bar x-title-bar-inner x-button[data-a="min"] {
-  margin-right: 2px;
+  /* margin-right: 2px; */
 }
 x-window x-horz {
   margin: 4px;

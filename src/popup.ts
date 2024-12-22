@@ -51,12 +51,12 @@ class popup {
 			<x-title-bar>
 				<x-title-bar-inner>
 					<x-title>
-						${options.title}
+						- ${options.title} -
 					</x-title>
 					<x-button data-a="min" title="minimize">
 						<x-button-one>
 							<x-button-inner>
-							-
+								-
 							<!-- &#8964; -->
 							</x-button-inner>
 						</x-button-one>
