@@ -47,7 +47,7 @@ class popup {
 					<x-button data-a="min" title="minimize">
 						<x-button-one>
 							<x-button-inner>
-							min
+							-
 							<!-- &#8964; -->
 							</x-button-inner>
 						</x-button-one>

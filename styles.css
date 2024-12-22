@@ -437,17 +437,16 @@ x-window x-title-bar x-title-bar-inner x-title {
 }
 x-window x-title-bar x-title-bar-inner x-button {
   cursor: pointer;
-  /* very shadowy on mobile */
   wwidth: 27px;
-  color: #3f4681;
-  font-weight: bold;
-  text-decoration: underline;
-  border: 1px outset #d6d6d6;
+  color: #2d2b61;
+  ffont-weight: bold;
+  ttext-decoration: underline;
+  border: 1px outset #cecece;
   border-radius: 5px;
-  background: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
+  bbackground: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
   background-attachment: local;
-  background-size: auto;
-  background-position: 50px 0;
+  background-size: 100px;
+  background-position: 0px 0px;
   margin: 0px 0px;
   display: flex;
 }
@@ -455,7 +454,7 @@ x-window x-title-bar x-title-bar-inner x-button x-button-one {
   width: inherit;
   height: inherit;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(127, 127, 127, 0.5) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(126, 126, 126, 0.5) 100%);
   box-shadow: inset 0 0 1px #000e51;
   bbackdrop-filter: blur(1px);
   display: flex;
@@ -467,14 +466,14 @@ x-window x-title-bar x-title-bar-inner x-button x-button-one x-button-inner {
   border: 4px outset rgba(255, 255, 255, 0.6);
   text-shadow: 0px 0px 2px #75313178;
   border-radius: inherit;
-  padding: 0 3px;
-  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  padding: 0 2px;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 x-window x-title-bar x-title-bar-inner x-button[data-a="min"] {
-  /* margin-right: 1px; */
+  margin-right: 2px;
 }
 x-window x-horz {
   margin: 4px;

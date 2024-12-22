@@ -52,6 +52,7 @@ class world_map {
     static init() {
         world_map.register();
         world_map.change_map_division();
+        this.request_popup();
         window['world_map'] = world_map;
     }
     static change_map_division() {
