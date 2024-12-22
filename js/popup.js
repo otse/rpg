@@ -45,15 +45,20 @@ class popup {
 						${options.title}
 					</x-title>
 					<x-button data-a="min" title="minimize">
-						<x-button-inner>
-							-
+						<x-button-one>
+							<x-button-inner>
+							min
 							<!-- &#8964; -->
-						</x-button-inner>
+							</x-button-inner>
+						</x-button-one>
 					</x-button>
 					<x-button data-a="close" title="close">
-						<x-button-inner>
-							x
-						</x-button-inner>
+						<x-button-one>
+							<x-button-inner>
+								x
+							</x-button-inner>
+						</x-button-one>
+
 					</x-button>
 				</x-title-bar-inner>
 			</x-title-bar>

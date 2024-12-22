@@ -25,7 +25,7 @@ body {
   touch-action: none;
   user-select: none;
   background: black;
-  background: url(https://cdna.artstation.com/p/assets/images/images/000/877/722/4k/david-edwards-ruincityscape-001-4k.jpg?1435116670);
+  background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/20057bcc-b58c-42d7-84cf-1a511d80e27e/deqmx57-dbdc2ee3-f24e-4a82-83ba-2366fc051713.jpg/v1/fill/w_1024,h_640,q_75,strp/ironwood_forest_by_dvicko_deqmx57-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjQwIiwicGF0aCI6IlwvZlwvMjAwNTdiY2MtYjU4Yy00MmQ3LTg0Y2YtMWE1MTFkODBlMjdlXC9kZXFteDU3LWRiZGMyZWUzLWYyNGUtNGE4Mi04M2JhLTIzNjZmYzA1MTcxMy5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.1pC-W97sTE1tis9LQHeAAKiVWHvHwUUcZvHyRmEN4uw');
   background-position: center;
   background-size: cover;
   -webkit-backdrop-filter: blur(2px);
@@ -39,7 +39,7 @@ body {
 }
 x-main-area {
   position: relative;
-  background: url(https://cdna.artstation.com/p/assets/images/images/000/877/722/4k/david-edwards-ruincityscape-001-4k.jpg?1435116670);
+  background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/20057bcc-b58c-42d7-84cf-1a511d80e27e/deqmx57-dbdc2ee3-f24e-4a82-83ba-2366fc051713.jpg/v1/fill/w_1024,h_640,q_75,strp/ironwood_forest_by_dvicko_deqmx57-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjQwIiwicGF0aCI6IlwvZlwvMjAwNTdiY2MtYjU4Yy00MmQ3LTg0Y2YtMWE1MTFkODBlMjdlXC9kZXFteDU3LWRiZGMyZWUzLWYyNGUtNGE4Mi04M2JhLTIzNjZmYzA1MTcxMy5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.1pC-W97sTE1tis9LQHeAAKiVWHvHwUUcZvHyRmEN4uw');
   background-position: center;
   background-size: cover;
   min-width: 300px;
@@ -400,18 +400,17 @@ x-window.world-map x-window-content {
   bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/114867/WoodPlanksOld0024_5_download600.jpg);
 }
 x-window x-title-bar {
-  color: #d7d7d7;
   background: rgba(124, 124, 124, 0.8);
-  background: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
-  background-attachment: local;
-  /* background-size: 100% 200%; */
-  background-position: 0 -66px;
-  border: 3px outset #ffffffa8;
+  background: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
+  bbackground-attachment: fixed;
+  background-size: 400px;
+  background-position: 0px -1348px;
+  border: 3px outset #ffffff;
   border-radius: 3px 3px 0 0;
   display: flex;
 }
 x-window x-title-bar.dragging {
-  background: url(img/titlebar.png);
+  bbackground: url(img/titlebar.png);
 }
 x-window x-title-bar.dragging x-title {
   cursor: grabbing;
@@ -426,45 +425,56 @@ x-window x-title-bar x-title-bar-inner {
 x-window x-title-bar x-title-bar-inner x-title {
   cursor: grab;
   width: 100%;
+  color: #d7d7d7;
+  text-shadow: 2px 2px 0px #000b4380;
   padding: 0 30px;
   border: 4px outset rgba(255, 255, 255, 0.5);
   border-radius: 3px;
   bbox-shadow: inset 0 0 5px rgba(8, 22, 35, 0.5);
-  text-shadow: 2px 2px 0px #000b4380;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 x-window x-title-bar x-title-bar-inner x-button {
   cursor: pointer;
-  font-weight: bold;
   /* very shadowy on mobile */
   wwidth: 27px;
-  hheight: 30px;
-  color: #455989;
-  bborder: 1px solid #727272;
-  border-radius: 2px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0.2) 100%);
-  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
-  bbox-shadow: 0 0 3px #3f494f;
-  margin: 0px 1px;
+  color: #3f4681;
+  font-weight: bold;
+  text-decoration: underline;
+  border: 1px outset #d6d6d6;
+  border-radius: 5px;
+  background: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
+  background-attachment: local;
+  background-size: auto;
+  background-position: 50px 0;
+  margin: 0px 0px;
   display: flex;
 }
-x-window x-title-bar x-title-bar-inner x-button x-button-inner {
+x-window x-title-bar x-title-bar-inner x-button x-button-one {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(127, 127, 127, 0.5) 100%);
+  box-shadow: inset 0 0 1px #000e51;
+  bbackdrop-filter: blur(1px);
+  display: flex;
+}
+x-window x-title-bar x-title-bar-inner x-button x-button-one x-button-inner {
   width: inherit;
   height: inherit;
   box-sizing: border-box;
-  border: 4px outset rgba(255, 255, 255, 0);
+  border: 4px outset rgba(255, 255, 255, 0.6);
   text-shadow: 0px 0px 2px #75313178;
   border-radius: inherit;
-  padding: 0 2px;
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+  padding: 0 3px;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 x-window x-title-bar x-title-bar-inner x-button[data-a="min"] {
-  mmargin-right: 1px;
+  /* margin-right: 1px; */
 }
 x-window x-horz {
   margin: 4px;

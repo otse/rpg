@@ -2,12 +2,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Itim&family=Share+Tech+Mono&family=Space+Mono&display=swap');
 
+@fantasy: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/20057bcc-b58c-42d7-84cf-1a511d80e27e/deqmx57-dbdc2ee3-f24e-4a82-83ba-2366fc051713.jpg/v1/fill/w_1024,h_640,q_75,strp/ironwood_forest_by_dvicko_deqmx57-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjQwIiwicGF0aCI6IlwvZlwvMjAwNTdiY2MtYjU4Yy00MmQ3LTg0Y2YtMWE1MTFkODBlMjdlXC9kZXFteDU3LWRiZGMyZWUzLWYyNGUtNGE4Mi04M2JhLTIzNjZmYzA1MTcxMy5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.1pC-W97sTE1tis9LQHeAAKiVWHvHwUUcZvHyRmEN4uw');
+@title-bar-background: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
+
 body {
 	overflow: hidden;
 	touch-action: none;
 	user-select: none;
 	background: black;
-	background: url(https://cdna.artstation.com/p/assets/images/images/000/877/722/4k/david-edwards-ruincityscape-001-4k.jpg?1435116670);
+	background: @fantasy;
 	background-position: center;
 	background-size: cover;
 	-webkit-backdrop-filter: blur(2px);
@@ -22,7 +25,7 @@ body {
 
 x-main-area {
 	position: relative;
-	background: url(https://cdna.artstation.com/p/assets/images/images/000/877/722/4k/david-edwards-ruincityscape-001-4k.jpg?1435116670);
+	background: @fantasy;
 	background-position: center;
 	background-size: cover;
 	min-width: 300px;
@@ -411,6 +414,7 @@ x-window {
 			height: 100px;
 		}
 	}
+
 	&.terminal {
 		width: 325px;
 
@@ -445,13 +449,12 @@ x-window {
 	}
 
 	x-title-bar {
-		color: #d7d7d7;
 		background: rgb(124 124 124 / 80%);
-		background: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
-		background-attachment: local;
-		/* background-size: 100% 200%; */
-		background-position: 0 -66px;
-		border: 3px outset #ffffffa8;
+		background: @title-bar-background;
+		bbackground-attachment: fixed;
+		background-size: 400px;
+		background-position: 0px -1348px;
+		border: 3px outset rgb(255 255 255);
 		border-radius: 3px 3px 0 0;
 		display: flex;
 
@@ -461,7 +464,7 @@ x-window {
 				text-decoration: underline;
 			}
 
-			background: url(img/titlebar.png);
+			bbackground: url(img/titlebar.png);
 		}
 
 		x-title-bar-inner {
@@ -473,11 +476,12 @@ x-window {
 			x-title {
 				cursor: grab;
 				width: 100%;
+				color: #d7d7d7;
+				text-shadow: 2px 2px 0px #000b4380;
 				padding: 0 30px;
 				border: 4px outset rgba(255, 255, 255, 0.5);
 				border-radius: 3px;
 				bbox-shadow: inset 0 0 5px rgb(8 22 35 / 50%);
-				text-shadow: 2px 2px 0px #000b4380;
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -485,35 +489,47 @@ x-window {
 
 			x-button {
 				cursor: pointer;
-				font-weight: bold; /* very shadowy on mobile */
+				/* very shadowy on mobile */
 				wwidth: 27px;
-				hheight: 30px;
-				color: #455989;
-				bborder: 1px solid #727272;
-				border-radius: 2px;
-				background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgb(0 0 0 / 20%) 100%);
-				box-shadow: inset 0 0 2px rgb(0 0 0 / 20%);
-				bbox-shadow: 0 0 3px #3f494f;
-				margin: 0px 1px;
+				color: #3f4681;
+				font-weight: bold;
+				text-decoration: underline;
+				border: 1px outset #d6d6d6;
+				border-radius: 5px;
+				background: @title-bar-background;
+				background-attachment: local;
+				background-size: auto;
+				background-position: 50px 0;
+				margin: 0px 0px;
 				display: flex;
 
-				x-button-inner {
+				x-button-one {
 					width: inherit;
 					height: inherit;
-					box-sizing: border-box;
-					border: 4px outset rgba(255, 255, 255, 0);
-					text-shadow: 0px 0px 2px #75313178;
 					border-radius: inherit;
-					padding: 0 2px;
-					box-shadow: inset 0 0 4px rgb(0 0 0 / 30%);
+					background: linear-gradient(180deg, rgb(255 255 255 / 50%) 0%, rgb(127 127 127 / 50%) 100%);
+					box-shadow: inset 0 0 1px #000e51;
+					bbackdrop-filter: blur(1px);
 					display: flex;
-					justify-content: center;
-					align-items: center;
+
+					x-button-inner {
+						width: inherit;
+						height: inherit;
+						box-sizing: border-box;
+						border: 4px outset rgb(255 255 255 / 60%);
+						text-shadow: 0px 0px 2px #75313178;
+						border-radius: inherit;
+						padding: 0 3px;
+						box-shadow: inset 0 0 3px rgb(0 0 0 / 30%);
+						display: flex;
+						justify-content: center;
+						align-items: center;
+					}
 				}
 			}
 
 			x-button[data-a="min"] {
-				mmargin-right: 1px;
+				/* margin-right: 1px; */
 			}
 
 			x-button[data-a="close"] {}
@@ -664,19 +680,19 @@ x-window {
 }
 
 x-terminal {
-    /* width: 100%; */
-    height: 200px;
-    background: #2e2f33;
-    background: radial-gradient(#272a2e, #1c1e21);
-    color: #5d9964;
-    /* padding: 10px; */
-    /* padding: 0; */
-    box-sizing: border-box;
-    border: 5px inset rgba(155, 155, 155, 0.5);
-    border-radius: 0px;
-    /* box-shadow: inset 0 0 20px #5e7269b5; */
-    /* transform: perspective(300px) scale(1) rotateX(2deg); */
-    display: flex;
+	/* width: 100%; */
+	height: 200px;
+	background: #2e2f33;
+	background: radial-gradient(#272a2e, #1c1e21);
+	color: #5d9964;
+	/* padding: 10px; */
+	/* padding: 0; */
+	box-sizing: border-box;
+	border: 5px inset rgba(155, 155, 155, 0.5);
+	border-radius: 0px;
+	/* box-shadow: inset 0 0 20px #5e7269b5; */
+	/* transform: perspective(300px) scale(1) rotateX(2deg); */
+	display: flex;
 
 	x-terminal-inner {
 		width: 100%;
