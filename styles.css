@@ -20,6 +20,352 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/spacemono/v14/i7dPIFZifjKcF5UAWdDRUEY.ttf) format('truetype');
 }
+x-popup {
+  position: absolute;
+  top: 300px;
+  width: 300px;
+  box-sizing: border-box;
+  color: #e6e6e6;
+  border-radius: 3px;
+  box-shadow: 0 0 4px #1f1f1f;
+  display: flex;
+  flex-direction: column;
+}
+x-popup.persist {
+  position: relative;
+  top: 0;
+  width: 100%;
+  width: calc(100% - 60px);
+  margin: 30px;
+  height: 200px;
+}
+x-popup.persist x-title-bar {
+  bbackground: url(img/titlebar.png);
+}
+x-popup.character x-popup-content {
+  height: 100px;
+}
+x-popup.terminal {
+  width: 325px;
+}
+x-popup.terminal x-title-bar {
+  bbackground: url(img/metal2.png);
+  bbackground-position: -5px -5px;
+  bbackground-size: 100%;
+}
+x-popup.terminal x-popup-content {
+  bborder: 0;
+}
+x-popup.terminal x-popup-content-inner {
+  ppadding: 0;
+}
+x-popup.world-map {
+  width: 350px;
+}
+x-popup.world-map x-title-bar {
+  bbackground: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
+  bbackground-size: 100%;
+  bbackground-position: 0 71px;
+}
+x-popup.world-map x-popup-content {
+  hheight: 300px;
+  bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/114867/WoodPlanksOld0024_5_download600.jpg);
+}
+x-popup x-title-bar {
+  background: rgba(124, 124, 124, 0.8);
+  background: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
+  bbackground-attachment: fixed;
+  background-size: 300px;
+  background-position: 0px -380px;
+  border: 2px outset #f7f7f7;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+  display: flex;
+}
+x-popup x-title-bar.dragging {
+  bbackground: url(img/titlebar.png);
+}
+x-popup x-title-bar.dragging x-title {
+  cursor: grabbing;
+  text-decoration: underline;
+}
+x-popup x-title-bar x-title-bar-inner {
+  width: 100%;
+  border-radius: 3px;
+  bbackground: rgba(123, 123, 123, 0.5);
+  display: flex;
+}
+x-popup x-title-bar x-title-bar-inner x-title {
+  text-transform: lowercase;
+  cursor: grab;
+  width: 100%;
+  color: #202c41;
+  text-shadow: 0px 0px 4px #757575;
+  padding: 0 30px;
+  border: 4px outset rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+  bbox-shadow: inset 0 0 5px rgba(8, 22, 35, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+x-popup x-title-bar x-title-bar-inner x-button {
+  cursor: pointer;
+  wwidth: 27px;
+  color: #002661;
+  font-weight: bold;
+  text-decoration: underline;
+  text-wrap: nowrap;
+  border: 1px outset #ededed;
+  border-radius: 5px;
+  background: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
+  background-attachment: local;
+  background-size: 300px;
+  background-position: 35px 18px;
+  margin: 0px 0px;
+  display: flex;
+}
+x-popup x-title-bar x-title-bar-inner x-button x-button-grad {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(126, 126, 126, 0.6) 100%);
+  /* box-shadow: inset 0 0 4px #535353; */
+  /* backdrop-filter: blur(1px); */
+  display: flex;
+}
+x-popup x-title-bar x-title-bar-inner x-button x-button-grad x-button-inner {
+  width: inherit;
+  height: inherit;
+  box-sizing: border-box;
+  border: 5px outset rgba(255, 255, 255, 0.6);
+  text-shadow: 0px 0px 2px #3d3800;
+  border-radius: inherit;
+  padding: 0 6px;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+x-popup x-title-bar x-title-bar-inner x-button[data-a="min"] {
+  /* margin-right: 2px; */
+}
+x-popup x-horz {
+  margin: 4px;
+  box-sizing: border-box;
+  bborder-bottom: 1px solid #dbdbdb;
+  width: auto;
+  display: flex;
+}
+x-popup x-top t-text {
+  bborder: 1px solid #dbdbdb;
+  border-radius: 3px;
+  text-decoration: underline;
+}
+x-popup x-popup-content {
+  color: #dbdbdb;
+  color: #272727;
+  ttext-shadow: 0 0 2px #363636;
+  width: 100%;
+  height: 100%;
+  hheight: 300px;
+  box-sizing: border-box;
+  border: 2px outset #a3a3a3c7;
+  border: 2px outset #818181c7;
+  border: 2px solid #8b8b8bc7;
+  border-radius: 2px;
+  background: url(img/rocks.jpg);
+  /* padding: 10px; */
+  display: flex;
+}
+x-popup x-popup-content x-popup-content-inner {
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, rgba(128, 133, 133, 0.9) 0%, rgba(97, 101, 100, 0.9) 100%);
+  display: flex;
+  flex-direction: column;
+}
+x-popup x-popup-content x-relative {
+  /* width: inherit; */
+  /* height: inherit; */
+  position: relative;
+  display: flex;
+}
+x-popup x-popup-content x-overlay {
+  display: none;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 8px;
+  color: #383838;
+  font-size: 11px;
+  font-family: monospace;
+  /* text-shadow: 0 0 1px black; */
+}
+x-popup x-popup-content x-world-map {
+  -webkit-user-drag: none;
+  cursor: grab;
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+  width: 100%;
+  height: 400px;
+  position: relative;
+  overflow: scroll;
+}
+x-popup x-popup-content x-world-map svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+x-popup x-popup-content x-world-map x-world-map-scaler {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: block;
+}
+x-popup x-popup-content x-world-map x-world-map-graphic {
+  position: absolute;
+  width: 2048px;
+  height: 1536px;
+  background: url(img/WestPit.jpg);
+  background-size: 100%;
+  display: flex;
+}
+x-popup x-popup-content x-world-map x-region {
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+}
+x-popup x-popup-content x-world-map x-place {
+  cursor: pointer;
+  position: absolute;
+  color: white;
+  width: 100px;
+  margin: -1.6em -50px;
+  display: flex;
+  justify-content: center;
+}
+x-popup x-popup-content x-world-map x-place.selected {
+  ccolor: black;
+  text-decoration: underline;
+}
+x-popup x-popup-content x-world-map x-place.large {
+  font-size: 20px;
+}
+x-popup x-popup-content x-world-map x-flag {
+  z-index: 1;
+  position: absolute;
+  background: url(img/flag.png);
+  background-size: 100%;
+  width: 20px;
+  height: 20px;
+  margin: -20px -3px;
+  display: flex;
+}
+x-popup x-popup-content x-world-map.dragging {
+  cursor: grabbing;
+}
+x-popup x-popup-content x-world-map::-webkit-scrollbar-thumb {
+  background: #979797;
+  border-radius: 3px;
+}
+x-terminal {
+  /* width: 100%; */
+  height: 200px;
+  background: #2e2f33;
+  background: radial-gradient(#272a2e, #1c1e21);
+  color: #5d9964;
+  /* padding: 10px; */
+  /* padding: 0; */
+  box-sizing: border-box;
+  border: 5px inset rgba(155, 155, 155, 0.5);
+  border-radius: 0px;
+  /* box-shadow: inset 0 0 20px #5e7269b5; */
+  /* transform: perspective(300px) scale(1) rotateX(2deg); */
+  display: flex;
+}
+x-terminal x-terminal-inner {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  background-image: linear-gradient(0deg, #22000000 50%, rgba(17, 153, 0, 0.19) 100%);
+  background-size: 2px 2px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+}
+x-world-map-info {
+  z-index: 100;
+  position: absolute;
+  display: flex;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  bbackground: #808080;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-corner {
+  bbackground: #808080;
+}
+x-action-bar {
+  border: 2px solid rgba(17, 17, 17, 0.5);
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(48, 54, 58, 0.95) 0%, rgba(53, 61, 68, 0.95) 100%);
+  bbackground: url(img/border2.png);
+  background-position: -2px 0px;
+  ppadding: 10px;
+  margin: 10px;
+  height: 70px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+x-action-bar x-row {
+  display: flex;
+}
+x-action-bar x-slot {
+  width: 60px;
+  height: 60px;
+  box-sizing: border-box;
+  bbackground: url(img/border.png);
+  bborder: 2px solid rgba(41, 50, 58, 0.8);
+  bborder-radius: 4px;
+  mmargin: 1px;
+  display: flex;
+  justify-content: center;
+}
+x-action-bar x-slot x-inner {
+  width: 100%;
+  height: 100%;
+  /* background: rgba(136, 141, 145, 0.9); */
+  background: rgba(20, 24, 26, 0.7);
+  background: linear-gradient(225deg, rgba(31, 33, 36, 0.8) 0%, rgba(22, 24, 25, 0.8) 100%);
+  bborder: 2px outset #23232347;
+  border-radius: 2px;
+  padding: 6px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+x-action-bar x-slot x-inner img {
+  bborder: 1px outset #ffffff24;
+  border-radius: 2px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
 body {
   overflow: hidden;
   touch-action: none;
@@ -347,349 +693,4 @@ x-dialog x-buttons-area {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-x-window {
-  position: absolute;
-  top: 300px;
-  width: 300px;
-  box-sizing: border-box;
-  color: #e6e6e6;
-  border-radius: 3px;
-  box-shadow: 0 0 4px #1f1f1f;
-  display: flex;
-  flex-direction: column;
-}
-x-window.persist {
-  position: relative;
-  top: 0;
-  width: 100%;
-  width: calc(100% - 60px);
-  margin: 30px;
-  height: 200px;
-}
-x-window.persist x-title-bar {
-  bbackground: url(img/titlebar.png);
-}
-x-window.character x-window-content {
-  height: 100px;
-}
-x-window.terminal {
-  width: 325px;
-}
-x-window.terminal x-title-bar {
-  bbackground: url(img/metal2.png);
-  bbackground-position: -5px -5px;
-  bbackground-size: 100%;
-}
-x-window.terminal x-window-content {
-  bborder: 0;
-}
-x-window.terminal x-window-content-inner {
-  ppadding: 0;
-}
-x-window.world-map {
-  width: 350px;
-}
-x-window.world-map x-title-bar {
-  bbackground: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
-  bbackground-size: 100%;
-  bbackground-position: 0 71px;
-}
-x-window.world-map x-window-content {
-  hheight: 300px;
-  bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/114867/WoodPlanksOld0024_5_download600.jpg);
-}
-x-window x-title-bar {
-  background: rgba(124, 124, 124, 0.8);
-  background: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
-  bbackground-attachment: fixed;
-  background-size: 300px;
-  background-position: 0px 69px;
-  border: 2px outset #f7f7f7;
-  border-bottom: none;
-  border-radius: 2px 2px 0 0;
-  display: flex;
-}
-x-window x-title-bar.dragging {
-  bbackground: url(img/titlebar.png);
-}
-x-window x-title-bar.dragging x-title {
-  cursor: grabbing;
-  text-decoration: underline;
-}
-x-window x-title-bar x-title-bar-inner {
-  width: 100%;
-  border-radius: 3px;
-  bbackground: rgba(123, 123, 123, 0.5);
-  display: flex;
-}
-x-window x-title-bar x-title-bar-inner x-title {
-  text-transform: lowercase;
-  cursor: grab;
-  width: 100%;
-  color: #202c41;
-  text-shadow: 0px 0px 4px #757575;
-  padding: 0 30px;
-  border: 4px outset rgba(255, 255, 255, 0.5);
-  border-radius: 3px;
-  bbox-shadow: inset 0 0 5px rgba(8, 22, 35, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-x-window x-title-bar x-title-bar-inner x-button {
-  cursor: pointer;
-  wwidth: 27px;
-  color: #2d2b61;
-  font-weight: bold;
-  text-decoration: underline;
-  border: 1px outset #ededed;
-  border-radius: 5px;
-  bbackground: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
-  background-attachment: local;
-  background-size: 100px;
-  background-position: 0px 0px;
-  margin: 0px 0px;
-  display: flex;
-}
-x-window x-title-bar x-title-bar-inner x-button x-button-one {
-  width: inherit;
-  height: inherit;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(126, 126, 126, 0.5) 100%);
-  /* box-shadow: inset 0 0 4px #535353; */
-  /* backdrop-filter: blur(1px); */
-  display: flex;
-}
-x-window x-title-bar x-title-bar-inner x-button x-button-one x-button-inner {
-  width: inherit;
-  height: inherit;
-  box-sizing: border-box;
-  border: 4px outset rgba(255, 255, 255, 0.6);
-  text-shadow: 0px 0px 2px #75313178;
-  border-radius: inherit;
-  padding: 0 6px;
-  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-x-window x-title-bar x-title-bar-inner x-button[data-a="min"] {
-  /* margin-right: 2px; */
-}
-x-window x-horz {
-  margin: 4px;
-  box-sizing: border-box;
-  bborder-bottom: 1px solid #dbdbdb;
-  width: auto;
-  display: flex;
-}
-x-window x-top t-text {
-  bborder: 1px solid #dbdbdb;
-  border-radius: 3px;
-  text-decoration: underline;
-}
-x-window x-window-content {
-  color: #dbdbdb;
-  color: #272727;
-  ttext-shadow: 0 0 2px #363636;
-  width: 100%;
-  height: 100%;
-  hheight: 300px;
-  box-sizing: border-box;
-  border: 2px outset #a3a3a3c7;
-  border: 2px outset #818181c7;
-  border: 2px solid #8b8b8bc7;
-  border-radius: 2px;
-  background: url(img/rocks.jpg);
-  /* padding: 10px; */
-  display: flex;
-}
-x-window x-window-content x-window-content-inner {
-  width: 100%;
-  height: 100%;
-  padding: 6px;
-  box-sizing: border-box;
-  background: linear-gradient(180deg, rgba(128, 133, 133, 0.9) 0%, rgba(97, 101, 100, 0.9) 100%);
-  display: flex;
-  flex-direction: column;
-}
-x-window x-window-content x-relative {
-  /* width: inherit; */
-  /* height: inherit; */
-  position: relative;
-  display: flex;
-}
-x-window x-window-content x-overlay {
-  display: none;
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 8px;
-  color: #383838;
-  font-size: 11px;
-  font-family: monospace;
-  /* text-shadow: 0 0 1px black; */
-}
-x-window x-window-content x-world-map {
-  -webkit-user-drag: none;
-  cursor: grab;
-  border: 2px solid rgba(255, 255, 255, 0.05);
-  box-sizing: border-box;
-  width: 100%;
-  height: 400px;
-  position: relative;
-  overflow: scroll;
-}
-x-window x-window-content x-world-map svg {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-x-window x-window-content x-world-map x-world-map-scaler {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: block;
-}
-x-window x-window-content x-world-map x-world-map-graphic {
-  position: absolute;
-  width: 2048px;
-  height: 1536px;
-  background: url(img/WestPit.jpg);
-  background-size: 100%;
-  display: flex;
-}
-x-window x-window-content x-world-map x-region {
-  cursor: pointer;
-  position: absolute;
-  display: flex;
-}
-x-window x-window-content x-world-map x-place {
-  cursor: pointer;
-  position: absolute;
-  color: white;
-  width: 100px;
-  margin: -1.6em -50px;
-  display: flex;
-  justify-content: center;
-}
-x-window x-window-content x-world-map x-place.selected {
-  ccolor: black;
-  text-decoration: underline;
-}
-x-window x-window-content x-world-map x-place.large {
-  font-size: 20px;
-}
-x-window x-window-content x-world-map x-flag {
-  z-index: 1;
-  position: absolute;
-  background: url(img/flag.png);
-  background-size: 100%;
-  width: 20px;
-  height: 20px;
-  margin: -20px -3px;
-  display: flex;
-}
-x-window x-window-content x-world-map.dragging {
-  cursor: grabbing;
-}
-x-window x-window-content x-world-map::-webkit-scrollbar-thumb {
-  background: #979797;
-  border-radius: 3px;
-}
-x-terminal {
-  /* width: 100%; */
-  height: 200px;
-  background: #2e2f33;
-  background: radial-gradient(#272a2e, #1c1e21);
-  color: #5d9964;
-  /* padding: 10px; */
-  /* padding: 0; */
-  box-sizing: border-box;
-  border: 5px inset rgba(155, 155, 155, 0.5);
-  border-radius: 0px;
-  /* box-shadow: inset 0 0 20px #5e7269b5; */
-  /* transform: perspective(300px) scale(1) rotateX(2deg); */
-  display: flex;
-}
-x-terminal x-terminal-inner {
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  background-image: linear-gradient(0deg, #22000000 50%, rgba(17, 153, 0, 0.19) 100%);
-  background-size: 2px 2px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 14px;
-}
-x-world-map-info {
-  z-index: 100;
-  position: absolute;
-  display: flex;
-}
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-/* Track */
-::-webkit-scrollbar-track {
-  bbackground: #808080;
-}
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: gray;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-corner {
-  bbackground: #808080;
-}
-x-action-bar {
-  border: 2px solid rgba(17, 17, 17, 0.5);
-  border-radius: 3px;
-  background: linear-gradient(180deg, rgba(48, 54, 58, 0.95) 0%, rgba(53, 61, 68, 0.95) 100%);
-  bbackground: url(img/border2.png);
-  background-position: -2px 0px;
-  ppadding: 10px;
-  margin: 10px;
-  height: 70px;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-}
-x-action-bar x-row {
-  display: flex;
-}
-x-action-bar x-slot {
-  width: 60px;
-  height: 60px;
-  box-sizing: border-box;
-  bbackground: url(img/border.png);
-  bborder: 2px solid rgba(41, 50, 58, 0.8);
-  bborder-radius: 4px;
-  mmargin: 1px;
-  display: flex;
-  justify-content: center;
-}
-x-action-bar x-slot x-inner {
-  width: 100%;
-  height: 100%;
-  /* background: rgba(136, 141, 145, 0.9); */
-  background: rgba(20, 24, 26, 0.7);
-  background: linear-gradient(225deg, rgba(31, 33, 36, 0.8) 0%, rgba(22, 24, 25, 0.8) 100%);
-  bborder: 2px outset #23232347;
-  border-radius: 2px;
-  padding: 6px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-}
-x-action-bar x-slot x-inner img {
-  bborder: 1px outset #ffffff24;
-  border-radius: 2px;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
 }

@@ -1,4 +1,4 @@
-import popup from "./web/popup.js";
+import popup from "./popup.js";
 class third {
     static popup;
     static request_popup() {

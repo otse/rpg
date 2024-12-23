@@ -1,10 +1,9 @@
 import app from "./app.js";
-import hooks from "./hooks.js";
+import { hooks } from "./lib/hooks.js";
 import main from "./main.js";
-import pathfinder from "./pathfinder.js";
-import popup from "./popup.js";
+import popup from "./web/popup.js";
 import view from "./view.js";
-import world_map from "./world map.js";
+import world_map from "./web/world map.js";
 
 // fantasy:
 // https://www.artstation.com/artwork/Z580PG
@@ -29,7 +28,6 @@ namespace rpg {
 		console.log(' init ');
 		
 		world_map.init();
-		pathfinder.init();
 		popup.init();
 		main.init();
 		app;
@@ -39,7 +37,7 @@ namespace rpg {
 	}
 
 	export function step() {		
-		hooks.call('rpgStep', 0);
+		hooks.emit('rpgStep', 0);
 	}
 
 	

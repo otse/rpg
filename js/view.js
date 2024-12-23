@@ -1,7 +1,7 @@
-import character from "./character.js";
-import dropdown from "./dropdown.js";
-import third from "./terminal.js";
-import world_map from "./world map.js";
+import character from "./web/character.js";
+import dropdown from "./web/dropdown.js";
+import third from "./web/terminal.js";
+import world_map from "./web/world map.js";
 class view {
     dropdown;
     constructor() {

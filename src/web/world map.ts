@@ -1,10 +1,10 @@
-import hooks from "./hooks.js";
-import pts from "./pts.js";
-import app from "./app.js";
+import aabb2 from "../lib/aabb2.js";
+import { hooks } from "../lib/hooks.js";
+import pts from "../lib/pts.js";
+import app from "../app.js";
 import popup from "./popup.js";
-import aabb2 from "./aabb2.js";
 import pathfinder from "./pathfinder.js";
-import rpg from "./rpg.js";
+import rpg from "../rpg.js";
 
 /*
 useful node based path finder with city examples
@@ -73,7 +73,7 @@ class world_map {
 		if (!app.mobile)
 			map_division = 1 / window.devicePixelRatio;
 	}
-	static step() {
+	static async step() {
 		world_map.change_map_division();
 		world_map.instance?.step();
 		return false;
@@ -90,7 +90,7 @@ class world_map {
 	static register() {
 		console.log('register rpgStep');
 
-		hooks.register('rpgStep', world_map.step);
+		hooks.addListener('rpgStep', world_map.step);
 	}
 	constructor() {
 
@@ -175,8 +175,8 @@ class world_map {
 			}
 			this.world_map.addEventListener("mousewheel", MouseWheelHandler, false); // IE9, Chrome, Safari, Opera
 			this.world_map.addEventListener("DOMMouseScroll", MouseWheelHandler, false); // Firefox
-			hooks.register('onmouseup', this.onmouseup);
-			hooks.register('onmousemove', this.onmousemove);
+			hooks.addListener('onmouseup', this.onmouseup);
+			hooks.addListener('onmousemove', this.onmousemove);
 		}
 		this.ply = new flag(this);
 		this.add_svg();
@@ -282,8 +282,8 @@ class world_map {
 	destroy() {
 		console.log('destroy the world map');
 
-		hooks.unregister('onmousemove', this.onmousemove);
-		hooks.unregister('onmouseup', this.onmouseup);
+		hooks.addListener('onmousemove', this.onmousemove);
+		hooks.addListener('onmouseup', this.onmouseup);
 	}
 
 	plySeg = 0

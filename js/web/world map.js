@@ -1,9 +1,9 @@
-import aabb2 from "./lib/aabb2.js";
-import { hooks } from "./lib/hooks.js";
-import pts from "./lib/pts.js";
-import app from "./app.js";
-import popup from "./web/popup.js";
-import rpg from "./rpg.js";
+import aabb2 from "../lib/aabb2.js";
+import { hooks } from "../lib/hooks.js";
+import pts from "../lib/pts.js";
+import app from "../app.js";
+import popup from "./popup.js";
+import rpg from "../rpg.js";
 export var places = [
     [[995, 326], 'New Clarks', false],
     [[947, 447], 'Brock', true],

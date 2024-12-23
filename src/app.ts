@@ -1,5 +1,5 @@
-import hooks from "./hooks.js";
-import pts from "./pts.js";
+import { hooks } from "./lib/hooks.js";
+import pts from "./lib/pts.js";
 import rpg from "./rpg.js";
 import space from "./rpg.js";
 
@@ -53,17 +53,17 @@ namespace app {
 		function onmousemove(e) {
 			pos[0] = e.clientX;
 			pos[1] = e.clientY;
-			hooks.call('onmousemove', false);
+			hooks.emit('onmousemove', false);
 		}
 		function onmousedown(e) {
 			buttons[e.button] = 1;
 			if (e.button == 1)
 				return false;
-			hooks.call('onmousedown', false);
+			hooks.emit('onmousedown', false);
 		}
 		function onmouseup(e) {
 			buttons[e.button] = MOUSE.UP;
-			hooks.call('onmouseup', false);
+			hooks.emit('onmouseup', false);
 		}
 		function onwheel(e) {
 			wheel = e.deltaY < 0 ? 1 : -1;
@@ -74,7 +74,7 @@ namespace app {
 			touchStart = [e.pageX, e.pageY];
 			pos[0] = e.pageX;
 			pos[1] = e.pageY;
-			hooks.call('onmousedown', false);
+			hooks.emit('onmousedown', false);
 			//if (app.mobile)
 			//	glob.win_propagate_events(e);
 			//buttons[2] = MOUSE.UP;
@@ -92,14 +92,14 @@ namespace app {
 			//if (app.mobile)
 			//	glob.win_propagate_events(e);
 			e.preventDefault();
-			hooks.call('onmousemove', false);
+			hooks.emit('onmousemove', false);
 			return false;
 		}
 		function ontouchend(e) {
 			//message("ontouchend");
 			const touchEnd: vec2 = [e.pageX, e.pageY];
 			buttons[0] = MOUSE.UP;
-			hooks.call('onmouseup', false);
+			hooks.emit('onmouseup', false);
 			//buttons[2] = MOUSE.UP;
 
 			if (pts.equals(touchEnd, touchStart) /*&& buttons[2] != MOUSE.STILL*/) {
@@ -154,7 +154,7 @@ namespace app {
 		//	delta = 1 / 10;
 		last = current;
 		rpg.step();
-		hooks.call('animationFrame', false);
+		hooks.emit('animationFrame', false);
 		wheel = 0;
 		process_keys();
 		process_mouse_buttons();

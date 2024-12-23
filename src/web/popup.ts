@@ -1,13 +1,14 @@
-import aabb2 from "./aabb2.js"
-import app from "./app.js"
-import hooks from "./hooks.js"
-import pts from "./pts.js"
+import aabb2 from "../lib/aabb2.js"
+import app from "../app.js"
+import { hooks } from "../lib/hooks.js"
+import pts from "../lib/pts.js"
 
 interface options {
 	class: string
 	title: string
 	zIndex: number
 	hasClose?: boolean
+	hasMax?: boolean
 	hasMin?: boolean
 	onclose?: () => any
 }
@@ -32,55 +33,53 @@ class popup {
 	drag: vec2 = [0, 0]
 	dragging = false
 	minimized = false
-	window
+	popup
 	title_bar
 	content
 	content_inner
 	title_drag
-	min
 	close
+	min
 	index = 0
 	onmousemove
 	onmouseup
 	constructor(public options: options) {
 		popups.push(this);
-		this.window = document.createElement('x-window');
-		this.window.classList.add(options.class);
-		this.window.style.zIndex = options.zIndex;
-		this.window.innerHTML = `
+		this.popup = document.createElement('x-popup');
+		this.popup.classList.add(options.class);
+		this.popup.style.zIndex = options.zIndex;
+		this.popup.innerHTML = `
 			<x-title-bar>
 				<x-title-bar-inner>
 					<x-title>
 						- ${options.title} -
 					</x-title>
 					<x-button data-a="min" title="minimize">
-						<x-button-one>
+						<x-button-grad>
 							<x-button-inner>
 								-
 							<!-- &#8964; -->
 							</x-button-inner>
-						</x-button-one>
+						</x-button-grad>
 					</x-button>
 					<x-button data-a="close" title="close">
-						<x-button-one>
+						<x-button-grad>
 							<x-button-inner>
 								x
 							</x-button-inner>
-						</x-button-one>
-
+						</x-button-grad>
 					</x-button>
 				</x-title-bar-inner>
 			</x-title-bar>
-			<x-window-content>
-				<x-window-content-inner>
-					
-				</x-window-content-inner>
-			</x-window-content>
+			<x-popup-content>
+				<x-popup-content-inner>
+				</x-popup-content-inner>
+			</x-popup-content>
 		`;
-		this.title_bar = this.window.querySelector('x-title-bar');
-		this.content = this.window.querySelector('x-window-content');
-		this.content_inner = this.window.querySelector('x-window-content x-window-content-inner');
-		this.title_drag = this.window.querySelector('x-title-bar x-title');
+		this.title_bar = this.popup.querySelector('x-title-bar');
+		this.content = this.popup.querySelector('x-popup-content');
+		this.content_inner = this.popup.querySelector('x-popup-content x-popup-content-inner');
+		this.title_drag = this.popup.querySelector('x-title-bar x-title');
 		this.onmouseup = (e) => {
 			this.dragging = false;
 			this.title_bar.classList.remove('dragging');
@@ -99,8 +98,8 @@ class popup {
 				this.reposition();
 			}
 		}
-		hooks.register('onmouseup', this.onmouseup);
-		hooks.register('onmousemove', this.onmousemove);
+		hooks.addListener('onmouseup', this.onmouseup);
+		hooks.addListener('onmousemove', this.onmousemove);
 		this.title_bar.onmousedown = this.title_bar.ontouchstart = (e) => {
 			let pos: vec2 = app.mouse();
 			if (e.clientX) {
@@ -116,12 +115,12 @@ class popup {
 			this.dragging = true;
 			popup.handle_on_top(this);
 		}
-		this.close = this.window.querySelector('x-button[data-a="close"]');
+		this.close = this.popup.querySelector('x-button[data-a="close"]');
 		if (this.close)
 			this.close.onclick = () => {
 				this.destroy();
 			}
-		this.min = this.window.querySelector('x-button[data-a="min"]');
+		this.min = this.popup.querySelector('x-button[data-a="min"]');
 		if (this.min)
 			this.min.onclick = () => {
 				this.toggle_min();
@@ -153,21 +152,21 @@ class popup {
 	}
 	reindex() {
 		const base_index = 2;
-		this.window.style.zIndex = base_index + this.index;
+		this.popup.style.zIndex = base_index + this.index;
 	}
 	reposition() {
 		//console.log('reposition popup');
-		this.window.style.top = this.pos[1];
-		this.window.style.left = this.pos[0];
+		this.popup.style.top = this.pos[1];
+		this.popup.style.left = this.pos[0];
 	}
 	attach() {
 		const destination = document.querySelector('x-main-area');
-		destination?.append(this.window);
+		destination?.append(this.popup);
 	}
 	destroy() {
-		hooks.unregister('onmousemove', this.onmousemove);
-		hooks.unregister('onmouseup', this.onmouseup);
-		this.window.remove();
+		hooks.removeListener('onmousemove', this.onmousemove);
+		hooks.removeListener('onmouseup', this.onmouseup);
+		this.popup.remove();
 		popups.splice(popups.indexOf(this), 1);
 		this.options.onclose?.();
 	}

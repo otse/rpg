@@ -1,5 +1,5 @@
 import app from "./app.js";
-import popup from "./popup.js";
+import popup from "./web/popup.js";
 import view from "./view.js";
 
 namespace main {
