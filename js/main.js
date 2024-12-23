@@ -3,7 +3,7 @@ var main;
     let content_inner;
     function init() {
         console.log(' init ');
-        content_inner = document.querySelector('x-window.persist x-window-content-inner');
+        content_inner = document.querySelector('x-popup.persist x-popup-content-inner');
         console.log('content inner', content_inner);
         rewrite();
     }

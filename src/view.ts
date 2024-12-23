@@ -21,6 +21,8 @@ class view {
 					break;
 			}
 		};
+		console.log(' woo');
+		
 		this.dropdown = new dropdown({
 			class: 'view',
 			button: 'View',
