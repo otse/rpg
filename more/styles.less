@@ -1,11 +1,17 @@
 /* lessc styles.less styles.css */
 
-@import url('https://fonts.googleapis.com/css2?family=Itim&family=Share+Tech+Mono&family=Space+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Itim');
 
 @import "popup.less";
 
 @fantasy: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/20057bcc-b58c-42d7-84cf-1a511d80e27e/deqmx57-dbdc2ee3-f24e-4a82-83ba-2366fc051713.jpg/v1/fill/w_1024,h_640,q_75,strp/ironwood_forest_by_dvicko_deqmx57-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjQwIiwicGF0aCI6IlwvZlwvMjAwNTdiY2MtYjU4Yy00MmQ3LTg0Y2YtMWE1MTFkODBlMjdlXC9kZXFteDU3LWRiZGMyZWUzLWYyNGUtNGE4Mi04M2JhLTIzNjZmYzA1MTcxMy5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.1pC-W97sTE1tis9LQHeAAKiVWHvHwUUcZvHyRmEN4uw');
 @title-bar-background: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
+
+.eagle-lake-regular {
+	font-family: "Eagle Lake", serif;
+	font-weight: 400;
+	font-style: normal;
+}
 
 body {
 	overflow: hidden;
@@ -36,7 +42,6 @@ x-main-area {
 	max-height: 700px;
 	width: 100%;
 	height: 100%;
-	font-family: 'Playfair Display', serif;
 	font-family: 'Itim', cursive;
 	font-size: 16px;
 	bborder: 1px solid grey;
@@ -59,6 +64,12 @@ x-top-area {
 	x-windows {
 		position: relative;
 	}
+}
+
+x-logo {
+	color: black;
+	text-shadow: 0 0 1px white;
+	bborder: 2px outset #eeeeee;
 }
 
 x-top-bar {
@@ -278,7 +289,7 @@ x-tab-content {
 }
 
 @faint-blue: rgb(124 128 131 / 90%);
-@faint-white: rgb(149 149 149 / 90%); 
+@faint-white: rgb(149 149 149 / 90%);
 
 x-button-wood {
 	color: #e0e0e0;
@@ -386,4 +397,3 @@ x-dialog {
 		justify-content: space-between;
 	}
 }
-
