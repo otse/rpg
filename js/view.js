@@ -1,5 +1,6 @@
 import character from "./web/character.js";
 import dropdown from "./web/dropdown.js";
+import intro from "./web/intro.js";
 import third from "./web/terminal.js";
 import world_map from "./web/world map.js";
 class view {
@@ -17,6 +18,9 @@ class view {
                 case 2:
                     third.request_popup();
                     break;
+                case 3:
+                    intro.request_popup();
+                    break;
             }
         };
         console.log(' woo');
@@ -26,7 +30,8 @@ class view {
             options: [
                 [0, 'Character'],
                 [1, 'World Map'],
-                [2, 'Terminal']
+                [2, 'Terminal'],
+                [3, 'Intro']
             ],
             handler: handler
         });
