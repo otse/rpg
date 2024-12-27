@@ -75,7 +75,7 @@ class world_map {
     }
     static register() {
         console.log('register rpgStep');
-        hooks.addListener('rpgStep', world_map.step);
+        hooks.addListener('wcrpgStep', world_map.step);
     }
     constructor() {
         console.log(world_map.pos);

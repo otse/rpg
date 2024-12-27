@@ -1,17 +1,17 @@
 /* lessc styles.less styles.css */
 @font-face {
+  font-family: 'Eagle Lake';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/eaglelake/v24/ptRMTiqbbuNJDOiKj9wG5O4.ttf) format('truetype');
+}
+@font-face {
   font-family: 'Itim';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/itim/v14/0nknC9ziJOYewAQ.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Jacquard 12';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/jacquard12/v6/vm8ydRLuXETEweL79J4rGc3J.ttf) format('truetype');
 }
 x-popup {
   position: absolute;
@@ -20,7 +20,7 @@ x-popup {
   box-sizing: border-box;
   color: #e6e6e6;
   border-radius: 3px;
-  box-shadow: 0 0 4px #1f1f1f;
+  box-shadow: 0 0 8px #474747;
   display: flex;
   flex-direction: column;
 }
@@ -35,7 +35,7 @@ x-popup.persist {
 x-popup.persist x-title-bar {
   bbackground: url(img/titlebar.png);
 }
-x-popup.character x-popup-content {
+x-popup.character x-popup-content-outer {
   height: 100px;
 }
 x-popup.terminal {
@@ -46,7 +46,7 @@ x-popup.terminal x-title-bar {
   bbackground-position: -5px -5px;
   bbackground-size: 100%;
 }
-x-popup.terminal x-popup-content {
+x-popup.terminal x-popup-content-outer {
   bborder: 0;
 }
 x-popup.terminal x-popup-content-inner {
@@ -60,7 +60,7 @@ x-popup.world-map x-title-bar {
   bbackground-size: 100%;
   bbackground-position: 0 71px;
 }
-x-popup.world-map x-popup-content {
+x-popup.world-map x-popup-content-outer {
   hheight: 300px;
   bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/114867/WoodPlanksOld0024_5_download600.jpg);
 }
@@ -109,7 +109,7 @@ x-popup x-title-bar x-title-bar-inner x-button {
   font-weight: bold;
   text-decoration: underline;
   text-wrap: nowrap;
-  border: 1px outset #ededed;
+  border: 1px outset #ddd;
   border-radius: 5px;
   background: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg');
   background-attachment: local;
@@ -155,7 +155,7 @@ x-popup x-top t-text {
   border-radius: 3px;
   text-decoration: underline;
 }
-x-popup x-popup-content {
+x-popup x-popup-content-outer {
   color: #dbdbdb;
   color: #272727;
   ttext-shadow: 0 0 2px #363636;
@@ -171,7 +171,7 @@ x-popup x-popup-content {
   /* padding: 10px; */
   display: flex;
 }
-x-popup x-popup-content x-popup-content-inner {
+x-popup x-popup-content-outer x-popup-content-inner {
   width: 100%;
   height: 100%;
   padding: 6px;
@@ -180,13 +180,13 @@ x-popup x-popup-content x-popup-content-inner {
   display: flex;
   flex-direction: column;
 }
-x-popup x-popup-content x-relative {
+x-popup x-popup-content-outer x-relative {
   /* width: inherit; */
   /* height: inherit; */
   position: relative;
   display: flex;
 }
-x-popup x-popup-content x-overlay {
+x-popup x-popup-content-outer x-overlay {
   display: none;
   z-index: 1;
   position: absolute;
@@ -198,7 +198,7 @@ x-popup x-popup-content x-overlay {
   font-family: monospace;
   /* text-shadow: 0 0 1px black; */
 }
-x-popup x-popup-content x-world-map {
+x-popup x-popup-content-outer x-world-map {
   -webkit-user-drag: none;
   cursor: grab;
   border: 2px solid rgba(255, 255, 255, 0.05);
@@ -208,18 +208,18 @@ x-popup x-popup-content x-world-map {
   position: relative;
   overflow: scroll;
 }
-x-popup x-popup-content x-world-map svg {
+x-popup x-popup-content-outer x-world-map svg {
   position: absolute;
   left: 0;
   top: 0;
 }
-x-popup x-popup-content x-world-map x-world-map-scaler {
+x-popup x-popup-content-outer x-world-map x-world-map-scaler {
   width: 100%;
   height: 100%;
   position: relative;
   display: block;
 }
-x-popup x-popup-content x-world-map x-world-map-graphic {
+x-popup x-popup-content-outer x-world-map x-world-map-graphic {
   position: absolute;
   width: 2048px;
   height: 1536px;
@@ -227,12 +227,12 @@ x-popup x-popup-content x-world-map x-world-map-graphic {
   background-size: 100%;
   display: flex;
 }
-x-popup x-popup-content x-world-map x-region {
+x-popup x-popup-content-outer x-world-map x-region {
   cursor: pointer;
   position: absolute;
   display: flex;
 }
-x-popup x-popup-content x-world-map x-place {
+x-popup x-popup-content-outer x-world-map x-place {
   cursor: pointer;
   position: absolute;
   color: white;
@@ -241,14 +241,14 @@ x-popup x-popup-content x-world-map x-place {
   display: flex;
   justify-content: center;
 }
-x-popup x-popup-content x-world-map x-place.selected {
+x-popup x-popup-content-outer x-world-map x-place.selected {
   ccolor: black;
   text-decoration: underline;
 }
-x-popup x-popup-content x-world-map x-place.large {
+x-popup x-popup-content-outer x-world-map x-place.large {
   font-size: 20px;
 }
-x-popup x-popup-content x-world-map x-flag {
+x-popup x-popup-content-outer x-world-map x-flag {
   z-index: 1;
   position: absolute;
   background: url(img/flag.png);
@@ -258,10 +258,10 @@ x-popup x-popup-content x-world-map x-flag {
   margin: -20px -3px;
   display: flex;
 }
-x-popup x-popup-content x-world-map.dragging {
+x-popup x-popup-content-outer x-world-map.dragging {
   cursor: grabbing;
 }
-x-popup x-popup-content x-world-map::-webkit-scrollbar-thumb {
+x-popup x-popup-content-outer x-world-map::-webkit-scrollbar-thumb {
   background: #979797;
   border-radius: 3px;
 }
@@ -358,6 +358,92 @@ x-action-bar x-slot x-inner img {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+}
+x-popup.slideshow {
+  width: 600px;
+}
+x-popup.slideshow x-title-bar {
+  background: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
+}
+x-popup.slideshow x-popup-content-outer {
+  bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/114867/WoodPlanksOld0024_5_download600.jpg);
+}
+x-popup.slideshow x-popup-content-inner {
+  padding: 0;
+}
+x-popup.slideshow x-button {
+  bbackground: url(https://www.textures.com/system/gallery/photos/Rock/Sediment/50909/RockSediment0034_1_download600.jpg);
+}
+x-popup.slideshow x-slide {
+  display: flex;
+}
+x-slides {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+x-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: gray;
+  /* @keyframes duration | easing-function | delay |
+iteration-count | direction | fill-mode | play-state | name */
+  animation: 10s ease-out 0s both zooms;
+  animation-duration: 10;
+  animation-timing-function: ease-out;
+  box-sizing: border-box;
+  padding: 30px 20px;
+  color: white;
+  text-shadow: 0 0 5px darkred;
+  text-align: center;
+  font-family: "Eagle Lake", serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+@keyframes slide-bottom {
+  from {
+    background-size: 130%;
+    background-position: 50% 100%;
+  }
+  to {
+    background-size: 100%;
+    background-position: 50% 0%;
+  }
+}
+@keyframes slide-fall {
+  from {
+    background-size: 150%;
+    background-position: 66% 0%;
+  }
+  to {
+    background-size: 100%;
+    background-position: 50% 50%;
+  }
+}
+@keyframes slide-zoom {
+  from {
+    background-size: 140%;
+    background-position: 50% 50%;
+  }
+  to {
+    background-size: 100%;
+    background-position: 50% 50%;
+  }
+}
+@keyframes slide-left {
+  from {
+    background-size: 120%;
+    background-position: 100% 50%;
+  }
+  to {
+    background-size: 100%;
+    background-position: 0% 50%;
+  }
 }
 body {
   overflow: hidden;

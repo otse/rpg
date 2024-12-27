@@ -8,10 +8,12 @@ class third {
 			third.popup = new popup({
 				class: 'terminal',
 				title: 'Terminal',
+				hasClose: true,
+				hasMin: false,
 				zIndex: 2,
 				onclose: () => { third.popup = undefined }
 			});
-			third.popup.content_inner.innerHTML = `
+			third.popup.content.innerHTML = `
 				The computer buzzes monotonously.
 				<x-terminal>
 				<x-terminal-inner>

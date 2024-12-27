@@ -75,17 +75,19 @@ class world_map {
     }
     static register() {
         console.log('register rpgStep');
-        hooks.addListener('rpgStep', world_map.step);
+        hooks.addListener('wcrpgStep', world_map.step);
     }
     constructor() {
         console.log(world_map.pos);
         this.popup = new popup({
             class: 'world-map',
             title: 'World Map',
+            hasMin: true,
+            hasClose: true,
             zIndex: 2,
             onclose: () => { world_map.instance = undefined; this.destroy(); }
         });
-        this.popup.content_inner.innerHTML = `
+        this.popup.content.innerHTML = `
 			<x-top>
 				<x-text>
 					Selected: None
@@ -104,12 +106,12 @@ class world_map {
 				</x-world-map>
 			</x-relative>
 		`;
-        this.x_text = this.popup.content_inner.querySelector('x-text');
-        this.x_overlay = this.popup.content_inner.querySelector('x-overlay');
-        this.x_controls = this.popup.content_inner.querySelector('x-controls');
-        this.world_map = this.popup.content_inner.querySelector('x-world-map');
-        this.world_map_scaler = this.popup.content_inner.querySelector('x-world-map-scaler');
-        this.world_map_graphic = this.popup.content_inner.querySelector('x-world-map-graphic');
+        this.x_text = this.popup.content.querySelector('x-text');
+        this.x_overlay = this.popup.content.querySelector('x-overlay');
+        this.x_controls = this.popup.content.querySelector('x-controls');
+        this.world_map = this.popup.content.querySelector('x-world-map');
+        this.world_map_scaler = this.popup.content.querySelector('x-world-map-scaler');
+        this.world_map_graphic = this.popup.content.querySelector('x-world-map-graphic');
         /*this.world_map.ontouchmove = (e) => {
             e.preventDefault();
         }*/

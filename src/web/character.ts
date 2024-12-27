@@ -8,10 +8,12 @@ class character {
             character.popup = new popup({
                 class: 'character',
                 title: 'Character',
+                hasMin: true,
+                hasClose: true,
                 zIndex: 2,
                 onclose: () => { character.popup = undefined }
             });
-            character.popup.content_inner.innerHTML = `
+            character.popup.content.innerHTML = `
 				Strength: 10
 			`;
             character.popup.attach();

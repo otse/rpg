@@ -1,7 +1,7 @@
 import app from "./app.js";
 import character from "./web/character.js";
 import dropdown from "./web/dropdown.js";
-import intro from "./web/intro.js";
+import slideshow from "./web/slideshow.js";
 import third from "./web/terminal.js";
 import world_map from "./web/world map.js";
 
@@ -21,7 +21,7 @@ class view {
 					third.request_popup();
 					break;
 				case 3:
-					intro.request_popup();
+					slideshow.request_popup();
 					break;
 			}
 		};

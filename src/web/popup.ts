@@ -35,8 +35,8 @@ class popup {
 	minimized = false
 	popup
 	title_bar
+	content_outer
 	content
-	content_inner
 	title_drag
 	close
 	min
@@ -71,14 +71,14 @@ class popup {
 					</x-button>
 				</x-title-bar-inner>
 			</x-title-bar>
-			<x-popup-content>
+			<x-popup-content-outer>
 				<x-popup-content-inner>
 				</x-popup-content-inner>
-			</x-popup-content>
+			</x-popup-content-outer>
 		`;
 		this.title_bar = this.popup.querySelector('x-title-bar');
-		this.content = this.popup.querySelector('x-popup-content');
-		this.content_inner = this.popup.querySelector('x-popup-content x-popup-content-inner');
+		this.content_outer = this.popup.querySelector('x-popup-content-outer');
+		this.content = this.popup.querySelector('x-popup-content-outer x-popup-content-inner');
 		this.title_drag = this.popup.querySelector('x-title-bar x-title');
 		this.onmouseup = (e) => {
 			this.dragging = false;
@@ -88,7 +88,7 @@ class popup {
 			if (this.dragging) {
 				this.pos = pts.subtract(app.mouse(), this.drag_start);
 				let us = new aabb2([0, 0], [this.title_bar.clientWidth, this.title_bar.clientHeight]);
-				us.translate(this.pos);				
+				us.translate(this.pos);
 				const destination = document.querySelector('x-main-area')!;
 				let bound = new aabb2([0, 0], [destination.clientWidth, destination.clientHeight]);
 				const test = bound.test(us);
@@ -126,7 +126,11 @@ class popup {
 				this.toggle_min();
 				popup.handle_on_top(this);
 			}
-		this.content.onclick = () => {
+		if (!this.options.hasClose)
+			this.close.remove();
+		if (!this.options.hasMin)
+			this.min.remove();
+		this.content_outer.onclick = () => {
 			popup.handle_on_top(this);
 		}
 		popup.handle_on_top(this);
@@ -173,11 +177,11 @@ class popup {
 	toggle_min() {
 		this.minimized = !this.minimized;
 		if (this.minimized) {
-			this.content.style.display = 'none';
+			this.content_outer.style.display = 'none';
 			//this.min.querySelector('x-button-inner').innerHTML = '+';
 		}
 		else {
-			this.content.style.display = 'flex';
+			this.content_outer.style.display = 'flex';
 			//this.min.querySelector('x-button-inner').innerHTML = '-';
 		}
 	}

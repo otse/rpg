@@ -4,6 +4,7 @@ import main from "./main.js";
 import popup from "./web/popup.js";
 import view from "./view.js";
 import world_map from "./web/world map.js";
+import slideshow from "./web/slideshow.js";
 
 // fantasy:
 // https://www.artstation.com/artwork/Z580PG
@@ -28,6 +29,7 @@ namespace rpg {
 		console.log(' init ');
 		
 		world_map.init();
+		slideshow.init();
 		popup.init();
 		main.init();
 		app;
@@ -36,10 +38,9 @@ namespace rpg {
 
 	}
 
-	export function step() {		
-		hooks.emit('rpgStep', 0);
+	export function step() {
+		hooks.emit('wcrpgStep', 0);
 	}
-
 	
 }
 

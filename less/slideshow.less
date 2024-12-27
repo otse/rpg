@@ -1,0 +1,103 @@
+x-popup {
+	&.slideshow {
+		width: 600px;
+
+		x-title-bar {
+			background: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
+		}
+
+		x-popup-content-outer {
+			bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/114867/WoodPlanksOld0024_5_download600.jpg);
+		}
+
+		x-popup-content-inner {
+			padding: 0;
+		}
+
+		x-button {
+			bbackground: url(https://www.textures.com/system/gallery/photos/Rock/Sediment/50909/RockSediment0034_1_download600.jpg);
+		}
+
+		x-slide {
+			display: flex;
+		}
+	}
+}
+
+x-slides {
+	position: relative;
+	width: 100%;
+	height: 300px;
+}
+
+x-slide {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: gray;
+	/* @keyframes duration | easing-function | delay |
+iteration-count | direction | fill-mode | play-state | name */
+	animation: 10s ease-out 0s both zooms;
+	animation-duration: 10;
+	animation-timing-function: ease-out;
+	box-sizing: border-box;
+	padding: 30px 20px;
+	color: white;
+	text-shadow: 0 0 5px darkred;
+	text-align: center;
+	font-family: "Eagle Lake", serif;
+	font-size: 14px;
+	font-weight: 400;
+	font-style: normal;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+@keyframes slide-bottom {
+	from {
+		background-size: 130%;
+		background-position: 50% 100%;
+	}
+
+	to {
+		background-size: 100%;
+		background-position: 50% 0%;
+	}
+}
+
+@keyframes slide-fall {
+	from {
+		background-size: 150%;
+		background-position: 66% 0%;
+	}
+
+	to {
+		background-size: 100%;
+		background-position: 50% 50%;
+	}
+}
+
+@keyframes slide-zoom {
+	from {
+		background-size: 140%;
+		background-position: 50% 50%;
+	}
+
+	to {
+		background-size: 100%;
+		background-position: 50% 50%;
+	}
+}
+
+@keyframes slide-left {
+	from {
+		background-size: 120%;
+		background-position: 100% 50%;
+	}
+
+	to {
+		background-size: 100%;
+		background-position: 0% 50%;
+	}
+}

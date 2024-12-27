@@ -5,7 +5,7 @@ x-popup {
 	box-sizing: border-box;
 	color: #e6e6e6;
 	border-radius: 3px;
-	box-shadow: 0 0 4px #1f1f1f;
+	box-shadow: 0 0 8px #474747;
 	display: flex;
 	flex-direction: column;
 
@@ -23,7 +23,7 @@ x-popup {
 	}
 
 	&.character {
-		x-popup-content {
+		x-popup-content-outer {
 			height: 100px;
 		}
 	}
@@ -37,7 +37,7 @@ x-popup {
 			bbackground-size: 100%;
 		}
 
-		x-popup-content {
+		x-popup-content-outer {
 			bborder: 0;
 		}
 
@@ -55,7 +55,7 @@ x-popup {
 			bbackground-position: 0 71px;
 		}
 
-		x-popup-content {
+		x-popup-content-outer {
 			hheight: 300px;
 			bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/114867/WoodPlanksOld0024_5_download600.jpg);
 		}
@@ -109,7 +109,7 @@ x-popup {
 				font-weight: bold;
 				text-decoration: underline;
 				text-wrap: nowrap;
-				border: 1px outset #ededed;
+				border: 1px outset #ddd;
 				border-radius: 5px;
 				background: @title-bar-background;
 				background-attachment: local;
@@ -168,7 +168,7 @@ x-popup {
 		}
 	}
 
-	x-popup-content {
+	x-popup-content-outer {
 		color: #dbdbdb;
 		color: #272727;
 		ttext-shadow: 0 0 2px #363636;

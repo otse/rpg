@@ -4,6 +4,7 @@ import main from "./main.js";
 import popup from "./web/popup.js";
 import view from "./view.js";
 import world_map from "./web/world map.js";
+import slideshow from "./web/slideshow.js";
 // fantasy:
 // https://www.artstation.com/artwork/Z580PG
 // https://www.artstation.com/artwork/GXnEN3
@@ -25,6 +26,7 @@ var rpg;
     function init() {
         console.log(' init ');
         world_map.init();
+        slideshow.init();
         popup.init();
         main.init();
         app;
@@ -32,7 +34,7 @@ var rpg;
     }
     rpg.init = init;
     function step() {
-        hooks.emit('rpgStep', 0);
+        hooks.emit('wcrpgStep', 0);
     }
     rpg.step = step;
 })(rpg || (rpg = {}));
