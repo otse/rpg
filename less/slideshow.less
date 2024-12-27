@@ -3,7 +3,7 @@ x-popup {
 		width: 600px;
 
 		x-title-bar {
-			background: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
+			bbackground: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
 		}
 
 		x-popup-content-outer {
@@ -28,6 +28,7 @@ x-slides {
 	position: relative;
 	width: 100%;
 	height: 300px;
+	background: black;
 }
 
 x-slide {
@@ -54,6 +55,16 @@ iteration-count | direction | fill-mode | play-state | name */
 	align-items: flex-end;
 }
 
+@keyframes slide-fade {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
 @keyframes slide-bottom {
 	from {
 		background-size: 130%;
@@ -78,6 +89,18 @@ iteration-count | direction | fill-mode | play-state | name */
 	}
 }
 
+@keyframes slide-top-to-bottom {
+	from {
+		background-size: 100%;
+		background-position: 0% 0%;
+	}
+
+	to {
+		background-size: 100%;
+		background-position: 0% 100%;
+	}
+}
+
 @keyframes slide-zoom {
 	from {
 		background-size: 140%;
@@ -92,12 +115,24 @@ iteration-count | direction | fill-mode | play-state | name */
 
 @keyframes slide-left {
 	from {
-		background-size: 120%;
+		background-size: 130%;
 		background-position: 100% 50%;
 	}
 
 	to {
 		background-size: 100%;
 		background-position: 0% 50%;
+	}
+}
+
+@keyframes slide-shadow-king {
+	from {
+		background-size: 160%;
+		background-position: 80% 0%;
+	}
+
+	to {
+		background-size: 110%;
+		background-position: 60% 20%;
 	}
 }
