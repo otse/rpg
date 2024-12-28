@@ -81,6 +81,8 @@ class world_map {
 	static request_popup() {
 		if (!world_map.instance) {
 			world_map.instance = new world_map;
+			world_map.instance.popup.pos = [0, 30];
+			world_map.instance.popup.reposition();
 		}
 		else {
 			world_map.instance.popup.pos = [0, 0];

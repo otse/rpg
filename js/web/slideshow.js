@@ -1,30 +1,31 @@
 import app from "../app.js";
 import { hooks } from "../lib/hooks.js";
 import popup from "./popup.js";
+const dev_mode = false;
 const slides = [
     ['next', 'temples1.gif', 'slide-zoom', 8, 'it is a dark age of magic...'] // and <x>cultural decline...</x>
     ,
-    ['next', 'king1.gif', 'slide-zoom', 8, 'the king has ordered its court to <x>research necromancy</x> while also <x>banning magic</x> and <x>promoting paganism...</x>']
+    ['next', 'king1.gif', 'slide-zoom', 8, 'the king has ordered its court to research necromancy while also <x>banning magic</x> and promoting paganism...']
     // , ['only', 'paladins.gif', 'slide-bottom', 5, 'its paladins, healers and temples are allowed to cast spells']
     //, ['next', 'exiles2.gif', 'slide-bottom', 5, 'commoners are exiled']
     //, ['next', 'grimoire.gif', 'slide-left', 5, 'grimoires are destroyed']
     // , ['next', 'siege3.gif', 'slide-bottom', 4, 'holds turn into factions']
     ,
-    ['next', 'castle1.gif', 'slide-bottom', 8, 'holds who <x>rely on magic</x> to defend borders <x>turn into factions</x>'],
-    ['next', 'arguing1.gif', 'slide-zoom', 5, 'a gathering of <x>wizards</x> hold council and call for peace'],
+    ['next', 'castle1.gif', 'slide-bottom', 8, 'holds who rely on magic to defend borders turn into factions'],
+    ['next', 'arguing1.gif', 'slide-zoom', 5, 'a gathering of wizards hold council and call for peace'],
     ['keep', '', 'slide-zoom', 5, 'and at their insistence the king stands down...']
     //, ['next', 'defeat2.gif', 'slide-bottom', 6, 'but contained within him was a dark corruption...']
     ,
-    ['next', 'wanderer6.gif', 'slide-shadow-king', 5, 'becoming a shadow...'],
-    ['keep', '', 'slide-bottom', 5, 'leaving corruption in his wake...'],
-    ['next', 'book2.gif', 'slide-bottom', 8, 'magic was <x>free again</x> but remained an obscure subject...']
+    ['next', 'wanderer6.gif', 'slide-shadow-king', 5, 'he became a ragged shadow...'],
+    ['keep', '', 'slide-bottom', 5, 'seeding corruption in his wake...']
+    // , ['next', 'book2.gif', 'slide-bottom', 8, 'magic was free again but remained an obscure subject...']
     // , ['keep', '', 'slide-bottom', 4, 'but with its poor sources remained obscure...']
     ,
     ['next', 'coldwar1.gif', 'slide-zoom', 8, 'without a king <x>a cold war begins</x> with factions clashing in politics and secretive research']
     // , ['next', 'orcs3.gif', 'slide-bottom', 9, 'orcs launch skirmishes against the weakened kingdom']
     ,
-    ['next', 'shroom.gif', 'slide-top-to-bottom', 10, 'druids use the <x>world shroom</x> to reinvigorate the kingdom'],
-    ['next', 'foresee5.gif', 'slide-zoom', 5, 'one day one of the <x>wizards</x> realizes the true nature of the wanderer'],
+    ['next', 'shroom.gif', 'slide-top-to-bottom', 10, 'druids use the world shroom to reinvigorate the kingdom'],
+    ['next', 'foresee5.gif', 'slide-zoom', 5, 'one day one of the wizards realizes the true nature of the wanderer'],
     ['keep', '', 'slide-bottom', 5, 'and <x>summons a fellowship</x> to go after him...']
 ];
 class slideshow {
@@ -56,8 +57,9 @@ class slideshow {
         this.slides = this.popup.content.querySelector('x-slides');
         this.popup.attach();
         hooks.addListener('wcrpgStep', slideshow.step);
-        //this.slide = 0;
-        //this._create_new_slide();
+        if (!dev_mode) {
+            this.new_slide();
+        }
     }
     destroy() {
         //hooks.addListener('onmousemove', this.onmousemove);
@@ -71,6 +73,8 @@ class slideshow {
     static request_popup() {
         if (!slideshow.instance) {
             slideshow.instance = new slideshow;
+            slideshow.instance.popup.pos = [0, 60];
+            slideshow.instance.popup.reposition();
         }
         else {
             slideshow.instance.popup.pos = [0, 0];
@@ -103,6 +107,10 @@ class slideshow {
     new_slide() {
         if (this.slide >= slides.length - 1)
             return;
+        if (!this.started) {
+            this.started = true;
+            this.slides.innerHTML = ``;
+        }
         this.slide++;
         this.oldSlide = this.currentSlide;
         this._create_new_slide();
@@ -118,10 +126,6 @@ class slideshow {
     }
     async step() {
         if (app.key(' ') == 1) {
-            if (!this.started) {
-                this.started = true;
-                this.slides.innerHTML = ``;
-            }
             clearTimeout(this.timeout);
             this.new_slide();
         }
