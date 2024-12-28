@@ -22,14 +22,13 @@
 }
 /* @title-bar-background: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg'); */
 x-popup {
-  font-family: "Macondo", serif;
   position: absolute;
   top: 300px;
   width: 300px;
   box-sizing: border-box;
   color: #e6e6e6;
   border-radius: 3px;
-  box-shadow: 0 0 8px #474747;
+  bbox-shadow: 0 0 1px #fff;
   display: flex;
   flex-direction: column;
 }
@@ -84,8 +83,7 @@ x-popup x-title-bar {
   border-bottom: none;
   border-radius: 3px 3px 0 0;
   display: flex;
-  filter: contrast(130%);
-  ffilter: drop-shadow(16px 16px 20px red);
+  ffilter: contrast(140%);
 }
 x-popup x-title-bar.dragging {
   bbackground: url(img/titlebar.png);
@@ -98,30 +96,29 @@ x-popup x-title-bar x-title-bar-inner {
   width: 100%;
   border-radius: 3px;
   background: rgba(214, 214, 214, 0.3);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(126, 126, 126, 0) 100%);
   display: flex;
 }
 x-popup x-title-bar x-title-bar-inner x-title {
-  text-transform: lowercase;
+  ttext-transform: lowercase;
   cursor: grab;
   width: 100%;
   ttext-shadow: 0px 0px 4px #757575;
-  padding: 0 30px;
+  padding: 0 20px;
   lletter-spacing: -2px;
-  border: 4px outset rgba(255, 255, 255, 0.5);
-  border-radius: 3px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(126, 126, 126, 0.2) 100%);
+  border: 2px outset rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
   bbox-shadow: inset 0 0 5px rgba(8, 22, 35, 0.5);
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
 x-popup x-title-bar x-title-bar-inner x-button {
-  ffont-family: Itim;
+  font-family: Itim;
   cursor: pointer;
   font-weight: bold;
   ttext-decoration: underline;
   text-wrap: nowrap;
-  border: 1px outset #e1e1e1;
+  border: 1px outset #ececec;
   border-radius: 6px;
   background: url('img/titlebar.gif');
   background-attachment: local;
@@ -134,7 +131,7 @@ x-popup x-title-bar x-title-bar-inner x-button x-button-grad {
   width: inherit;
   height: inherit;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(126, 126, 126, 0.2) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(126, 126, 126, 0) 100%);
   box-shadow: inset 0 0 4px #acacac;
   /* backdrop-filter: blur(1px); */
   display: flex;
@@ -143,7 +140,7 @@ x-popup x-title-bar x-title-bar-inner x-button x-button-grad x-button-inner {
   width: inherit;
   height: inherit;
   box-sizing: border-box;
-  border: 5px outset rgba(255, 255, 255, 0.6);
+  border: 5px outset rgba(255, 255, 255, 0.9);
   ttext-shadow: 0px 0px 2px #3d3800;
   border-radius: inherit;
   padding: 0 9px;
@@ -153,7 +150,7 @@ x-popup x-title-bar x-title-bar-inner x-button x-button-grad x-button-inner {
   align-items: center;
 }
 x-popup x-title-bar x-title-bar-inner x-button[data-a="min"] {
-  /* margin-right: 2px; */
+  margin-right: 1px;
 }
 x-popup x-horz {
   margin: 4px;
@@ -502,6 +499,7 @@ x-slide x-caption x {
   }
 }
 body {
+  font-family: "Macondo", serif;
   overflow: hidden;
   touch-action: none;
   user-select: none;
@@ -530,7 +528,7 @@ x-main-area {
   max-height: 700px;
   width: 100%;
   height: 100%;
-  font-family: 'Itim', cursive;
+  ffont-family: 'Itim', cursive;
   font-size: 16px;
   bborder: 1px solid grey;
   border-radius: 6px;

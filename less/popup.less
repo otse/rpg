@@ -1,16 +1,15 @@
 /* @title-bar-background: url('img/TCom_OrnamentBorder0073_1_seamless_S.jpg'); */
 @title-bar-background: url('img/titlebar.gif');
-@title-bar-grad: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(126, 126, 126, 0.2) 100%);
+@title-bar-grad: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(126, 126, 126, 0.0) 100%);
 
 x-popup {
-	font-family: "Macondo", serif;
 	position: absolute;
 	top: 300px;
 	width: 300px;
 	box-sizing: border-box;
 	color: #e6e6e6;
 	border-radius: 3px;
-	box-shadow: 0 0 8px #474747;
+	bbox-shadow: 0 0 1px #fff;
 	display: flex;
 	flex-direction: column;
 
@@ -78,8 +77,7 @@ x-popup {
 		border-bottom: none;
 		border-radius: 3px 3px 0 0;
 		display: flex;
-		filter: contrast(130%);
-		ffilter: drop-shadow(16px 16px 20px red);
+		ffilter: contrast(140%);
 
 		&.dragging {
 			x-title {
@@ -94,31 +92,30 @@ x-popup {
 			width: 100%;
 			border-radius: 3px;
 			background: rgb(214 214 214 / 30%);
+			background: @title-bar-grad;
 			display: flex;
 
 			x-title {
-				text-transform: lowercase;
+				ttext-transform: lowercase;
 				cursor: grab;
 				width: 100%;
 				ttext-shadow: 0px 0px 4px #757575;
-				padding: 0 30px;
+				padding: 0 20px;
 				lletter-spacing: -2px;
-				border: 4px outset rgba(255, 255, 255, 0.5);
-				border-radius: 3px;
-				background: @title-bar-grad;
+				border: 2px outset rgb(255 255 255 / 50%);
+				border-radius: 6px;
 				bbox-shadow: inset 0 0 5px rgb(8 22 35 / 50%);
 				display: flex;
-				justify-content: center;
-				align-items: flex-end;
+				align-items: center;
 			}
 
 			x-button {
-				ffont-family: Itim;
+				font-family: Itim;
 				cursor: pointer;
 				font-weight: bold;
 				ttext-decoration: underline;
 				text-wrap: nowrap;
-				border: 1px outset #e1e1e1;
+				border: 1px outset #ececec;
 				border-radius: 6px;
 				background: @title-bar-background;
 				background-attachment: local;
@@ -140,7 +137,7 @@ x-popup {
 						width: inherit;
 						height: inherit;
 						box-sizing: border-box;
-						border: 5px outset rgb(255 255 255 / 60%);
+						border: 5px outset rgb(255 255 255 / 90%);
 						ttext-shadow: 0px 0px 2px #3d3800;
 						border-radius: inherit;
 						padding: 0 9px;
@@ -153,7 +150,7 @@ x-popup {
 			}
 
 			x-button[data-a="min"] {
-				/* margin-right: 2px; */
+				margin-right: 1px;
 			}
 
 			x-button[data-a="close"] {}

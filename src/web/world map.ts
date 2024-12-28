@@ -100,7 +100,7 @@ class world_map {
 
 		this.popup = new popup({
 			class: 'world-map',
-			title: 'World Map',
+			title: 'Travel',
 			hasMin: true,
 			hasClose: true,
 			zIndex: 2,
