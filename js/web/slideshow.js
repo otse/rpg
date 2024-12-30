@@ -86,11 +86,11 @@ class slideshow {
         if (slide[0] == 'never')
             return;
         if (slide[0] == 'keep') {
-            this.currentSlide.innerHTML = `<x-caption>${slide[4]}</x-caption>`;
+            this.currentSlide.innerHTML = `<x-caption><span>How now brown cow?${slide[4]}</span></x-caption>`;
         }
         else if (slide[0] == 'next') {
             const newDiv = document.createElement('x-slide');
-            newDiv.innerHTML = `<x-caption>${slide[4]}</x-caption>`;
+            newDiv.innerHTML = `<x-caption><span>${slide[4]}</span></x-caption>`;
             newDiv.style.animation = `10s ease-out 0s both ${slide[2]}`;
             newDiv.style.animation += `, 1s ease-in-out 0s both slide-fade`;
             newDiv.classList.add(slide[2]);

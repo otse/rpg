@@ -54,7 +54,7 @@ class popup {
 					${options.title}
 				</x-title>
 				<x-button data-a="min" title="minimize">
-					-
+					&#9735;
 					<!-- &#8964; -->
 				</x-button>
 				<x-button data-a="close" title="close">
