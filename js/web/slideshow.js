@@ -5,7 +5,7 @@ const dev_mode = false;
 const slides = [
     ['next', 'temples1.gif', 'slide-zoom', 8, 'it is a dark age of magic...'] // and <x>cultural decline...</x>
     ,
-    ['next', 'king1.gif', 'slide-zoom', 8, 'the king has ordered its court to research necromancy while also <x>banning magic</x> and promoting paganism...']
+    ['never', 'king1.gif', 'slide-zoom', 8, 'the king has ordered its court to research necromancy while also <x>banning magic</x> and promoting paganism...']
     // , ['only', 'paladins.gif', 'slide-bottom', 5, 'its paladins, healers and temples are allowed to cast spells']
     //, ['next', 'exiles2.gif', 'slide-bottom', 5, 'commoners are exiled']
     //, ['next', 'grimoire.gif', 'slide-left', 5, 'grimoires are destroyed']

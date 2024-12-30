@@ -50,26 +50,16 @@ class popup {
 		this.popup.style.zIndex = options.zIndex;
 		this.popup.innerHTML = `
 			<x-title-bar>
-				<x-title-bar-inner>
-					<x-title>
-						${options.title}
-					</x-title>
-					<x-button data-a="min" title="minimize">
-						<x-button-grad>
-							<x-button-inner>
-								-
-							<!-- &#8964; -->
-							</x-button-inner>
-						</x-button-grad>
-					</x-button>
-					<x-button data-a="close" title="close">
-						<x-button-grad>
-							<x-button-inner>
-								x
-							</x-button-inner>
-						</x-button-grad>
-					</x-button>
-				</x-title-bar-inner>
+				<x-title>
+					${options.title}
+				</x-title>
+				<x-button data-a="min" title="minimize">
+					-
+					<!-- &#8964; -->
+				</x-button>
+				<x-button data-a="close" title="close">
+					x
+				</x-button>
 			</x-title-bar>
 			<x-popup-content-outer>
 				<x-popup-content-inner>
