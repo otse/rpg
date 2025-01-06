@@ -53,7 +53,7 @@ x-popup {
 	}
 
 	&.world-map {
-		width: 350px;
+		width: 500px;
 
 		x-title-bar {
 			bbackground: url(https://www.textures.com/system/gallery/photos/Ornaments/Borders/38002/OrnamentBorder0076_1_download600.jpg);
@@ -68,13 +68,16 @@ x-popup {
 	}
 
 	x-title-bar {
+		border-image: url(../img/rocks.jpg) 30;
+        border-style: solid;
+        border-width: 1px;
+		
 		color: #cacaca;
 		text-shadow: -3px 0px 2px #000000, 0px 0px 3px rgb(62 62 62);
 
 		background: var(--title-bar-background);
 		background-size: var(--title-bar-background-size);
 		bbackground-position: 0px -380px;
-		border: 3px outset rgb(255 255 255 / 20%);
 		border-bottom: none;
 		border-radius: 3px 3px 0 0;
 		display: flex;
@@ -103,23 +106,22 @@ x-popup {
 		x-button {
 			font-family: Itim;
 			cursor: pointer;
-			bborder: 2px outset rgba(127, 127, 127, 0.5);
+			padding: 0 9px;
 			border-radius: 3px;
 			border: 6px inset rgba(0, 0, 0, 0.5);
+			box-shadow: inset 0 0 3px rgb(68 68 68), 0 0 1px rgb(0 0 0);
 			background: linear-gradient(180deg, rgb(127 127 127 / 50%) 0%, rgba(127, 127, 127, 0) 100%), url(img/titlebar11.png);
 			background-size: 128px;
 			background-position: 145px 0px;
-			padding: 0 9px;
 			height: 22px;
 			box-sizing: border-box;
-			box-shadow: inset 0 0 3px rgb(68 68 68), 0 0 1px rgb(0 0 0);
 			display: flex;
 			align-items: center;
 		}
 
 		x-button[data-a="min"] {
 			margin-right: 3px;
-			padding: 0 6px;
+			padding: 0 4px;
 		}
 
 		x-button[data-a="close"] {}
@@ -175,26 +177,31 @@ x-popup {
 			display: flex;
 		}
 
-		x-overlay {
-			display: none;
+		x-overlay { /* only used by map data ? */
+			display: flex;
 			z-index: 1;
 			position: absolute;
 			top: 0;
 			left: 0;
 			padding: 8px;
-			color: #383838;
+			color: #242424;
 			font-size: 11px;
 			font-family: monospace;
 			/* text-shadow: 0 0 1px black; */
 		}
 
 		x-world-map {
+			border-image: url(../img/rocks.jpg) 30;
+			border-style: solid;
+			border-width: 1px;
+			color: #cacaca;
+
 			-webkit-user-drag: none;
 			cursor: grab;
-			border: 2px solid rgb(255 255 255 / 5%);
+			bborder: 2px solid rgb(255 255 255 / 5%);
 			box-sizing: border-box;
 			width: 100%;
-			height: 400px;
+			height: 350px;
 			position: relative;
 			overflow: scroll;
 
@@ -213,9 +220,9 @@ x-popup {
 
 			x-world-map-graphic {
 				position: absolute;
-				width: 2048px;
-				height: 1536px;
-				background: url(img/WestPit.jpg);
+				width: 7000px;
+				height: 4000px;
+				background: url(../img/tarnn9.jpg);
 				background-size: 100%;
 				display: flex;
 			}

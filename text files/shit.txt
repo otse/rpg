@@ -1,0 +1,27 @@
+the shit setting is easily explained
+
+pandas, bunnies, world shroom, wooden swords
+
+why? because it's a web-rpg. w-crpg
+
+skills: 
+str
+spd
+
+the overworld contains the fighting, but you can enter locations sideways
+
+health bars can go beyond to show the power of a player
+
+there's an action bar with skills like heal, fire ball, potions
+
+what is persistent:
+your character can get powerful
+
+
+players float freely over the world
+    pros: very dumb which fits the theme
+    pros: real-time
+    --
+    cons: map will need a lot of detail
+alternative: players use movement points
+    cons: very crpgish

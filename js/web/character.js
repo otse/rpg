@@ -12,7 +12,10 @@ class character {
                 onclose: () => { character.popup = undefined; }
             });
             character.popup.content.innerHTML = `
-				Strength: 10
+				NUT: 10<br />
+				CNT: 100<br />
+				ASS: 100<br />
+				DIN: 100<br />
 			`;
             character.popup.attach();
         }

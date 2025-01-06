@@ -39,10 +39,10 @@ function getOffset(el) {
 	return [_x, _y] as vec2;
 }
 
-const map_size: vec2 = [2048, 1536];
+const map_size: vec2 = [7000, 4000];
 
-let map_division = 0.5;
-let mapZoom = 1;
+let base_divisor = 0.25;
+let actual_zoom = base_divisor;
 
 class world_map {
 	static instance?: world_map
@@ -54,7 +54,7 @@ class world_map {
 	world_map_scaler
 	world_map_graphic
 	ply?: flag
-	static addedZoom = 0
+	static persistent_zoom = 0
 	static pos: vec2 = [542, 306]
 	drag_start: vec2 = [0, 0]
 	drag: vec2 = [0, 0]
@@ -70,8 +70,8 @@ class world_map {
 		window['world_map'] = world_map;
 	}
 	static change_map_division() {
-		if (!app.mobile)
-			map_division = 1 / window.devicePixelRatio;
+		//if (!app.mobile)
+		//	map_division = 1 / window.devicePixelRatio;
 	}
 	static async step() {
 		world_map.change_map_division();
@@ -187,19 +187,19 @@ class world_map {
 		this.populate();
 		this.popup.attach();
 		this.add_zoom_controls();
-		this.rezoom();
+		this.set_zooms();
 		this.reposition();
 	}
 	zoom(increment = 0.25) {
-		const prevZoom = mapZoom;
-		world_map.addedZoom += increment;
-		world_map.addedZoom = rpg.clamp(world_map.addedZoom, 0, 3);
-		this.rezoom();
-		const map_size: vec2 = [2048, 1536];
+		const prevZoom = actual_zoom;
+		actual_zoom += increment;
+		actual_zoom = rpg.clamp(actual_zoom, base_divisor, 1);
+		this.set_zooms();
+		//const map_size: vec2 = [2048, 1536];
 		const old_map_size = pts.mult(map_size, prevZoom);
-		const new_map_size = pts.mult(map_size, mapZoom);
+		const new_map_size = pts.mult(map_size, actual_zoom);
 		const grow_size = pts.subtract(new_map_size, old_map_size);
-		const viewport: vec2 = [334, 400];
+		const viewport: vec2 = [484, 350];
 		const ratio = pts.dividev(pts.add(world_map.pos, pts.divide(viewport, 2)), old_map_size);
 		console.log('scroll', ratio);
 
@@ -227,15 +227,13 @@ class world_map {
 		world_map.pos = pts.add(world_map.pos, half);
 		this.reposition();
 	}
-	rezoom() {
-		mapZoom = map_division + world_map.addedZoom;
-		this.world_map_graphic.style.zoom = `${mapZoom}`;
+	set_zooms() {
+		this.world_map_graphic.style.zoom = `${actual_zoom}`;
 		//this.world_map_graphic.style.transform = `scale(${mapZoom})`;
 		//this.world_map_graphic.style['transform-origin'] = `${world_map.pos[0]}px ${world_map.pos[1]}px`;
 		this.x_overlay.innerHTML = `
-			Base zoom: ${map_division.toFixed(2)}<br />
-			Zoom: ${mapZoom.toFixed(2)}<br />
-			Scalar: ${world_map.addedZoom}
+			Divisor: ${base_divisor}<br />
+			Zoom: ${actual_zoom.toFixed(2)}
 		`;
 	}
 	add_zoom_controls() {
@@ -253,6 +251,7 @@ class world_map {
 		};
 	}
 	add_svg() {
+		return;
 		const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 		svg.setAttributeNS(null, 'viewBox', '0 0 20 15');
 		svg.setAttributeNS(null, 'width', '2048');
@@ -293,7 +292,7 @@ class world_map {
 	plySeg = 0
 	timer = 0
 	step() {
-		this.rezoom();
+		this.set_zooms();
 		for (const pin of pins) {
 			pin.step();
 		}
@@ -326,7 +325,7 @@ class pin {
 		pins.push(this);
 	}
 	step() {
-		let pos = pts.mult(this.pos, mapZoom);
+		let pos = pts.mult(this.pos, actual_zoom);
 		this.element.style.top = `${pos[1]}px`;
 		this.element.style.left = `${pos[0]}px`;
 	}
@@ -408,9 +407,9 @@ class label_image {
 		let aabb = new aabb2(this.tuple[0], this.tuple[1]);
 		aabb.min = pts.add(aabb.min, [-shrink_grow, -shrink_grow]);
 		aabb.max = pts.add(aabb.max, [shrink_grow, shrink_grow]);
-		const diag = pts.mult(aabb.diagonal(), map_division);
-		const min = pts.mult(aabb.min, map_division);
-		const map_size_scaled = pts.mult(map_size, map_division);
+		const diag = pts.mult(aabb.diagonal(), base_divisor);
+		const min = pts.mult(aabb.min, base_divisor);
+		const map_size_scaled = pts.mult(map_size, base_divisor);
 		this.el.style.width = `${diag[0]}px`;
 		this.el.style.height = `${diag[1]}px`;
 		this.el.style.top = `${min[1]}px`;

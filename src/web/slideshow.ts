@@ -6,7 +6,7 @@ const dev_mode = false;
 
 type slide = [mode: 'keep' | 'next' | 'never', image: string, animation: string, duration: number, text: string]
 
-const slides: slide[] = [
+const slidesOld: slide[] = [
 	['next', 'temples1.gif', 'slide-zoom', 8, 'it is a dark age of magic...']// and <x>cultural decline...</x>
 	, ['never', 'king1.gif', 'slide-zoom', 8, 'the king has ordered its court to research necromancy while also <x>banning magic</x> and promoting paganism...']
 	// , ['only', 'paladins.gif', 'slide-bottom', 5, 'its paladins, healers and temples are allowed to cast spells']
@@ -26,6 +26,10 @@ const slides: slide[] = [
 	, ['next', 'shroom.gif', 'slide-top-to-bottom', 10, 'druids use the world shroom to reinvigorate the kingdom']
 	, ['next', 'foresee5.gif', 'slide-zoom', 5, 'one day one of the wizards realizes the true nature of the wanderer']
 	, ['keep', '', 'slide-bottom', 5, 'and <x>summons a fellowship</x> to go after him...']
+]
+
+const slides: slide[] = [
+	['next', 'bum.png', 'slide-zoom', 8, 'after an age of drought you are ready to fight']
 ]
 class slideshow {
 	static instance?: slideshow
@@ -85,7 +89,8 @@ class slideshow {
 		if (slide[0] == 'never')
 			return;
 		if (slide[0] == 'keep') {
-			this.currentSlide.innerHTML = `<x-caption><span>How now brown cow?${slide[4]}</span></x-caption>`;
+			this.currentSlide.innerHTML = `<x-caption><span>${slide[4]}</span></x-caption>`;
+			// How now brown cow?
 		}
 		else if (slide[0] == 'next') {
 			const newDiv = document.createElement('x-slide');
@@ -93,7 +98,7 @@ class slideshow {
 			newDiv.style.animation = `10s ease-out 0s both ${slide[2]}`;
 			newDiv.style.animation += `, 1s ease-in-out 0s both slide-fade`;
 			newDiv.classList.add(slide[2]);
-			newDiv.style.background = `url(img/slides/gif/${slide[1]})`;
+			newDiv.style.background = `url(img/slides/${slide[1]})`;
 			this.currentSlide = newDiv;
 			this.slides.appendChild(newDiv);
 			const oldSlide = this.oldSlide;

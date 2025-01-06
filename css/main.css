@@ -75,8 +75,9 @@ x-top-bar {
 	hheight: 40px;
 	box-sizing: border-box;
 	background: gray;
-	background: url(img/titlebar.png);
-	background: url(img/rocks.jpg);
+	background: url(../img/titlebar.png);
+	background: url(../img/rocks.jpg);
+	background-size: 128px;
 	bbackground: url(https://www.textures.com/system/gallery/photos/Wood/Planks/Old%20Planks/122313/WoodPlanksOld0308_1_download600.jpg);
 	/* background: rgba(110, 110, 110, 0.8); */
 	bbackground-size: 100%;
