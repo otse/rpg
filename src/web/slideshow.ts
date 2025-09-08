@@ -6,9 +6,9 @@ const dev_mode = false;
 
 type slide = [mode: 'keep' | 'next' | 'never', image: string, animation: string, duration: number, text: string]
 
-const slidesOld: slide[] = [
+const slides: slide[] = [
 	['next', 'temples1.gif', 'slide-zoom', 8, 'it is a dark age of magic...']// and <x>cultural decline...</x>
-	, ['never', 'king1.gif', 'slide-zoom', 8, 'the king has ordered its court to research necromancy while also <x>banning magic</x> and promoting paganism...']
+	, ['next', 'king1.gif', 'slide-zoom', 8, 'the king has ordered its court to research necromancy while also <x>banning magic</x> and promoting paganism...']
 	// , ['only', 'paladins.gif', 'slide-bottom', 5, 'its paladins, healers and temples are allowed to cast spells']
 	//, ['next', 'exiles2.gif', 'slide-bottom', 5, 'commoners are exiled']
 	//, ['next', 'grimoire.gif', 'slide-left', 5, 'grimoires are destroyed']
@@ -28,7 +28,7 @@ const slidesOld: slide[] = [
 	, ['keep', '', 'slide-bottom', 5, 'and <x>summons a fellowship</x> to go after him...']
 ]
 
-const slides: slide[] = [
+const slidesNew: slide[] = [
 	['next', 'bum.png', 'slide-zoom', 8, 'after an age of drought you are ready to fight']
 ]
 class slideshow {
@@ -98,7 +98,7 @@ class slideshow {
 			newDiv.style.animation = `10s ease-out 0s both ${slide[2]}`;
 			newDiv.style.animation += `, 1s ease-in-out 0s both slide-fade`;
 			newDiv.classList.add(slide[2]);
-			newDiv.style.background = `url(img/slides/${slide[1]})`;
+			newDiv.style.background = `url(img/slides/dark/gif/${slide[1]})`;
 			this.currentSlide = newDiv;
 			this.slides.appendChild(newDiv);
 			const oldSlide = this.oldSlide;

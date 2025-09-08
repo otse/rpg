@@ -12,9 +12,9 @@ var main;
     }
     main.step = step;
     function rewrite() {
-        content_inner.innerHTML = `
-			You are at { location }
-		`;
+        /*content_inner.innerHTML = `
+            You are at { location }
+        `*/
     }
     main.rewrite = rewrite;
 })(main || (main = {}));

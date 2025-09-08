@@ -1,0 +1,16 @@
+het stenen rijk / de stenen rijken
+
+what stone realms is not:
+* not a renderer
+* not an idle game
+* not an mmo
+* not a serious fantasy game
+
+stone realms is:
+* a web rpg with buttons, menus
+* where you travel on the overmap
+* a mobile-friendly low-time-investment game
+
+the gameplay loop of stone realms:
+* travel costs points or energy but arrival is instant
+* each location has different things to do

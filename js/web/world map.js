@@ -83,7 +83,7 @@ class world_map {
         console.log(world_map.pos);
         this.popup = new popup({
             class: 'world-map',
-            title: 'Travel',
+            title: 'Explore the Kingdom',
             hasMin: true,
             hasClose: true,
             zIndex: 2,

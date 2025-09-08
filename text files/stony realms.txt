@@ -1,0 +1,8 @@
+stony realms is a concoction of stone realms the rpg and worldetch the renderer
+
+the word stony refers to the location stony fields from diablo ii
+
+what is st0ny realms:
+* a crpg-rl
+* prototyped in the browser
+* 

@@ -21,9 +21,9 @@ namespace main {
 
 	export function rewrite() {
 
-		content_inner.innerHTML = `
+		/*content_inner.innerHTML = `
 			You are at { location }
-		`
+		`*/
 	}
 	
 }
